@@ -1,0 +1,120 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    >
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="@string/note_content"        
+        />
+    
+    <EditText 
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:id="@+id/et_note_content"      
+        />
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/note_time"
+        android:textSize="20sp"
+        >  
+    </TextView>    
+    
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <DatePicker 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/datepicker_note"
+            />       
+        
+        <TimePicker 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/timepicker_note">      
+    	</TimePicker>
+    </LinearLayout>
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/note_sound" 
+            android:textSize="20sp"  
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            ></TextView> 
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkbox_note_sound"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"           
+            ></CheckBox>
+        
+    </RelativeLayout>
+    
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/note_shake" 
+            android:textSize="20sp"  
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            ></TextView> 
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkbox_note_shake"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"           
+            ></CheckBox>
+        
+    </RelativeLayout>
+   
+    
+    
+    
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,35 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/custom_title" 
+    >
+    <ImageView 
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/custom_title_rollback"
+        android:background="@drawable/btn_left"   
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="0dp"
+        android:layout_centerVertical="true"     
+        />
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:id="@+id/title_name"
+       	android:layout_centerInParent="true"
+       	android:textSize="20sp"
+       	android:text="自定义标题栏"  
+        />
+    
+    <ImageView 
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/custom_title_menu"
+        android:background="@drawable/btn_setting"   
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"     
+        />
+    
+</RelativeLayout>

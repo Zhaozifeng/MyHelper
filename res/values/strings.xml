@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- activity_my_helper_main中文信息 -->
+    <string name="app_name">Android事务管理专家</string>
+    <string name="app_enter">欢迎进入</string>
+    <string name="action_settings">设置</string>
+    
+    <string name="affair_helper">事务达人</string>
+    <string name="health_helper">健康伴侣</string>
+    <string name="main_setting">设置</string>
+    
+    <string name="note">备忘录</string>
+    <string name="diary">日记</string>
+    <string name="account">小账本</string>
+    
+    <!-- 备忘录页面中文信息 -->
+    <string name="note_content">备忘内容</string>
+    <string name="note_time">提醒时间</string>
+    <string name="note_sound">铃声提醒</string>
+	<string name="note_shake">震动提醒</string>    
+    
+
+</resources>
