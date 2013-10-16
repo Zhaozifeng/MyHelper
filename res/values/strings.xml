@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<!-- activity_my_helper_main中文信息 -->
+	
     <string name="app_name">Android事务管理专家</string>
     <string name="app_enter">欢迎进入</string>
     <string name="action_settings">设置</string>
+    <string name="app_exit_title">退出提示</string>
+    <string name="app_exit_message">您是否要退出Android事务管理专家系统?</string>
+    <string name="app_exit_exitbutton">退出</string>
+    <string name="app_exit_cancel">取消</string>
+    
     
     <string name="affair_helper">事务达人</string>
     <string name="health_helper">健康伴侣</string>
@@ -17,7 +23,11 @@
     <string name="note_content">备忘内容</string>
     <string name="note_time">提醒时间</string>
     <string name="note_sound">铃声提醒</string>
-	<string name="note_shake">震动提醒</string>    
+	<string name="note_shake">震动提醒</string>   
+	<string name="note_dialog_title">操作提醒</string> 
+	<string name="note_dialog_message">是否确认提交</string>
+	<string name="note_dialog_commit">确定</string>
+	<string name="note_dialog_cancel">取消</string>
     
 
 </resources>

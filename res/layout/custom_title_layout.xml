@@ -8,7 +8,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/custom_title_rollback"
-        android:src="@drawable/btn_left"   
+        android:background="@drawable/btn_left"   
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="0dp"
         android:layout_centerVertical="true"     
@@ -26,8 +26,8 @@
     <ImageView 
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:id="@+id/custom_title_rollback"
-        android:src="@drawable/btn_setting"   
+        android:id="@+id/custom_title_menu"
+        android:background="@drawable/btn_setting"   
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"     
         />
