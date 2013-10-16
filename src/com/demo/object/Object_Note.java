@@ -2,7 +2,7 @@ package com.demo.object;
 
 //这是备忘录对象类，作为数据存进数据库
 
-public class Object_Note {
+public class Object_Note {                                                                                                                                                                                          
 	
 	public static boolean OPEN_SOUND  = true;
 	public static boolean CLOSE_SOUND = false;
