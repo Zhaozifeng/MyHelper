@@ -36,11 +36,13 @@ public class Affair_Note extends Activity {
 	private DatePicker  mDatePicker;
 	private Calendar	mCalendar;
 	
+	
 	public static  int 		mYear   = 0;
 	public static  int 		mMonth  = 0;
 	public static  int 		mDay    = 0;
 	public static  int		mHour   = 0;
 	public static  int 		mMinute = 0;
+	public static  boolean  isAlarmed = false;
 	
 	
 	private static String 		mContent    =null;
@@ -52,20 +54,22 @@ public class Affair_Note extends Activity {
 	
 	Handler mHandler = new Handler(){
 		public void handleMessage(Message msg){
-			if(msg.what==1){
+			if(msg.what==1){				
 				showNotice();
+				//getCurrentTimeThread.stop();
 			}
 		}
 	};
 	
 	Thread getCurrentTimeThread = new Thread(new Runnable(){
 		public void run() {
-			while(true){
+			while(!isAlarmed){
+				isAlarmed = true;
 				currentTime = myDateFormat.format(new Date());
-				Log.e("getCurrentTimeThread", currentTime);
+				//Log.e("getCurrentTimeThread", currentTime);
 				if(currentTime.equals(settingTime)){
 					mHandler.sendEmptyMessage(1);
-					Log.e("getCurrentTimeThread", "true");
+					//Log.e("getCurrentTimeThread", "true");
 				}						
 			}				
 		}			
@@ -80,11 +84,19 @@ public class Affair_Note extends Activity {
 	}
 		
 	void showNotice(){
-		Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-		Toast.makeText(Affair_Note.this, "够时间了，亲" ,Toast.LENGTH_LONG).show();
-		vibrator.vibrate(5000);
-		//getCurrentTimeThread.destroy();
-		
+		//Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+		//Toast.makeText(Affair_Note.this, "够时间了，亲" ,Toast.LENGTH_LONG).show();
+		//vibrator.vibrate(5000);
+		Builder builder = new AlertDialog.Builder(Affair_Note.this)
+		.setTitle("到时提醒")
+		.setMessage("亲，你设定的时间到了，程序有没有问题啊？")
+		.setPositiveButton("知道了", new DialogInterface.OnClickListener(){
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub				
+			}
+		});
+		builder.create().show();
 	}
 	
 	
@@ -108,7 +120,7 @@ public class Affair_Note extends Activity {
 		
 		mCalendar = Calendar.getInstance();										//获取年月并监听
 		mYear 	  = mCalendar.get(Calendar.YEAR);
-		mMonth 	  = mCalendar.get(Calendar.MONTH)+1;
+		mMonth 	  = mCalendar.get(Calendar.MONTH);
 		mDay 	  = mCalendar.get(Calendar.DAY_OF_MONTH);
 		
 		mDatePicker.init(mYear, mMonth, mDay, new OnDateChangedListener(){
@@ -141,13 +153,15 @@ public class Affair_Note extends Activity {
 				.setPositiveButton(R.string.note_dialog_commit, new DialogInterface.OnClickListener(){
 					@Override
 					public void onClick(DialogInterface arg0, int arg1) {
+						isAlarmed   = false;
 						mYear   	= mDatePicker.getYear();
-						mMonth  	= mDatePicker.getMonth();
+						mMonth  	= mDatePicker.getMonth()+1;
 						mDay    	= mDatePicker.getDayOfMonth();
 						mHour       = mTimePicker.getCurrentHour();
 						mMinute     = mTimePicker.getCurrentMinute();
 						settingTime = mYear+"/"+mMonth+"/"+mDay+" "+mHour+":"+mMinute;	
-						getCurrentTimeThread.start();
+						if(getCurrentTimeThread.isAlive()==false)
+							getCurrentTimeThread.start();
 					}					
 				}).
 				setNegativeButton(R.string.note_dialog_cancel, new DialogInterface.OnClickListener() {					
