@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<!-- activity_my_helper_main中文信息 -->
-	
+	<!-- activity_my_helper_main中文信息 -->	
     <string name="app_name">Android事务管理专家</string>
     <string name="app_enter">欢迎进入</string>
     <string name="action_settings">设置</string>
@@ -9,12 +8,9 @@
     <string name="app_exit_message">您是否要退出Android事务管理专家系统?</string>
     <string name="app_exit_exitbutton">退出</string>
     <string name="app_exit_cancel">取消</string>
-    
-    
     <string name="affair_helper">事务达人</string>
     <string name="health_helper">健康伴侣</string>
-    <string name="main_setting">设置</string>
-    
+    <string name="main_setting">设置</string>  
     <string name="note">备忘录</string>
     <string name="diary">日记</string>
     <string name="account">小账本</string>
@@ -28,6 +24,34 @@
 	<string name="note_dialog_message">是否确认提交</string>
 	<string name="note_dialog_commit">确定</string>
 	<string name="note_dialog_cancel">取消</string>
+    <string name="note_dialog_timeup_title">时间到提醒</string>
+    <string name="note_dialog_known">我知道了</string>
     
-
+    
+    <!-- 日记页面中文信息 -->
+    <string name="diary_title">秘密日记</string>
+	<string name="diary_emotion">心情状况</string>
+	<string name="diary_content">我要记下</string>
 </resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.EditText;
@@ -22,19 +24,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.TimePicker.OnTimeChangedListener;
-import android.widget.Toast;
 
 import com.demo.myhelper.R;
 
 public class Affair_Note extends Activity {	
 
-	private TextView 	tv_title;
-	private ImageView   image_left;
-	private ImageView   image_commit;
-	private EditText    edt_content;
-	private TimePicker  mTimePicker;
-	private DatePicker  mDatePicker;
-	private Calendar	mCalendar;
+	private TextView 		tv_title;
+	private ImageView   	image_left;
+	private ImageView   	image_commit;
+	private EditText    	edt_content;
+	private TimePicker  	mTimePicker;
+	private DatePicker 		mDatePicker;
+	private Calendar		mCalendar;
+	private CheckBox		mSoundCheck;
+	private CheckBox        mVibrateCheck;
+	private MediaPlayer   	mPlay;
+	private Vibrator		vibrator;
 	
 	
 	public static  int 		mYear   = 0;
@@ -42,7 +47,9 @@ public class Affair_Note extends Activity {
 	public static  int 		mDay    = 0;
 	public static  int		mHour   = 0;
 	public static  int 		mMinute = 0;
-	public static  boolean  isAlarmed = false;
+	public static  boolean  isAlarmed = false;										//判断是否已经警示
+	public static  boolean  isSound   = true;										//是否响铃
+	public static  boolean  isVibrate = true;										//是否震动
 	
 	
 	private static String 		mContent    =null;
@@ -56,7 +63,6 @@ public class Affair_Note extends Activity {
 		public void handleMessage(Message msg){
 			if(msg.what==1){				
 				showNotice();
-				//getCurrentTimeThread.stop();
 			}
 		}
 	};
@@ -64,17 +70,18 @@ public class Affair_Note extends Activity {
 	Thread getCurrentTimeThread = new Thread(new Runnable(){
 		public void run() {
 			while(!isAlarmed){
-				isAlarmed = true;
 				currentTime = myDateFormat.format(new Date());
-				//Log.e("getCurrentTimeThread", currentTime);
+				Log.e("getCurrentTimeThread", currentTime);
 				if(currentTime.equals(settingTime)){
+					isAlarmed = true;								//避免多次弹出对话框
 					mHandler.sendEmptyMessage(1);
-					//Log.e("getCurrentTimeThread", "true");
+					Log.e("getCurrentTimeThread", "true");
 				}						
 			}				
 		}			
 	});	
 	
+	//主函数
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);			
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
@@ -84,16 +91,25 @@ public class Affair_Note extends Activity {
 	}
 		
 	void showNotice(){
-		//Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-		//Toast.makeText(Affair_Note.this, "够时间了，亲" ,Toast.LENGTH_LONG).show();
-		//vibrator.vibrate(5000);
+		
+		if(isSound){
+		mPlay = MediaPlayer.create(Affair_Note.this, R.raw.silent_cry);					//想起固定铃声
+		mPlay.start();}
+		if(isVibrate){
+		vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);						//震动
+		vibrator.vibrate(5000);}
+		
 		Builder builder = new AlertDialog.Builder(Affair_Note.this)
-		.setTitle("到时提醒")
-		.setMessage("亲，你设定的时间到了，程序有没有问题啊？")
-		.setPositiveButton("知道了", new DialogInterface.OnClickListener(){
+		.setTitle(R.string.note_dialog_timeup_title)
+		.setMessage(mContent)
+		.setPositiveButton(getResources().getString(R.string.note_dialog_known), 
+				new DialogInterface.OnClickListener(){
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				// TODO Auto-generated method stub				
+				if(isSound)
+					mPlay.release();														//释放播放
+				if(isVibrate)
+					vibrator.cancel();
 			}
 		});
 		builder.create().show();
@@ -106,6 +122,14 @@ public class Affair_Note extends Activity {
 		image_left  = (ImageView)findViewById(R.id.custom_title_rollback);
 		image_commit= (ImageView)findViewById(R.id.custom_title_menu);
 		edt_content = (EditText)findViewById(R.id.et_note_content);
+		mSoundCheck = (CheckBox)findViewById(R.id.checkbox_note_sound);
+		mVibrateCheck = (CheckBox)findViewById(R.id.checkbox_note_shake);
+		
+		mSoundCheck.setChecked(true);
+		mVibrateCheck.setChecked(true);
+		
+		 
+		
 		
 		mTimePicker = (TimePicker)findViewById(R.id.timepicker_note);
 		mDatePicker = (DatePicker)findViewById(R.id.datepicker_note);
@@ -142,26 +166,51 @@ public class Affair_Note extends Activity {
 		});				
 		
 		
-		//edt_content.setText(myDateFormat.format(new Date()));
-			
 		image_commit.setOnClickListener(new View.OnClickListener(){				//提交按钮
-			public void onClick(View v){
-				
+			public void onClick(View v){				
 				Builder mbuilder = new AlertDialog.Builder(Affair_Note.this)    //弹出对话框，注意这里一定要引入活动名
 				.setTitle(R.string.note_dialog_title)
 				.setMessage(R.string.note_dialog_message)
 				.setPositiveButton(R.string.note_dialog_commit, new DialogInterface.OnClickListener(){
+					String str_month;
+					String str_day;
+					String str_hour;
+					String str_minute;
+
 					@Override
 					public void onClick(DialogInterface arg0, int arg1) {
 						isAlarmed   = false;
+						mContent    = edt_content.getText().toString();			//获取提醒内容
 						mYear   	= mDatePicker.getYear();
 						mMonth  	= mDatePicker.getMonth()+1;
 						mDay    	= mDatePicker.getDayOfMonth();
 						mHour       = mTimePicker.getCurrentHour();
 						mMinute     = mTimePicker.getCurrentMinute();
-						settingTime = mYear+"/"+mMonth+"/"+mDay+" "+mHour+":"+mMinute;	
-						if(getCurrentTimeThread.isAlive()==false)
-							getCurrentTimeThread.start();
+						
+						if(mMonth<10)											//设置判别个位数处理
+							 str_month = "0"+mMonth;
+						else
+							 str_month = ""+mMonth;
+						
+						if(mDay<10)
+							str_day = "0"+mDay;
+						else
+							str_day = ""+mDay;
+						
+						if(mHour<10)
+							str_hour = "0"+mHour;
+						else
+							str_hour = ""+mHour;
+						
+						if(mMinute<10)
+							str_minute = ":0"+mMinute;
+						else
+							str_minute = ":"+mMinute;
+											
+						settingTime = mYear+"/"+str_month+"/"+str_day+" "+str_hour+str_minute;						
+						isSound   = mSoundCheck.isChecked();									//获取是否响声
+						isVibrate = mVibrateCheck.isChecked();									//获取是否震动
+						getCurrentTimeThread.start();
 					}					
 				}).
 				setNegativeButton(R.string.note_dialog_cancel, new DialogInterface.OnClickListener() {					
