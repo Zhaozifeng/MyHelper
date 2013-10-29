@@ -15,7 +15,9 @@
     <EditText 
         android:layout_width="fill_parent"
         android:layout_height="100dp"
-        android:id="@+id/et_note_content"      
+        android:id="@+id/et_note_content"   
+        android:scrollbars="vertical"
+        android:gravity="top"   
         />
     
     <TextView
