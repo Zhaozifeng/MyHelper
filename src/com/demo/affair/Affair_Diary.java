@@ -1,4 +1,9 @@
 package com.demo.affair;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.tsz.afinal.FinalActivity;
+import net.tsz.afinal.FinalDb;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,8 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.demo.myhelper.R;
+import com.demo.object.Obejct_Diary;
 
-public class Affair_Diary extends Activity {
+public class Affair_Diary extends FinalActivity {
 	
 	TextView 	tvTitle;
 	ImageView	imgLeft;
@@ -20,6 +26,14 @@ public class Affair_Diary extends Activity {
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.activity_affair_diary);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title_layout);
+		FinalDb db = FinalDb.create(Affair_Diary.this,"系统数据库");
+		Obejct_Diary u =new Obejct_Diary();
+		u.setTime("2013-10-30");
+		u.setEmotion("bad");
+		u.setTitle("why not");
+		u.setContent("i must fix it");
+		db.save(u);	
+		List<Obejct_Diary> list= db.findAll(Obejct_Diary.class);
 		initialTitle();	
 	}
 	
