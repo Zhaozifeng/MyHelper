@@ -16,7 +16,7 @@ import android.widget.TabHost;
 
 public class MyHelper_MainActivity extends TabActivity {
 	
-	private TabHost		mTabHost;
+	private TabHost mTabhost;
 			
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,28 +27,28 @@ public class MyHelper_MainActivity extends TabActivity {
 	
 	
 	void initialUI(){												     //初始化主界面
-		mTabHost = getTabHost();	
+		mTabhost = getTabHost();	
 		Intent intentToAffair = new Intent(MyHelper_MainActivity.this,AffairMain.class);
-		mTabHost.addTab(mTabHost.newTabSpec("affair_helper")
+		mTabhost.addTab(mTabhost.newTabSpec("affair_helper")
 						.setIndicator(getResources().getString(R.string.affair_helper))
 						.setContent(intentToAffair));	
 		
 		Intent intentToHealth = new Intent(MyHelper_MainActivity.this,HealthMain.class);
-		mTabHost.addTab(mTabHost.newTabSpec("health_helper")
+		mTabhost.addTab(mTabhost.newTabSpec("health_helper")
 						.setIndicator(getResources().getString(R.string.health_helper))
 						.setContent(intentToHealth));	
 		
 		Intent intentToSetting = new Intent(MyHelper_MainActivity.this,MyHelper_Setting.class);
-		mTabHost.addTab(mTabHost.newTabSpec("main_setting")
+		mTabhost.addTab(mTabhost.newTabSpec("main_setting")
 						.setIndicator(getResources().getString(R.string.main_setting))
 						.setContent(intentToSetting));	
-		mTabHost.setCurrentTab(0);										//设置当前停留的标签
+		mTabhost.setCurrentTab(0);										//设置当前停留的标签
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.my_helper__main, menu);
+		getMenuInflater().inflate(R.menu.my_helper_main, menu);
 		return true;
 	}
 	

@@ -31,7 +31,13 @@
     <!-- 日记页面中文信息 -->
     <string name="diary_title">秘密日记</string>
 	<string name="diary_emotion">心情状况</string>
-	<string name="diary_content">我要记下</string>
+	<string name="diary_content">正文</string>
+	<string name="diary_name">标题</string>
+	<string name="diary_time">时间</string>
+	<string name="diary_time_edt">修改时间</string>
+	<string name="diary_add_title">添加日记</string>
+	<string name="diary_commit">提交</string>
+	<string name="diary_emotion_add">添加心情</string>
 </resources>
 
 
