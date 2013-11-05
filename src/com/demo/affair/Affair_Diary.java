@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -26,6 +28,7 @@ public class Affair_Diary extends Activity {
 	
 	public static String DIARY_TABLE_TITLE = "title";
 	public static String DIARY_TABLE_TIME = "time";
+	public static String CHOOSE_ITEM_ID = "click_id";
 	
 
 
@@ -42,15 +45,25 @@ public class Affair_Diary extends Activity {
 	public void makeList(){
 		SQLiteDatabase db = MyHelper_MainActivity.HelperSQLite.getReadableDatabase();
 		//curDiary = db.query(MainDatabase.DIARY_TABLE_NAME, new String[]{DIARY_TABLE_TITLE,DIARY_TABLE_TIME}, null, null, null, null, null);
-		curDiary = db.query(MainDatabase.DIARY_TABLE_NAME, null, null, null, null, null, null);
+		String selector[]={"_id",DIARY_TABLE_TITLE,DIARY_TABLE_TIME};
+		curDiary = db.query
+		(MainDatabase.DIARY_TABLE_NAME, null, null, null, null, null,  "_id desc", null);
 		curDiary.moveToFirst();
 		if(curDiary.getCount()>0){
-		String from[]=new String[]{DIARY_TABLE_TITLE,DIARY_TABLE_TIME};
-		int to[]=new int[]{R.id.tv_diary_title,R.id.tv_diary_time};
-		SimpleCursorAdapter notes = new SimpleCursorAdapter(this,
-				R.layout.diary_row, curDiary, from, to);
-		
-		lsDiary.setAdapter(notes);
+			String from[]=new String[]{DIARY_TABLE_TITLE,DIARY_TABLE_TIME};
+			int to[]=new int[]{R.id.tv_diary_title,R.id.tv_diary_time};
+			SimpleCursorAdapter notes = new SimpleCursorAdapter(this,
+					R.layout.diary_row, curDiary, from, to);			
+			lsDiary.setAdapter(notes);
+			lsDiary.setOnItemClickListener(new OnItemClickListener(){
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1,
+						int arg2, long arg3) {
+					Intent intent = new Intent(Affair_Diary.this,Affair_Diary_Add.class);
+					intent.putExtra(CHOOSE_ITEM_ID, arg2);
+					startActivity(intent);
+				}				
+			});			
 		}
 	}
 	
@@ -78,6 +91,7 @@ public class Affair_Diary extends Activity {
 			public void onClick(View v) {
 				Intent intent = new Intent(Affair_Diary.this,Affair_Diary_Add.class);
 				startActivity(intent);
+				finish();
 			}	
 		});
 		

@@ -40,6 +40,8 @@ public class Affair_Diary_Add extends Activity{
 	public String time;
 	public String content;
 	
+	public int click_id;
+	
 	private static final String[] emotions={"心情极佳","平平常常","孤单落寞","痛苦悲伤"};
 	private ArrayAdapter<String> adapter;
 	
@@ -49,10 +51,28 @@ public class Affair_Diary_Add extends Activity{
 		setContentView(R.layout.diary_add);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title_layout2);
 		initialUI();
+		getClickId();
+		setListener();
 	}
 	
+	public void getClickId(){
+		Intent intent = this.getIntent();
+		click_id = intent.getIntExtra(Affair_Diary.CHOOSE_ITEM_ID, -1);
+	}
 	
-	void initialUI(){
+	public void showOldDiary(){
+		if(click_id!=-1){										    //非-1就是查看日记
+			
+			
+			
+			
+			
+			
+		}
+		
+	}
+
+	public void initialUI(){
 		Utools useforTime = new Utools();							//设置获取当前时间的工具类
 		useforTime.setDate();
 		imgLeft = (ImageView)findViewById(R.id.custom_title_rollback2);
@@ -62,7 +82,14 @@ public class Affair_Diary_Add extends Activity{
 		edtName   = (EditText)findViewById(R.id.edt_diary_name);
 		edtTime   = (EditText)findViewById(R.id.edt_diary_time);
 		edtContent= (EditText)findViewById(R.id.edt_diary_content);
-		edtTime.setText(useforTime.getDate());		
+		edtTime.setText(useforTime.getDate());
+		
+	}
+	
+	
+	
+	void setListener(){
+				
 		imgLeft.setOnClickListener(new OnClickListener(){
 			public void onClick(View v) {
 				Intent intent = new Intent(Affair_Diary_Add.this,Affair_Diary.class);
@@ -95,6 +122,7 @@ public class Affair_Diary_Add extends Activity{
 				.setPositiveButton(R.string.diary_add_yes, new DialogInterface.OnClickListener() {					
 					public void onClick(DialogInterface dialog, int which) {
 						Intent intent = new Intent(Affair_Diary_Add.this,Affair_Diary.class);
+						intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 						startActivity(intent);
 						finish();					
 					}
@@ -106,13 +134,11 @@ public class Affair_Diary_Add extends Activity{
 				});
 				builder.create().show();
 			}			
-		});
-		
+		});		
 		tvTitle.setText(R.string.diary_add_title);		
 		adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,emotions);
 		adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-		spEmotion.setAdapter(adapter);
-		
+		spEmotion.setAdapter(adapter);		
 	}
 
 }
