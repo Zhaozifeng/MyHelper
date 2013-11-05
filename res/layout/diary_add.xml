@@ -103,6 +103,7 @@
                 />
             
             <EditText 
+                android:id="@+id/edt_diary_content"
                 android:layout_width="fill_parent"
                 android:layout_height="500dp"
                 android:gravity="top"

@@ -37,27 +37,31 @@ public final class R {
         public static final int welcome4=0x7f02000d;
     }
     public static final class id {
-        public static final int action_settings=0x7f090014;
-        public static final int affair_main=0x7f090000;
-        public static final int btn_add_emotion=0x7f090011;
-        public static final int btn_time_edt=0x7f090013;
-        public static final int checkbox_note_shake=0x7f090006;
-        public static final int checkbox_note_sound=0x7f090005;
-        public static final int custom_title=0x7f090008;
-        public static final int custom_title_menu=0x7f09000b;
-        public static final int custom_title_menu_btn=0x7f09000e;
-        public static final int custom_title_rollback=0x7f090009;
-        public static final int custom_title_rollback2=0x7f09000c;
-        public static final int datepicker_note=0x7f090003;
-        public static final int edt_diary_name=0x7f09000f;
-        public static final int edt_diary_time=0x7f090012;
-        public static final int et_note_content=0x7f090002;
-        public static final int gv_affair_main=0x7f090001;
-        public static final int spinner_emotion=0x7f090010;
-        public static final int timepicker_note=0x7f090004;
-        public static final int title_name=0x7f09000a;
-        public static final int title_name2=0x7f09000d;
-        public static final int vp_myhelper_welcome=0x7f090007;
+        public static final int action_settings=0x7f090018;
+        public static final int affair_main=0x7f090001;
+        public static final int btn_add_emotion=0x7f090012;
+        public static final int btn_time_edt=0x7f090014;
+        public static final int checkbox_note_shake=0x7f090007;
+        public static final int checkbox_note_sound=0x7f090006;
+        public static final int custom_title=0x7f090009;
+        public static final int custom_title_menu=0x7f09000c;
+        public static final int custom_title_menu_btn=0x7f09000f;
+        public static final int custom_title_rollback=0x7f09000a;
+        public static final int custom_title_rollback2=0x7f09000d;
+        public static final int datepicker_note=0x7f090004;
+        public static final int edt_diary_content=0x7f090015;
+        public static final int edt_diary_name=0x7f090010;
+        public static final int edt_diary_time=0x7f090013;
+        public static final int et_note_content=0x7f090003;
+        public static final int gv_affair_main=0x7f090002;
+        public static final int ls_diary=0x7f090000;
+        public static final int spinner_emotion=0x7f090011;
+        public static final int timepicker_note=0x7f090005;
+        public static final int title_name=0x7f09000b;
+        public static final int title_name2=0x7f09000e;
+        public static final int tv_diary_time=0x7f090017;
+        public static final int tv_diary_title=0x7f090016;
+        public static final int vp_myhelper_welcome=0x7f090008;
     }
     public static final class layout {
         public static final int activity_affair_account=0x7f030000;
@@ -71,6 +75,7 @@ public final class R {
         public static final int custom_title_layout=0x7f030008;
         public static final int custom_title_layout2=0x7f030009;
         public static final int diary_add=0x7f03000a;
+        public static final int diary_row=0x7f03000b;
     }
     public static final class menu {
         public static final int my_helper_main=0x7f080000;
@@ -91,17 +96,20 @@ public final class R {
          */
         public static final int app_name=0x7f060000;
         public static final int diary=0x7f06000b;
+        public static final int diary_add_message=0x7f06001f;
         public static final int diary_add_title=0x7f06001d;
+        public static final int diary_add_yes=0x7f060020;
         public static final int diary_commit=0x7f06001e;
         public static final int diary_content=0x7f060019;
         public static final int diary_emotion=0x7f060018;
-        public static final int diary_emotion_add=0x7f06001f;
+        public static final int diary_emotion_add=0x7f060022;
         public static final int diary_name=0x7f06001a;
         public static final int diary_time=0x7f06001b;
         public static final int diary_time_edt=0x7f06001c;
         /**  日记页面中文信息 
          */
         public static final int diary_title=0x7f060017;
+        public static final int diry_add_no=0x7f060021;
         public static final int health_helper=0x7f060008;
         public static final int main_setting=0x7f060009;
         public static final int note=0x7f06000a;

@@ -37,6 +37,9 @@
 	<string name="diary_time_edt">修改时间</string>
 	<string name="diary_add_title">添加日记</string>
 	<string name="diary_commit">提交</string>
+	<string name="diary_add_message">亲，今天的生活点滴都记录好了吗？</string>
+	<string name="diary_add_yes">好了</string>
+	<string name="diry_add_no">我再想想</string>
 	<string name="diary_emotion_add">添加心情</string>
 </resources>
 

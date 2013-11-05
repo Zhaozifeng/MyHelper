@@ -2,6 +2,7 @@ package com.demo.myhelper;
 
 import com.demo.affair.AffairMain;
 import com.demo.health.HealthMain;
+import com.demo.object.MainDatabase;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -9,6 +10,7 @@ import android.app.AlertDialog.Builder;
 import android.app.TabActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -17,12 +19,24 @@ import android.widget.TabHost;
 public class MyHelper_MainActivity extends TabActivity {
 	
 	private TabHost mTabhost;
+	
+	public static MainDatabase HelperSQLite; 
 			
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);		
 		setContentView(R.layout.activity_my_helper_main);	
+		initialDataBase();
 		initialUI();	
+	}
+	
+	
+	void initialDataBase(){
+		HelperSQLite = new MainDatabase(MyHelper_MainActivity.this,1); 
+	}
+	
+	MainDatabase getHelperSQLite(){
+		return HelperSQLite;
 	}
 	
 	

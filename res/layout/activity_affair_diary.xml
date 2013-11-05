@@ -4,6 +4,12 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     >
+    
+    <ListView 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/ls_diary"
+        ></ListView>
 	
 
     

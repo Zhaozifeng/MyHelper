@@ -1,0 +1,28 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"   
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent">
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="日记标题"
+        android:textSize="20sp"
+        android:layout_marginLeft="5dp"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/tv_diary_title"       
+        />
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_diary_title"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:textSize="10sp"
+        android:text="2013-11-5"
+        android:id="@+id/tv_diary_time"
+        />
+    
+    
+</RelativeLayout>

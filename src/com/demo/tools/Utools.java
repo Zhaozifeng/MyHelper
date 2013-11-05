@@ -11,6 +11,7 @@ public class Utools {
 	private 	String mMonth;
 	private   	String mDay;
 	private		String mDayOfWeek;
+	private     String mTime;
 	private 	Calendar mCalendar;
 	private 	Context  mContext;
 
@@ -19,7 +20,7 @@ public class Utools {
 		mContext = c;
 	}
 	
-	public void setDate(){
+	public void setDate(){											//设置时间字符串
 		mCalendar = Calendar.getInstance();
 		mYear  = ""+mCalendar.get(Calendar.YEAR);
 		mMonth = ""+mCalendar.get(Calendar.MONTH);
@@ -27,8 +28,8 @@ public class Utools {
 		mDayOfWeek = ""+mCalendar.get(Calendar.DAY_OF_WEEK);		
 	}
 	
-	public String getDate(){
-		return
+	public String getDate(){										//返回字符串
+		return mYear+"-"+mMonth+"-"+mDay;
 	}
 
 }
