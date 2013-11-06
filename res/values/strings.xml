@@ -30,6 +30,7 @@
     
     <!-- 日记页面中文信息 -->
     <string name="diary_title">秘密日记</string>
+    <string name="diary_choose_emotion">请选择现在的心情</string>
 	<string name="diary_emotion">心情状况</string>
 	<string name="diary_content">正文</string>
 	<string name="diary_name">标题</string>

@@ -15,7 +15,7 @@ public class MainDatabase extends SQLiteOpenHelper {
 	public static String DBASE_NAME       = "MainDatabase";
 	public static String DIARY_TABLE_NAME = "Diary" ;
 	public static String CREATE_DIARY_TABLE  = "create table "+DIARY_TABLE_NAME+
-			" (_id integer primary key autoincrement, time text, title text, emotion text, content text )";
+			" (_id integer primary key autoincrement, time text, title text, emotion text, emotion_id integer, content text )";
 	public static List<Obejct_Diary> listofDiary = new ArrayList<Obejct_Diary>();
 	
 	public static SQLiteDatabase  MainSQLite;

@@ -27,8 +27,11 @@ public class Affair_Diary extends Activity {
 	Cursor      curDiary;
 	
 	public static String DIARY_TABLE_TITLE = "title";
-	public static String DIARY_TABLE_TIME = "time";
-	public static String CHOOSE_ITEM_ID = "click_id";
+	public static String DIARY_TABLE_TIME  = "time";
+	public static String CHOOSE_ITEM_ID    = "click_id";
+	public static String DIARY_TABLE_NAME = "Diary" ;
+	
+	public static int totalCursor;
 	
 
 
@@ -49,6 +52,7 @@ public class Affair_Diary extends Activity {
 		curDiary = db.query
 		(MainDatabase.DIARY_TABLE_NAME, null, null, null, null, null,  "_id desc", null);
 		curDiary.moveToFirst();
+		totalCursor = curDiary.getCount();
 		if(curDiary.getCount()>0){
 			String from[]=new String[]{DIARY_TABLE_TITLE,DIARY_TABLE_TIME};
 			int to[]=new int[]{R.id.tv_diary_title,R.id.tv_diary_time};
@@ -66,9 +70,7 @@ public class Affair_Diary extends Activity {
 			});			
 		}
 	}
-	
-	
-	
+		
 	public void initialTitle(){
 		tvTitle    = (TextView)findViewById(R.id.title_name);
 		imgLeft    = (ImageView)findViewById(R.id.custom_title_rollback);

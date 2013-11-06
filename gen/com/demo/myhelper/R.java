@@ -96,20 +96,21 @@ public final class R {
          */
         public static final int app_name=0x7f060000;
         public static final int diary=0x7f06000b;
-        public static final int diary_add_message=0x7f06001f;
-        public static final int diary_add_title=0x7f06001d;
-        public static final int diary_add_yes=0x7f060020;
-        public static final int diary_commit=0x7f06001e;
-        public static final int diary_content=0x7f060019;
-        public static final int diary_emotion=0x7f060018;
-        public static final int diary_emotion_add=0x7f060022;
-        public static final int diary_name=0x7f06001a;
-        public static final int diary_time=0x7f06001b;
-        public static final int diary_time_edt=0x7f06001c;
+        public static final int diary_add_message=0x7f060020;
+        public static final int diary_add_title=0x7f06001e;
+        public static final int diary_add_yes=0x7f060021;
+        public static final int diary_choose_emotion=0x7f060018;
+        public static final int diary_commit=0x7f06001f;
+        public static final int diary_content=0x7f06001a;
+        public static final int diary_emotion=0x7f060019;
+        public static final int diary_emotion_add=0x7f060023;
+        public static final int diary_name=0x7f06001b;
+        public static final int diary_time=0x7f06001c;
+        public static final int diary_time_edt=0x7f06001d;
         /**  日记页面中文信息 
          */
         public static final int diary_title=0x7f060017;
-        public static final int diry_add_no=0x7f060021;
+        public static final int diry_add_no=0x7f060022;
         public static final int health_helper=0x7f060008;
         public static final int main_setting=0x7f060009;
         public static final int note=0x7f06000a;

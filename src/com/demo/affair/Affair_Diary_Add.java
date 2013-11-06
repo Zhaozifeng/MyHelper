@@ -6,6 +6,7 @@ import android.app.AlertDialog.Builder;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -41,6 +42,7 @@ public class Affair_Diary_Add extends Activity{
 	public String content;
 	
 	public int click_id;
+	public int emotion_id;
 	
 	private static final String[] emotions={"心情极佳","平平常常","孤单落寞","痛苦悲伤"};
 	private ArrayAdapter<String> adapter;
@@ -52,6 +54,7 @@ public class Affair_Diary_Add extends Activity{
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title_layout2);
 		initialUI();
 		getClickId();
+		showOldDiary();
 		setListener();
 	}
 	
@@ -63,11 +66,16 @@ public class Affair_Diary_Add extends Activity{
 	public void showOldDiary(){
 		if(click_id!=-1){										    //非-1就是查看日记
 			
-			
-			
-			
-			
-			
+			SQLiteDatabase db = MyHelper_MainActivity.HelperSQLite.getReadableDatabase();
+			//Cursor c = db.query(Affair_Diary.DIARY_TABLE_NAME, null, "_id=?", new String[]{click_id+1+""},
+			//		null, null, null, null);	
+			Cursor c = db.query(MainDatabase.DIARY_TABLE_NAME, null, "_id=?", new String[]{Affair_Diary.totalCursor-click_id+""},
+					null, null, null, null);			//注意这里的逻辑关系	
+			c.moveToFirst();
+			edtTime.setText(c.getString(1));			
+			edtName.setText(c.getString(2));
+			spEmotion.setSelection(c.getInt(4));
+			edtContent.setText(c.getString(5));
 		}
 		
 	}
@@ -103,6 +111,7 @@ public class Affair_Diary_Add extends Activity{
 			public void onClick(View v) {									//获取编辑框内容以及存进数据库
 				title   = edtName.getText().toString();
 				emotion = spEmotion.getSelectedItem().toString();
+				emotion_id = spEmotion.getSelectedItemPosition();
 				Utools u = new Utools();
 				u.setDate();
 				time    = u.getDate();
@@ -112,7 +121,8 @@ public class Affair_Diary_Add extends Activity{
 				cv.put("time",time);
 				cv.put("title", title);
 				cv.put("emotion", emotion);
-				cv.put("content", content);				
+				cv.put("content", content);	
+				cv.put("emotion_id", emotion_id);
 				SQLiteDatabase sql = MyHelper_MainActivity.HelperSQLite.getWritableDatabase();
 				sql.insert(MainDatabase.DIARY_TABLE_NAME, null, cv);
 				Builder builder =  new Builder(Affair_Diary_Add.this);
