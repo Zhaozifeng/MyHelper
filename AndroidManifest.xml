@@ -48,8 +48,16 @@
              android:name="com.demo.affair.Affair_Diary_Add"
              ></activity>
          
+         <activity 
+             android:name="com.demo.affair.Affair_Account_Add"
+             ></activity>
+         
          <activity
              android:name="com.demo.affair.Affair_Account"
+             ></activity>
+         
+         <activity 
+             android:name="com.demo.affair.Affair_Account_Amonth"
              ></activity>
         
         <activity

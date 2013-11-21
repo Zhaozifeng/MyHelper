@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    android:orientation="vertical"   
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    >
+    <ScrollView 
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"      
+        >
+        
+   <LinearLayout 
+        android:layout_height="fill_parent"
+    	android:layout_width="fill_parent"
+    	android:orientation="vertical"             
+        >          
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >      
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/account_tv_in_out"
+            android:text="@string/economy_in_out"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="5dp"
+            android:textSize="20sp"
+            />        
+        <RadioGroup 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/account_add_radiogroup"
+            >
+            <RadioButton 
+                android:text="@string/economy_in"
+                />
+            <RadioButton 
+                android:text="@string/economy_out"
+                />            
+        </RadioGroup>       
+    </LinearLayout>
+          
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/economy_sort"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="5dp"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            />
+        <Spinner 
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:prompt="@string/economy_please_choose"
+            android:spinnerMode="dropdown"
+            android:id="@+id/account_sp_sort"
+            android:layout_weight="1"
+            />
+        <Button 
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/economy_add_sort"
+            android:textSize="20sp"
+            android:id="@+id/accout_add_sort"
+            android:layout_weight="1"
+            />
+        <Button 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/account_btn_food"
+            android:textSize="20sp"
+            android:visibility="gone"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >       
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/economy_fee"
+            android:layout_marginLeft="5dp"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            />
+        <EditText 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numeric="decimal"
+            android:layout_weight="3"
+            />
+        <Button 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/economy_exchange"
+            android:textSize="20sp"
+            android:text="@string/economy_exchange"
+            android:layout_weight="0.5"
+            />       
+    </LinearLayout>
+    
+    <HorizontalScrollView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        >
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >     
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/economy_date"
+            android:layout_marginLeft="5dp"
+            android:textSize="20sp"
+            />              
+        <DatePicker 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/account_datepicker"                      
+            />        
+            
+       <TextView
+           android:layout_height="wrap_content"
+           android:layout_width="wrap_content"
+           android:text="@string/economy_time"
+           android:layout_marginLeft="5dp"
+           android:textSize="20sp" 
+           />      
+        <TimePicker 
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/account_timepicker"
+            />
+    </LinearLayout>
+    </HorizontalScrollView>
+    
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >   
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textSize="20sp"
+            android:text="@string/economy_content"
+            android:layout_weight="1"
+            />
+        <EditText 
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:gravity="top"
+            android:layout_weight="3"
+            />
+    </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

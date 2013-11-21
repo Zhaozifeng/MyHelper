@@ -4,11 +4,53 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     >
-    <TextView 
-        android:layout_width="wrap_content"
+    
+     <LinearLayout 
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="here is account"
+        android:gravity="center_vertical|center_horizontal"
+        android:id="@+id/account_container"
+        >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="年份："
+            android:textSize="15sp"
+            />
+        <Spinner 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/account_yearSpinner"
+            />
         
-        />
+        <TextView
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查看方式："  
+            android:textSize="15sp"                     
+            ></TextView>
+        
+        <Spinner 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/account_classSpinner"
+            />          
+     </LinearLayout>
+
+    
+    <GridView 
+        android:layout_marginTop="20dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/account_grid"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="50dp"
+        android:horizontalSpacing="2dp"
+        android:columnWidth="90dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"        
+        ></GridView>
       
 </LinearLayout>

@@ -1,11 +1,12 @@
 package com.demo.tools;
 
 import java.util.Calendar;
-import java.util.Date;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Vibrator;
 
-public class Utools {
+public class Utools extends Activity {
 	
 	private 	String mYear;
 	private 	String mMonth;
@@ -15,6 +16,8 @@ public class Utools {
 	private 	Calendar mCalendar;
 	private 	Context  mContext;
 
+	public Vibrator vibrator;
+	
 	
 	public void Utools(Context c){
 		mContext = c;
@@ -30,6 +33,12 @@ public class Utools {
 	
 	public String getDate(){										//返回字符串
 		return mYear+"-"+mMonth+"-"+mDay;
+	}
+	
+	
+	public void setVibrator(long second){
+		vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+		vibrator.vibrate(second);
 	}
 
 }

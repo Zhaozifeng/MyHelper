@@ -31,10 +31,13 @@
     <!-- 日记页面中文信息 -->
     <string name="diary_title">秘密日记</string>
     <string name="diary_choose_emotion">请选择现在的心情</string>
+    <string name="diary_choose_time">请选择时间</string>
 	<string name="diary_emotion">心情状况</string>
 	<string name="diary_content">正文</string>
 	<string name="diary_name">标题</string>
 	<string name="diary_time">时间</string>
+	<string name="diary_cancel">删除日记</string>
+	<string name="diary_delete_sucess">日记删除成功</string>
 	<string name="diary_time_edt">修改时间</string>
 	<string name="diary_add_title">添加日记</string>
 	<string name="diary_commit">提交</string>
@@ -42,6 +45,22 @@
 	<string name="diary_add_yes">好了</string>
 	<string name="diry_add_no">我再想想</string>
 	<string name="diary_emotion_add">添加心情</string>
+	
+	<!-- 经济账本页面中文信息 -->
+	<string name="economy_title">经济月份示意图</string>
+	<string name="economy_in_out">记账类型</string>
+	<string name="economy_add_sort">添加</string>
+	<string name="economy_please_choose">请选择</string>
+	<string name="economy_in">收入</string>
+	<string name="economy_out">支出</string>
+	<string name="economy_sort">费用类型</string>
+	<string name="economy_cook">菜谱</string>
+	<string name="economy_fee">金额</string>
+	<string name="economy_exchange">货币兑换</string>
+	<string name="economy_date">日期</string>
+	<string name="economy_time">时间</string>
+	<string name="economy_change">修改</string>
+	<string name="economy_content">内容</string>
 </resources>
 
 
