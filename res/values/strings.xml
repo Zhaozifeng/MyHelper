@@ -50,6 +50,7 @@
 	<string name="economy_title">经济月份示意图</string>
 	<string name="economy_in_out">记账类型</string>
 	<string name="economy_add_sort">添加</string>
+	<string name="economy_add_title">添加收支记录</string>
 	<string name="economy_please_choose">请选择</string>
 	<string name="economy_in">收入</string>
 	<string name="economy_out">支出</string>

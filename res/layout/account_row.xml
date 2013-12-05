@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+    
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:id="@+id/tv_account_row_content"
+        android:gravity="left"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="20sp"
+        android:text="内容"       
+        ></TextView>
+    
+    <TextView 
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/tv_account_row_fee"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tv_account_row_content"
+        android:text="金额"
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"      
+        />
+    
+    <TextView 
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"      
+        android:layout_below="@+id/tv_account_row_content"
+        android:text="元"
+        android:layout_toRightOf="@+id/tv_account_row_content"
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"      
+        />
+    
+    
+    <TextView 
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/tv_account_row_date"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/tv_account_row_fee"
+        android:text="时间"
+        />
+
+    <TextView 
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/tv_account_row_kind"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/tv_account_row_fee"
+        android:text="类型"
+        />
+    
+    
+</RelativeLayout>
+
+

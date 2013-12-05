@@ -43,6 +43,7 @@ public class Affair_Account extends Activity {
 	public List<String>   monthLists;
 	
 	public static String MONTH = "month";								//传递参数名字
+	public static String YEAR  = "year";
 	
 	
 	protected void onCreate(Bundle savedInstanceState){
@@ -85,13 +86,15 @@ public class Affair_Account extends Activity {
 		yearSpinner.setAdapter(yearAdapter);
 		monthsGrid.setAdapter(new GridAdapter(Affair_Account.this,monthLists));
 		
-		monthsGrid.setOnItemClickListener(new OnItemClickListener(){
+		monthsGrid.setOnItemClickListener(new OnItemClickListener(){					//单击列表
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				String monthParams = monthLists.get(arg2);
+				int year = Integer.parseInt(yearSpinner.getSelectedItem().toString());
 				Intent intent = new Intent(Affair_Account.this,Affair_Account_Amonth.class);
-				intent.putExtra(MONTH, monthParams);								//传递月份参数
+				intent.putExtra(MONTH, arg2+1);								//传递月份参数
+				intent.putExtra(YEAR, year);								//传递年份参数
 				startActivity(intent);
 			}			
 		});

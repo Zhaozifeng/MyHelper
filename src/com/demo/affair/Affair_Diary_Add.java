@@ -141,29 +141,29 @@ public class Affair_Diary_Add extends Activity{
 		
 		btnCommit.setOnClickListener(new OnClickListener(){
 			@Override
-			public void onClick(View v) {									//获取编辑框内容以及存进数据库
-				title   = edtName.getText().toString();
-				emotion = spEmotion.getSelectedItem().toString();
-				emotion_id = spEmotion.getSelectedItemPosition();
-				Utools u = new Utools();
-				u.setDate();
-				time    = u.getDate();
-				content = edtContent.getText().toString();
-				ContentValues cv = new ContentValues();
-				//cv.put("_id", 1);
-				cv.put("time",time);
-				cv.put("title", title);
-				cv.put("emotion", emotion);
-				cv.put("content", content);	
-				cv.put("emotion_id", emotion_id);
-				SQLiteDatabase sql = MyHelper_MainActivity.HelperSQLite.getWritableDatabase();
-				sql.insert(MainDatabase.DIARY_TABLE_NAME, null, cv);
+			public void onClick(View v) {									//获取编辑框内容以及存进数据库				
+				final SQLiteDatabase sql = MyHelper_MainActivity.HelperSQLite.getWritableDatabase();				
 				Builder builder =  new Builder(Affair_Diary_Add.this);
 				builder
 				.setTitle(R.string.diary_commit)
 				.setMessage(R.string.diary_add_message)
-				.setPositiveButton(R.string.diary_add_yes, new DialogInterface.OnClickListener() {					
+				.setPositiveButton(R.string.diary_add_yes, new DialogInterface.OnClickListener() {	 //按下确定后获取控件的数据		
 					public void onClick(DialogInterface dialog, int which) {
+						title   = edtName.getText().toString();
+						emotion = spEmotion.getSelectedItem().toString();
+						emotion_id = spEmotion.getSelectedItemPosition();
+						//Utools u = new Utools();
+						//u.setDate();
+						time    = edtTime.getText().toString();
+						content = edtContent.getText().toString();
+						ContentValues cv = new ContentValues();
+						//cv.put("_id", 1);
+						cv.put("time",time);
+						cv.put("title", title);
+						cv.put("emotion", emotion);
+						cv.put("content", content);	
+						cv.put("emotion_id", emotion_id);
+						sql.insert(MainDatabase.DIARY_TABLE_NAME, null, cv);
 						Intent intent = new Intent(Affair_Diary_Add.this,Affair_Diary.class);
 						intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 						startActivity(intent);

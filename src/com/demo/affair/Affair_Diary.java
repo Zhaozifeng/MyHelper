@@ -56,7 +56,7 @@ public class Affair_Diary extends Activity {
 		SQLiteDatabase db = MyHelper_MainActivity.HelperSQLite.getReadableDatabase();
 		String selector[]={"_id",DIARY_TABLE_TITLE,DIARY_TABLE_TIME};
 		curDiary = db.query
-		(MainDatabase.DIARY_TABLE_NAME, null, null, null, null, null,  "_id desc", null);
+		(MainDatabase.DIARY_TABLE_NAME, null, null, null, null, null,  "_id desc", null);		//倒序排列最新的排在最前面
 		curDiary.moveToFirst();
 		totalCursor = curDiary.getCount();
 		if(curDiary.getCount()>0){							
@@ -100,7 +100,7 @@ public class Affair_Diary extends Activity {
 						switch(which){
 						case 0:convertParams(view,clicked);break;
 						case 1:break;
-						case 2:del(title_string,time_string);break;							
+						case 2:showMakeSureDialog(title_string,time_string);  break;							
 						}
 					}
 				});					
@@ -172,6 +172,28 @@ public class Affair_Diary extends Activity {
 		finish();
 	}
 
+	void showMakeSureDialog(String title,String time){
+		final String string_title = title;
+		final String string_time  = time;
+		Builder builder = new Builder(Affair_Diary.this);
+		builder
+		.setTitle("删除提示")
+		.setMessage("是否确定删除该日记？")
+		.setPositiveButton("删除", new DialogInterface.OnClickListener() {			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				del(string_title,string_time);				
+			}
+		})
+		.setNegativeButton("保留", new DialogInterface.OnClickListener() {			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub				
+			}
+		});
+		builder.create().show();
+	}
+	
 	
 }
 

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
-    <color name="trs_grey">#22333333</color>
+    <color name="trs_grey">#55333333</color>
     <color name="trs_black">#22000000</color>
+    
     
     
     
