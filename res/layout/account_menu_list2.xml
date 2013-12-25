@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/account_menu_title_list"
         android:dividerHeight="3dp"
-        android:divider="@color/trs_black"
-        android:background="#9999FF"
+        android:divider="#333333"
+        android:background="#CCCCCC"
         ></ListView>
     
     

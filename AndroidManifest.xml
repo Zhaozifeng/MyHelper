@@ -52,6 +52,14 @@
              android:name="com.demo.affair.Affair_Account_Add"
              ></activity>
          
+         <activity 
+             android:name="com.demo.affair.Affair_Account_Analyse"
+             ></activity>
+         
+         <activity
+             android:name="com.demo.affair.Affair_Account_Scanf"
+             ></activity>
+         
          <activity
              android:name="com.demo.affair.Affair_Account"
              ></activity>

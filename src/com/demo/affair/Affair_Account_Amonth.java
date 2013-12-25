@@ -57,6 +57,11 @@ public class Affair_Account_Amonth extends Activity {
 	public  static String TABLE_CONTENT = "content";
 	public  static String TABLE_KIND = "kind";
 	public 	static String TABLE_FEE = "fee";
+	
+	public  static String YEAR_PARAMS = "year";										//用于传递参数的变量名
+	public  static String MONTH_PARAMS = "month";
+	public  static String CONTENT_PARAMS = "content";
+	public  static String WHICH_ANALSE = "analyse";
 		
 	public String from[] = {TABLE_CONTENT,TABLE_FEE,TABLE_DATE,TABLE_KIND};	
 	public int to[] = {R.id.tv_account_row_content,R.id.tv_account_row_fee,R.id.tv_account_row_date
@@ -80,8 +85,6 @@ public class Affair_Account_Amonth extends Activity {
 		curYear  = intent.getIntExtra(Affair_Account.YEAR, -1);
 		titleMonth = curMonth+"月";
 	}
-	
-	
 	
 	public void initialTitle(){
 		titleBack = (ImageView)findViewById(R.id.custom_title_rollback);
@@ -114,14 +117,34 @@ public class Affair_Account_Amonth extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				Intent intent = new Intent(Affair_Account_Amonth.this,Affair_Account_Add.class);
-				intent.putExtra(Affair_Account.MONTH, curMonth);
-				intent.putExtra(Affair_Account.YEAR, curYear);
-				startActivity(intent);
+				switch(arg2){
+				
+				case 0:
+					Intent intent = new Intent(Affair_Account_Amonth.this,Affair_Account_Add.class);   //跳转到添加记录页面
+					intent.putExtra(Affair_Account.MONTH, curMonth);
+					intent.putExtra(Affair_Account.YEAR, curYear);
+					puWindow.dismiss();
+					startActivity(intent);
+					break;
+				case 1:
+				case 2:
+				case 3:
+					Intent intent2 = new Intent(Affair_Account_Amonth.this,Affair_Account_Analyse.class);	//跳转到分析统计图页面
+					intent2.putExtra(WHICH_ANALSE, arg2);
+					intent2.putExtra(MONTH_PARAMS, curMonth);
+					intent2.putExtra(YEAR_PARAMS, curYear);
+					puWindow.dismiss();
+					startActivity(intent2);
+					break;
+				default:break;								
+				}
+				
+				
 			}     	
         });
-        puWindow = new PopupWindow(popupWindow, 300, 650,true);
-        puWindow.setBackgroundDrawable(new BitmapDrawable());
+        	puWindow = new PopupWindow(popupWindow, 300, 650,true);
+            puWindow.setBackgroundDrawable(new BitmapDrawable());
+        
 	}
 	
 	public void showList(){
@@ -135,10 +158,28 @@ public class Affair_Account_Amonth extends Activity {
 		SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(Affair_Account_Amonth.this,
 				R.layout.account_row, curDiary, from, to);
 		amonthList.setAdapter(cursorAdapter);
-		amonthList.setOnItemLongClickListener(new OnItemLongClickListener(){
+		
+		amonthList.setOnItemClickListener(new OnItemClickListener(){											//单击列表其中一项
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				TextView tv1 = (TextView)arg1.findViewById(R.id.tv_account_row_content);
+				String   content = tv1.getText().toString();
+				Intent intent = new Intent(Affair_Account_Amonth.this,Affair_Account_Scanf.class);
+				intent.putExtra(YEAR_PARAMS, curYear);															//传递年份和月份
+				intent.putExtra(MONTH_PARAMS, curMonth);
+				intent.putExtra(CONTENT_PARAMS, content);
+				startActivity(intent);
+			}			
+		});		
+		amonthList.setOnItemLongClickListener(new OnItemLongClickListener(){									//长按弹出删除对话框
 			@Override
 			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
+				TextView tv1 = (TextView)arg1.findViewById(R.id.tv_account_row_content);
+				TextView tv2 = (TextView)arg1.findViewById(R.id.tv_account_row_date);
+				final String   delete_content = tv1.getText().toString();
+				final String   delete_date = tv2.getText().toString();
 				Vibrator v = (Vibrator)getSystemService(Service.VIBRATOR_SERVICE);								//震动一下
 				v.vibrate(100);
 				Builder builder = new Builder(Affair_Account_Amonth.this);
@@ -149,7 +190,18 @@ public class Affair_Account_Amonth extends Activity {
 				.setPositiveButton("删除", new DialogInterface.OnClickListener() {					
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						// TODO Auto-generated method stub						
+						Builder builder = new Builder(Affair_Account_Amonth.this);
+						builder
+						.setTitle("操作提示")
+						.setPositiveButton("确定", null);						
+						if(deleteAccount(delete_content,delete_date)==0){									  //设置删除后是否成功图标
+							builder.setIcon(R.drawable.delete);
+						}
+						else{
+							builder.setIcon(R.drawable.sucess);
+						}
+						builder.create().show();
+						showList();
 					}
 				})
 				.setNegativeButton("保留", new DialogInterface.OnClickListener() {					
@@ -165,6 +217,11 @@ public class Affair_Account_Amonth extends Activity {
 		
 	}
 	
+	public int deleteAccount(String content,String date){
+		SQLiteDatabase db = MyHelper_MainActivity.HelperSQLite.getWritableDatabase();
+		String condition[] = {content,date};		
+		return db.delete(MainDatabase.ECONOMY_TABLE_NAME, "content=? and date=?", condition);
+	}
 	
 	
 	private class MenuAdapter extends BaseAdapter{

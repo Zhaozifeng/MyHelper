@@ -123,7 +123,7 @@ public class Affair_Account_Add extends Activity {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {				
 				if(inRadioButton.isSelected()){
-					cv.put("kind", "收入");											//获取记账类型
+					cv.put("kind", "收入");												//获取记账类型
 				}
 				else{
 					cv.put("kind", "支出");
@@ -175,7 +175,7 @@ public class Affair_Account_Add extends Activity {
 		
 	}
 	
-	public void getYearAndMonth(){
+	public void getYearAndMonth(){																	//获取年月数值
 		Intent intent = this.getIntent();
 		curMonth = intent.getIntExtra(Affair_Account.MONTH, -1);
 		curYear  = intent.getIntExtra(Affair_Account.YEAR, -1);

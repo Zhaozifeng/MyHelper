@@ -19,7 +19,7 @@ public class MainDatabase extends SQLiteOpenHelper {
 			" (_id integer primary key autoincrement, time text, title text, emotion text, emotion_id integer, content text )";
 	
 	public static String CREATE_ECONOMY_TABLE = "create table "+ECONOMY_TABLE_NAME+			    //建立经济账本sql语句
-			" (_id integer primary key autoincrement, kind text, sort text, fee money, year_int integer, month_int integer," +
+			" (_id integer primary key autoincrement, kind text, sort text,fee money, year_int integer, month_int integer," +
 			" date text, time text, content text)";
 	
 	public static List<Obejct_Diary> listofDiary = new ArrayList<Obejct_Diary>();
