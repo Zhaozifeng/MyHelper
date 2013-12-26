@@ -8,12 +8,60 @@
     <ScrollView 
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        >
+        >       
+        <LinearLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            >
+            <TextView 
+	        android:layout_marginTop="10dp"
+	        android:layout_marginLeft="20sp"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/economy_analyse_title"
+	        android:textSize="20sp"
+	        android:id="@+id/tv_analyse_title"
+	        />
+	    	<TextView 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/tv_analyse_items"
+	        android:text="显示记录数"
+	        android:textSize="20sp"
+	        android:layout_marginTop="5dp"
+	        android:layout_marginLeft="20sp"
+	        />
+	    	<TextView 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/tv_analyse_total"
+	        android:text="显示总金额"
+	        android:textSize="20sp"
+	        android:layout_marginTop="5dp"
+	        android:layout_marginLeft="20sp"
+	        />          
         <LinearLayout 
             android:layout_width="fill_parent"
     		android:layout_height="fill_parent"
     		android:id="@+id/analyse_layout"
     		android:orientation="vertical"
             ></LinearLayout>
+        </LinearLayout>      
     </ScrollView>
+    
 </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

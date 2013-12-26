@@ -62,6 +62,9 @@
 	<string name="economy_time">时间</string>
 	<string name="economy_change">修改</string>
 	<string name="economy_content">内容</string>
+	<string name="economy_analyse_title">经济小助手告诉您，情况如下: </string>
+	<string name="economy_analyse_items">记录条数是: </string>
+	<string name="economy_analyse_total">总额为: </string>
 </resources>
 
 
