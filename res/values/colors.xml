@@ -3,9 +3,28 @@
     
     <color name="trs_grey">#55333333</color>
     <color name="trs_black">#22000000</color>
-    <color name="ivory">#FFFFF0</color> <!--象牙色 -->
     <color name="red">#FF0000</color>   <!--红色 -->
     <color name="forestgreen">#228B22</color> <!--森林绿 -->
-    
+    <color name="ivory">#FFFFF0</color><!--象牙色 -->
+	<color name="lightyellow">#FFFFE0</color><!--亮黄色 -->
+	<color name="yellow">#FFFF00</color><!--黄色 -->
+	<color name="snow">#FFFAFA</color><!--雪白色 -->
+	<color name="floralwhite">#FFFAF0</color><!--花白色 -->
+	<color name="lemonchiffon">#FFFACD</color><!--柠檬绸色 -->
+	<color name="cornsilk">#FFF8DC</color><!--米绸色 -->
+	<color name="seashell">#FFF5EE</color><!--海贝色 -->
+	<color name="lavenderblush">#FFF0F5</color><!--淡紫红 -->
+	<color name="papayawhip">#FFEFD5</color><!--番木色 -->
+	<color name="blanchedalmond">#FFEBCD</color><!--白杏色 -->
+	<color name="mistyrose">#FFE4E1</color><!--浅玫瑰色 -->
+	<color name="bisque">#FFE4C4</color><!--桔黄色 -->
+	<color name="moccasin">#FFE4B5</color><!--鹿皮色 -->
+	 
+	<color name="navajowhite">#FFDEAD</color><!--纳瓦白 -->
+	<color name="peachpuff">#FFDAB9</color><!--桃色 -->
+	<color name="gold">#FFD700</color><!--金色 -->
+	<color name="pink">#FFC0CB</color><!--粉红色 -->
+	<color name="lightpink">#FFB6C1</color><!--亮粉红色 -->
+	<color name="orange">#FFA500</color><!--橙色 -->
     
 </resources>

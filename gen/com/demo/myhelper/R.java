@@ -11,15 +11,72 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
+        /** 浅玫瑰色 
+         */
+        public static final int bisque=0x7f050010;
+        /** 番木色 
+         */
+        public static final int blanchedalmond=0x7f05000e;
+        /** 柠檬绸色 
+         */
+        public static final int cornsilk=0x7f05000a;
+        /** 雪白色 
+         */
+        public static final int floralwhite=0x7f050008;
         /** 红色 
          */
-        public static final int forestgreen=0x7f050004;
-        public static final int ivory=0x7f050002;
+        public static final int forestgreen=0x7f050003;
+        /** 桃色 
+         */
+        public static final int gold=0x7f050014;
+        /** 森林绿 
+         */
+        public static final int ivory=0x7f050004;
+        /** 海贝色 
+         */
+        public static final int lavenderblush=0x7f05000c;
+        /** 花白色 
+         */
+        public static final int lemonchiffon=0x7f050009;
+        /** 粉红色 
+         */
+        public static final int lightpink=0x7f050016;
         /** 象牙色 
          */
-        public static final int red=0x7f050003;
+        public static final int lightyellow=0x7f050005;
+        /** 白杏色 
+         */
+        public static final int mistyrose=0x7f05000f;
+        /** 桔黄色 
+         */
+        public static final int moccasin=0x7f050011;
+        /** 鹿皮色 
+         */
+        public static final int navajowhite=0x7f050012;
+        /** 亮粉红色 
+         */
+        public static final int orange=0x7f050017;
+        /** 淡紫红 
+         */
+        public static final int papayawhip=0x7f05000d;
+        /** 纳瓦白 
+         */
+        public static final int peachpuff=0x7f050013;
+        /** 金色 
+         */
+        public static final int pink=0x7f050015;
+        public static final int red=0x7f050002;
+        /** 米绸色 
+         */
+        public static final int seashell=0x7f05000b;
+        /** 黄色 
+         */
+        public static final int snow=0x7f050007;
         public static final int trs_black=0x7f050001;
         public static final int trs_grey=0x7f050000;
+        /** 亮黄色 
+         */
+        public static final int yellow=0x7f050006;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -38,16 +95,17 @@ public final class R {
         public static final int btn_back=0x7f020003;
         public static final int btn_commit=0x7f020004;
         public static final int btn_left=0x7f020005;
-        public static final int btn_setting=0x7f020006;
-        public static final int delete=0x7f020007;
-        public static final int diary=0x7f020008;
-        public static final int ic_launcher=0x7f020009;
-        public static final int note=0x7f02000a;
-        public static final int sucess=0x7f02000b;
-        public static final int welcome1=0x7f02000c;
-        public static final int welcome2=0x7f02000d;
-        public static final int welcome3=0x7f02000e;
-        public static final int welcome4=0x7f02000f;
+        public static final int btn_push_style=0x7f020006;
+        public static final int btn_setting=0x7f020007;
+        public static final int delete=0x7f020008;
+        public static final int diary=0x7f020009;
+        public static final int ic_launcher=0x7f02000a;
+        public static final int note=0x7f02000b;
+        public static final int sucess=0x7f02000c;
+        public static final int welcome1=0x7f02000d;
+        public static final int welcome2=0x7f02000e;
+        public static final int welcome3=0x7f02000f;
+        public static final int welcome4=0x7f020010;
     }
     public static final class id {
         public static final int account_add_radiogroup=0x7f0a0001;

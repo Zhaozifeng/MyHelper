@@ -129,21 +129,18 @@ public class Affair_Account_Analyse extends Activity {
 			for(int i=0;i<Affair_Account_Add.OUTCOME_SORT.length;i++){
 				if(name.equals(Affair_Account_Add.OUTCOME_SORT[i])){
 					return i;																				//返回支出下标
-				}
-			}
+				}}
 			return -1;																						//返回-1支出列表不能找到			
 		}
 		else{
 			for(int i=0;i<Affair_Account_Add.INCOME_SORT.length;i++){
 				if(name.equals(Affair_Account_Add.INCOME_SORT[i])){											//在收入列表查找										
 					return i;
-				}
-			}																					//找不到返回-1
+				}}																					//找不到返回-1
 			return -1;
 		}		
 	}
-	
-	
+
 	public void initialTable(){																	//判断划出何种列表类型
 		switch(popupWindow_id){
 		case 1:
@@ -159,34 +156,8 @@ public class Affair_Account_Analyse extends Activity {
 	}
 	
 	public void paintOutcomeTable(){															//画支出图
-		mainLayout.removeAllViews();
-		int curNameid;
 		
-		tvAnalyseItems.setText("支出"+this.getResources().getString(R.string.economy_analyse_items)+""+outcomes);
-		tvAnalyseTotal.setText("支出"+this.getResources().getString(R.string.economy_analyse_total)+""+totalOutcome);
-		for(int i=0;i<Affair_Account_Add.OUTCOME_SORT.length;i++){
-			LinearLayout ll = new LinearLayout(this);
-			ll.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,200));
-			ll.setOrientation(LinearLayout.HORIZONTAL);
-			ll.setGravity(Gravity.CENTER_VERTICAL);
-			TextView tv_name = new TextView(this);
-			tv_name.setText(Affair_Account_Add.OUTCOME_SORT[i]+" :");
-			tv_name.setTextSize(25);
-			tv_name.setLayoutParams(new LinearLayout.LayoutParams(150,LayoutParams.WRAP_CONTENT));
-			ll.addView(tv_name);
-			
-			LinearLayout ll2 = new LinearLayout(this);
-			double rate = OutcomeEachValue[i]/totalOutcome;
-			double value = (screenWidth-150)*rate;
-			int colorWidth = (int)value;
-			ll2.setLayoutParams(new LinearLayout.LayoutParams(colorWidth,100));
-			ll2.setBackgroundColor(this.getResources().getColor(R.color.red));
-			ll.addView(ll2);
-			
-			mainLayout.addView(ll);
-		}
-		
-		
+		paintItems("支出");	
 	}
 	
 	public void paintIncomeTable(){
@@ -195,6 +166,55 @@ public class Affair_Account_Analyse extends Activity {
 	
 	public void paintOut_In_Table(){
 		
+	}
+	
+	public void paintItems(String which){												//画出各项比例	
+		mainLayout.removeAllViews();
+		String temp_sort[];
+		Double each_values[];
+		double totalValue;
+		if(which.equals("支出")){															//判断是支出时赋初始值
+			tvAnalyseItems.setText(which+this.getResources().getString(R.string.economy_analyse_items)+""+outcomes);
+			tvAnalyseTotal.setText(which+this.getResources().getString(R.string.economy_analyse_total)+""+totalOutcome);
+			temp_sort = Affair_Account_Add.OUTCOME_SORT;
+			each_values = OutcomeEachValue;
+			totalValue = totalOutcome;
+		}
+		else{																			//判断是收入时赋初始值
+			tvAnalyseItems.setText(which+this.getResources().getString(R.string.economy_analyse_items)+""+incomes);
+			tvAnalyseTotal.setText(which+this.getResources().getString(R.string.economy_analyse_total)+""+totalIncome);
+			temp_sort = Affair_Account_Add.INCOME_SORT;
+			each_values = IncomeEachValue;
+			totalValue = totalIncome;
+		}
+		for(int i=0;i<temp_sort.length;i++){
+			LinearLayout ll = new LinearLayout(this);
+			ll.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,200));
+			ll.setOrientation(LinearLayout.HORIZONTAL);
+			ll.setGravity(Gravity.CENTER_VERTICAL);
+			TextView tv_name = new TextView(this);
+			tv_name.setText(temp_sort[i]+" :");
+			tv_name.setTextSize(25);
+			tv_name.setLayoutParams(new LinearLayout.LayoutParams(150,LayoutParams.WRAP_CONTENT));
+			ll.addView(tv_name);
+			
+			LinearLayout ll2 = new LinearLayout(this);
+			double rate = each_values[i]/totalValue;
+			double value = (screenWidth-150)*rate;
+			int colorWidth = (int)value;
+			ll2.setLayoutParams(new LinearLayout.LayoutParams(colorWidth,100));
+			ll2.setBackgroundColor(this.getResources().getColor(R.color.red));
+			ll.addView(ll2);
+			ll.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.btn_push_style));
+			ll.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View v) {
+					Intent i = new Intent(Affair_Account_Analyse.this,Affair_Account_Scanf.class);					
+					startActivity(i);
+				}				
+			});			
+			mainLayout.addView(ll);
+		}
 	}
 
 }
