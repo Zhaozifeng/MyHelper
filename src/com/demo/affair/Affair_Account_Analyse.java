@@ -43,8 +43,10 @@ public class Affair_Account_Analyse extends Activity {
 	private int screenWidth  = 0;                          											//获取屏幕的宽度													
 	private int screenHeight = 0;																	//获取屏幕的长度
 	
-	public Double[] IncomeEachValue = new Double[6] ;											    	//定义收入类型数组
-	public Double[] OutcomeEachValue= new Double[6];													//定义支出类型数组
+	public Double[] IncomeEachValue = new Double[6] ;											    //定义收入类型数组
+	public Double[] OutcomeEachValue= new Double[6];												//定义支出类型数组
+	
+	public static String SORT_ITEM = "sort_items";													//定义传递类型参数
 	
 	
 	
@@ -112,12 +114,12 @@ public class Affair_Account_Analyse extends Activity {
 				if(c.getString(1).equals("支出")){
 					outcomes++;
 					totalOutcome = totalOutcome+c.getDouble(3);									//支出总额统计
-					OutcomeEachValue[curNameid]=OutcomeEachValue[curNameid]+c.getDouble(3);			//统计各支出类型的数值
+					OutcomeEachValue[curNameid]=OutcomeEachValue[curNameid]+c.getDouble(3);		//统计各支出类型的数值
 				}
 				else{
 					incomes++;
 					totalIncome = totalIncome+c.getDouble(3);									//收入总额统计
-					IncomeEachValue[curNameid] = IncomeEachValue[curNameid]+c.getDouble(3);			//统计各收入类型的数值
+					IncomeEachValue[curNameid] = IncomeEachValue[curNameid]+c.getDouble(3);		//统计各收入类型的数值
 				}
 			}
 			c.moveToNext();																		//移到下一条
@@ -144,30 +146,17 @@ public class Affair_Account_Analyse extends Activity {
 	public void initialTable(){																	//判断划出何种列表类型
 		switch(popupWindow_id){
 		case 1:
-			paintOutcomeTable();																//构造支出分析图
+			paintItems("支出");																	//构造支出分析图
 			break;
 		case 2:
-			paintIncomeTable();																	//构造收入分析图
 			break;
 		case 3:
-			paintOut_In_Table();																//构造收入支出对比图
 			break;		
 		}	
 	}
 	
-	public void paintOutcomeTable(){															//画支出图
-		
-		paintItems("支出");	
-	}
 	
-	public void paintIncomeTable(){
-		
-	}
-	
-	public void paintOut_In_Table(){
-		
-	}
-	
+
 	public void paintItems(String which){												//画出各项比例	
 		mainLayout.removeAllViews();
 		String temp_sort[];
@@ -206,10 +195,13 @@ public class Affair_Account_Analyse extends Activity {
 			ll2.setBackgroundColor(this.getResources().getColor(R.color.red));
 			ll.addView(ll2);
 			ll.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.btn_push_style));
+			final String sorts;
+			sorts = temp_sort[i];
 			ll.setOnClickListener(new OnClickListener(){
 				@Override
-				public void onClick(View v) {
-					Intent i = new Intent(Affair_Account_Analyse.this,Affair_Account_Scanf.class);					
+				public void onClick(View v) {													//传递类型搜索
+					Intent i = new Intent(Affair_Account_Analyse.this,Affair_Account_Scanf.class);	
+					i.putExtra(SORT_ITEM, sorts);
 					startActivity(i);
 				}				
 			});			

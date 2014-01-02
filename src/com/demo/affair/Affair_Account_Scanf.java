@@ -29,12 +29,14 @@ public class Affair_Account_Scanf extends Activity {
 	private ImageView imgMenu;
 	private ViewPager viewPage;
 	private Cursor	  curCursor;
+	private Cursor    searchCursor;
 	private List<View> views;
 	
 	public int curYear;
 	public int curMonth;
 	public int curItemId;																		//记录当前页面id
 	public String showContent;																	//当前要展示的卡片的内容
+	public String showSort;
 	
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -53,6 +55,11 @@ public class Affair_Account_Scanf extends Activity {
 		curCursor = db.query
 		(MainDatabase.ECONOMY_TABLE_NAME, null, selection, selectionArgs, null, null,  "_id desc", null);		//倒序排列最新的排在最前面
 		curCursor.moveToFirst();																				//自动递增的id要下表_id
+	}
+	
+	public void searchDb2(String sort){
+		SQLiteDatabase db = MyHelper_MainActivity.HelperSQLite.getWritableDatabase();
+		String selection = ""
 	}
 	
 	public void showPager(){
@@ -97,9 +104,11 @@ public class Affair_Account_Scanf extends Activity {
 	
 	public void getParams(){
 		Intent intent = this.getIntent();
-		curYear = intent.getIntExtra(Affair_Account_Amonth.YEAR_PARAMS, -1);
-		curMonth = intent.getIntExtra(Affair_Account_Amonth.MONTH_PARAMS, -1);
-		showContent = intent.getStringExtra(Affair_Account_Amonth.CONTENT_PARAMS);		
+		curYear 		= intent.getIntExtra(Affair_Account_Amonth.YEAR_PARAMS, -1);
+		curMonth 		= intent.getIntExtra(Affair_Account_Amonth.MONTH_PARAMS, -1);
+		showContent		= intent.getStringExtra(Affair_Account_Amonth.CONTENT_PARAMS);
+		String showSort = intent.getStringExtra(Affair_Account_Analyse.SORT_ITEM);				//接受分析数据传来的
+		
 	}
 	
 	public void customTitle(){
@@ -110,7 +119,14 @@ public class Affair_Account_Scanf extends Activity {
 		viewPage = (ViewPager)findViewById(R.id.account_pager);
 		imgBack.setVisibility(View.INVISIBLE);
 		imgMenu.setVisibility(View.INVISIBLE);
+		if(curMonth==-1){
+			tvTitle.setText(showSort+"类型记录");
+		}
+		else{
 		tvTitle.setText(curMonth+"月份账本");
+		}
+		Intent intent = this.getIntent();
+		
 	}
 	
 	private class MyPagerAdapter extends PagerAdapter{											//自定义划屏适配器
