@@ -46,7 +46,8 @@ public class Affair_Account_Analyse extends Activity {
 	public Double[] IncomeEachValue = new Double[6] ;											    //定义收入类型数组
 	public Double[] OutcomeEachValue= new Double[6];												//定义支出类型数组
 	
-	public static String SORT_ITEM = "sort_items";													//定义传递类型参数
+	public static String SORT_ITEM   = "sort_items";												//定义传递类型参数
+	public static String YEAR_PARAMS = "year";														//定义年参数名称														 
 	
 	
 	
@@ -138,7 +139,7 @@ public class Affair_Account_Analyse extends Activity {
 			for(int i=0;i<Affair_Account_Add.INCOME_SORT.length;i++){
 				if(name.equals(Affair_Account_Add.INCOME_SORT[i])){											//在收入列表查找										
 					return i;
-				}}																					//找不到返回-1
+				}}																					        //找不到返回-1
 			return -1;
 		}		
 	}
@@ -149,8 +150,10 @@ public class Affair_Account_Analyse extends Activity {
 			paintItems("支出");																	//构造支出分析图
 			break;
 		case 2:
+			paintItems("收入");																	//构造收入分析图
 			break;
 		case 3:
+			paintIncomeOutcome();
 			break;		
 		}	
 	}
@@ -192,20 +195,125 @@ public class Affair_Account_Analyse extends Activity {
 			double value = (screenWidth-150)*rate;
 			int colorWidth = (int)value;
 			ll2.setLayoutParams(new LinearLayout.LayoutParams(colorWidth,100));
-			ll2.setBackgroundColor(this.getResources().getColor(R.color.red));
+			if(which.equals("支出"))
+				ll2.setBackgroundColor(this.getResources().getColor(R.color.red));					//如果是支出即显示红色
+			else
+				ll2.setBackgroundColor(this.getResources().getColor(R.color.forestgreen));
 			ll.addView(ll2);
 			ll.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.btn_push_style));
 			final String sorts;
 			sorts = temp_sort[i];
 			ll.setOnClickListener(new OnClickListener(){
 				@Override
-				public void onClick(View v) {													//传递类型搜索
+				public void onClick(View v) {													    //传递类型搜索
 					Intent i = new Intent(Affair_Account_Analyse.this,Affair_Account_Scanf.class);	
 					i.putExtra(SORT_ITEM, sorts);
+					i.putExtra(YEAR_PARAMS, curYear);
 					startActivity(i);
 				}				
 			});			
 			mainLayout.addView(ll);
+		}
+	}
+	
+	public void paintIncomeOutcome(){
+		tvAnalyseItems.setText("总记录条数是: "+(incomes+outcomes));
+		tvAnalyseTotal.setVisibility(View.GONE);
+		LinearLayout llcontainer = (LinearLayout)findViewById(R.id.ll_analyse_container);
+		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		lp.setMargins(40, 5, 0, 0);																	//调整边距
+		TextView tvIncome = new TextView(this);
+		tvIncome.setTextSize(20);
+		tvIncome.setText("收入条数是: "+incomes);
+		llcontainer.addView(tvIncome,lp);
+		
+		TextView tvTotalIncome = new TextView(this);
+		tvTotalIncome.setText("收入总额是: "+totalIncome);
+		tvTotalIncome.setTextSize(20);
+		llcontainer.addView(tvTotalIncome,lp);
+		
+		TextView tvOutcome = new TextView(this);
+		tvOutcome.setTextSize(20);
+		tvOutcome.setText("支出条数是: "+outcomes);
+		llcontainer.addView(tvOutcome,lp);
+		
+		TextView tvTotalOutcome = new TextView(this);
+		tvTotalOutcome.setText("支出总额是: "+totalOutcome);
+		tvTotalOutcome.setTextSize(20);
+		llcontainer.addView(tvTotalOutcome,lp);
+		
+		TextView tvBalance = new TextView(this);
+		tvBalance.setTextSize(20);
+		double balance = totalIncome-totalOutcome;
+		tvBalance.setText("本月剩余: "+balance);	
+		llcontainer.addView(tvBalance,lp);
+		
+		//交叉画支出收入图
+		for(int i=0;i<6;i++){																			//先画收入统计图
+			LinearLayout ll = new LinearLayout(this);
+			ll.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,200));
+			ll.setOrientation(LinearLayout.HORIZONTAL);
+			ll.setGravity(Gravity.CENTER_VERTICAL);
+			TextView tv_name = new TextView(this);
+			tv_name.setText(Affair_Account_Add.INCOME_SORT[i]+" :");
+			tv_name.setTextSize(25);
+			tv_name.setLayoutParams(new LinearLayout.LayoutParams(150,LayoutParams.WRAP_CONTENT));
+			ll.addView(tv_name);
+			
+			LinearLayout ll2 = new LinearLayout(this);												
+			double rate = IncomeEachValue[i]/totalIncome;
+			double value = (screenWidth-150)*rate;
+			int colorWidth = (int)value;
+			ll2.setLayoutParams(new LinearLayout.LayoutParams(colorWidth,100));
+			ll2.setBackgroundColor(this.getResources().getColor(R.color.forestgreen));
+			ll.addView(ll2);
+						
+			ll.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.btn_push_style));
+			final String sorts;
+			sorts = Affair_Account_Add.INCOME_SORT[i];
+			ll.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View v) {													    //传递类型搜索
+					Intent i = new Intent(Affair_Account_Analyse.this,Affair_Account_Scanf.class);	
+					i.putExtra(SORT_ITEM, sorts);
+					i.putExtra(YEAR_PARAMS, curYear);
+					startActivity(i);
+				}				
+			});			
+			mainLayout.addView(ll);	
+			
+			LinearLayout l2 = new LinearLayout(this);
+			l2.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,200));
+			l2.setOrientation(LinearLayout.HORIZONTAL);
+			l2.setGravity(Gravity.CENTER_VERTICAL);
+			TextView tv_name2 = new TextView(this);
+			tv_name2.setText(Affair_Account_Add.OUTCOME_SORT[i]+" :");
+			tv_name2.setTextSize(25);
+			tv_name2.setLayoutParams(new LinearLayout.LayoutParams(150,LayoutParams.WRAP_CONTENT));
+			l2.addView(tv_name2);
+			
+			LinearLayout l22 = new LinearLayout(this);												
+			double rate2 = OutcomeEachValue[i]/totalOutcome;
+			double value2 = (screenWidth-150)*rate;
+			int colorWidth2 = (int)value2;
+			ll2.setLayoutParams(new LinearLayout.LayoutParams(colorWidth2,100));
+			ll2.setBackgroundColor(this.getResources().getColor(R.color.red));
+			l2.addView(ll2);
+						
+			l2.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.btn_push_style));
+			final String sorts2;
+			sorts2 = Affair_Account_Add.OUTCOME_SORT[i];
+			l2.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View v) {													    //传递类型搜索
+					Intent i = new Intent(Affair_Account_Analyse.this,Affair_Account_Scanf.class);	
+					i.putExtra(SORT_ITEM, sorts);
+					i.putExtra(YEAR_PARAMS, curYear);
+					startActivity(i);
+				}				
+			});			
+			mainLayout.addView(l2);	
+						
 		}
 	}
 

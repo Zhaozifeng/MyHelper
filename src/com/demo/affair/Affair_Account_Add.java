@@ -45,7 +45,7 @@ public class Affair_Account_Add extends Activity {
 	private int curYear;
 	private int curMonth;
 	
-	public static String[] INCOME_SORT = {"工资","定期收入","资助","分红","中奖","其他"};
+	public static String[] INCOME_SORT = {"工资","定期","资助","分红","中奖","其他"};
 	public static String[] OUTCOME_SORT= {"餐饮","用品","买菜","学费","送礼","其他"};
 	
 	protected void onCreate(Bundle savedInstanceState){

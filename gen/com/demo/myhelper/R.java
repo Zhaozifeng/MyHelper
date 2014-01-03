@@ -17,9 +17,30 @@ public final class R {
         /** 番木色 
          */
         public static final int blanchedalmond=0x7f05000e;
+        /** 暗灰色 
+         */
+        public static final int brown=0x7f05001e;
         /** 柠檬绸色 
          */
         public static final int cornsilk=0x7f05000a;
+        /** 亮蓝色 
+         */
+        public static final int darkgray=0x7f05001d;
+        /** 重褐色 
+         */
+        public static final int darkmagenta=0x7f050027;
+        /** 赭色 
+         */
+        public static final int darkorchid=0x7f050020;
+        /** 暗洋红 
+         */
+        public static final int darkred=0x7f050028;
+        /** 亮绿色 
+         */
+        public static final int darkseagreen=0x7f050025;
+        /** 苍绿色 
+         */
+        public static final int darkviolet=0x7f050022;
         /** 雪白色 
          */
         public static final int floralwhite=0x7f050008;
@@ -29,6 +50,9 @@ public final class R {
         /** 桃色 
          */
         public static final int gold=0x7f050014;
+        /** 苍宝石绿 
+         */
+        public static final int greenyellow=0x7f05001b;
         /** 森林绿 
          */
         public static final int ivory=0x7f050004;
@@ -38,12 +62,24 @@ public final class R {
         /** 花白色 
          */
         public static final int lemonchiffon=0x7f050009;
+        /** 黄绿色 
+         */
+        public static final int lightblue=0x7f05001c;
+        /** 中紫色 
+         */
+        public static final int lightgreen=0x7f050024;
         /** 粉红色 
          */
         public static final int lightpink=0x7f050016;
+        /** 粉蓝色 
+         */
+        public static final int lightsteelblue=0x7f050019;
         /** 象牙色 
          */
         public static final int lightyellow=0x7f050005;
+        /** 暗紫罗兰色 
+         */
+        public static final int mediumpurple=0x7f050023;
         /** 白杏色 
          */
         public static final int mistyrose=0x7f05000f;
@@ -56,6 +92,12 @@ public final class R {
         /** 亮粉红色 
          */
         public static final int orange=0x7f050017;
+        /** 暗紫色 
+         */
+        public static final int palegreen=0x7f050021;
+        /** 亮钢兰色
+         */
+        public static final int paleturquoise=0x7f05001a;
         /** 淡紫红 
          */
         public static final int papayawhip=0x7f05000d;
@@ -65,10 +107,19 @@ public final class R {
         /** 金色 
          */
         public static final int pink=0x7f050015;
+        /** 橙色 
+         */
+        public static final int powderblue=0x7f050018;
         public static final int red=0x7f050002;
+        /** 暗海兰色 
+         */
+        public static final int saddlebrown=0x7f050026;
         /** 米绸色 
          */
         public static final int seashell=0x7f05000b;
+        /** 褐色 
+         */
+        public static final int sienna=0x7f05001f;
         /** 黄色 
          */
         public static final int snow=0x7f050007;
@@ -110,72 +161,73 @@ public final class R {
     public static final class id {
         public static final int account_add_radiogroup=0x7f0a0001;
         public static final int account_btn_food=0x7f0a0006;
-        public static final int account_classSpinner=0x7f0a0028;
-        public static final int account_container=0x7f0a0026;
+        public static final int account_classSpinner=0x7f0a0029;
+        public static final int account_container=0x7f0a0027;
         public static final int account_datepicker=0x7f0a0009;
-        public static final int account_grid=0x7f0a0029;
-        public static final int account_menu_analyse=0x7f0a001e;
-        public static final int account_menu_inAndout=0x7f0a001d;
-        public static final int account_menu_set=0x7f0a001f;
-        public static final int account_menu_title_list=0x7f0a0020;
-        public static final int account_menu_tvIn=0x7f0a001b;
-        public static final int account_menu_tvOut=0x7f0a001c;
-        public static final int account_pager=0x7f0a0010;
+        public static final int account_grid=0x7f0a002a;
+        public static final int account_menu_analyse=0x7f0a001f;
+        public static final int account_menu_inAndout=0x7f0a001e;
+        public static final int account_menu_set=0x7f0a0020;
+        public static final int account_menu_title_list=0x7f0a0021;
+        public static final int account_menu_tvIn=0x7f0a001c;
+        public static final int account_menu_tvOut=0x7f0a001d;
+        public static final int account_pager=0x7f0a0011;
         public static final int account_sp_sort=0x7f0a0004;
         public static final int account_timepicker=0x7f0a000a;
         public static final int account_tv_in_out=0x7f0a0000;
-        public static final int account_yearSpinner=0x7f0a0027;
+        public static final int account_yearSpinner=0x7f0a0028;
         public static final int accout_add_sort=0x7f0a0005;
-        public static final int action_settings=0x7f0a0043;
-        public static final int affair_main=0x7f0a002b;
-        public static final int analyse_layout=0x7f0a000f;
-        public static final int btn_add_emotion=0x7f0a003c;
-        public static final int btn_time_edt=0x7f0a003e;
-        public static final int checkbox_note_shake=0x7f0a0031;
-        public static final int checkbox_note_sound=0x7f0a0030;
-        public static final int content_label=0x7f0a0019;
-        public static final int content_show=0x7f0a001a;
-        public static final int custom_title=0x7f0a0033;
-        public static final int custom_title_menu=0x7f0a0036;
-        public static final int custom_title_menu_btn=0x7f0a0039;
-        public static final int custom_title_rollback=0x7f0a0034;
-        public static final int custom_title_rollback2=0x7f0a0037;
-        public static final int date_label=0x7f0a0011;
-        public static final int date_show=0x7f0a0012;
-        public static final int datepicker_note=0x7f0a002e;
+        public static final int action_settings=0x7f0a0044;
+        public static final int affair_main=0x7f0a002c;
+        public static final int analyse_layout=0x7f0a0010;
+        public static final int btn_add_emotion=0x7f0a003d;
+        public static final int btn_time_edt=0x7f0a003f;
+        public static final int checkbox_note_shake=0x7f0a0032;
+        public static final int checkbox_note_sound=0x7f0a0031;
+        public static final int content_label=0x7f0a001a;
+        public static final int content_show=0x7f0a001b;
+        public static final int custom_title=0x7f0a0034;
+        public static final int custom_title_menu=0x7f0a0037;
+        public static final int custom_title_menu_btn=0x7f0a003a;
+        public static final int custom_title_rollback=0x7f0a0035;
+        public static final int custom_title_rollback2=0x7f0a0038;
+        public static final int date_label=0x7f0a0012;
+        public static final int date_show=0x7f0a0013;
+        public static final int datepicker_note=0x7f0a002f;
         public static final int economy_exchange=0x7f0a0008;
         public static final int edtFee=0x7f0a0007;
-        public static final int edt_diary_content=0x7f0a003f;
-        public static final int edt_diary_name=0x7f0a003a;
-        public static final int edt_diary_time=0x7f0a003d;
+        public static final int edt_diary_content=0x7f0a0040;
+        public static final int edt_diary_name=0x7f0a003b;
+        public static final int edt_diary_time=0x7f0a003e;
         public static final int edt_economy_content=0x7f0a000b;
-        public static final int et_note_content=0x7f0a002d;
-        public static final int fee_label=0x7f0a0015;
-        public static final int fee_show=0x7f0a0016;
-        public static final int gv_affair_main=0x7f0a002c;
-        public static final int kind_label=0x7f0a0013;
-        public static final int kind_show=0x7f0a0014;
-        public static final int ls_account_amonth=0x7f0a0021;
-        public static final int ls_diary=0x7f0a002a;
+        public static final int et_note_content=0x7f0a002e;
+        public static final int fee_label=0x7f0a0016;
+        public static final int fee_show=0x7f0a0017;
+        public static final int gv_affair_main=0x7f0a002d;
+        public static final int kind_label=0x7f0a0014;
+        public static final int kind_show=0x7f0a0015;
+        public static final int ll_analyse_container=0x7f0a000c;
+        public static final int ls_account_amonth=0x7f0a0022;
+        public static final int ls_diary=0x7f0a002b;
         public static final int radio_income=0x7f0a0002;
         public static final int radio_outcome=0x7f0a0003;
-        public static final int sort_label=0x7f0a0017;
-        public static final int sort_show=0x7f0a0018;
-        public static final int spinner_emotion=0x7f0a003b;
-        public static final int time_picker=0x7f0a0042;
-        public static final int timepicker_note=0x7f0a002f;
-        public static final int title_name=0x7f0a0035;
-        public static final int title_name2=0x7f0a0038;
-        public static final int tv_account_row_content=0x7f0a0022;
-        public static final int tv_account_row_date=0x7f0a0024;
-        public static final int tv_account_row_fee=0x7f0a0023;
-        public static final int tv_account_row_kind=0x7f0a0025;
-        public static final int tv_analyse_items=0x7f0a000d;
-        public static final int tv_analyse_title=0x7f0a000c;
-        public static final int tv_analyse_total=0x7f0a000e;
-        public static final int tv_diary_time=0x7f0a0041;
-        public static final int tv_diary_title=0x7f0a0040;
-        public static final int vp_myhelper_welcome=0x7f0a0032;
+        public static final int sort_label=0x7f0a0018;
+        public static final int sort_show=0x7f0a0019;
+        public static final int spinner_emotion=0x7f0a003c;
+        public static final int time_picker=0x7f0a0043;
+        public static final int timepicker_note=0x7f0a0030;
+        public static final int title_name=0x7f0a0036;
+        public static final int title_name2=0x7f0a0039;
+        public static final int tv_account_row_content=0x7f0a0023;
+        public static final int tv_account_row_date=0x7f0a0025;
+        public static final int tv_account_row_fee=0x7f0a0024;
+        public static final int tv_account_row_kind=0x7f0a0026;
+        public static final int tv_analyse_items=0x7f0a000e;
+        public static final int tv_analyse_title=0x7f0a000d;
+        public static final int tv_analyse_total=0x7f0a000f;
+        public static final int tv_diary_time=0x7f0a0042;
+        public static final int tv_diary_title=0x7f0a0041;
+        public static final int vp_myhelper_welcome=0x7f0a0033;
     }
     public static final class layout {
         public static final int account_affair_add=0x7f030000;

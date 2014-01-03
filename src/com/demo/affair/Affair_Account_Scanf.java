@@ -29,14 +29,15 @@ public class Affair_Account_Scanf extends Activity {
 	private ImageView imgMenu;
 	private ViewPager viewPage;
 	private Cursor	  curCursor;
-	private Cursor    searchCursor;
+	private Cursor    analyseCursor;
 	private List<View> views;
 	
 	public int curYear;
 	public int curMonth;
 	public int curItemId;																		//记录当前页面id
 	public String showContent;																	//当前要展示的卡片的内容
-	public String showSort;
+	public String showSort;																		//从分析activity跳转过来的数据
+	public int    showYear;
 	
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -44,8 +45,7 @@ public class Affair_Account_Scanf extends Activity {
 		setContentView(R.layout.account_affair_scanf);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title_layout);				
 		customTitle();																			//设置标题栏
-		showPager();
-	
+			
 	}
 	
 	public void searchDB(){
@@ -57,45 +57,47 @@ public class Affair_Account_Scanf extends Activity {
 		curCursor.moveToFirst();																				//自动递增的id要下表_id
 	}
 	
-	public void searchDb2(String sort){
+	public void searchDb2(){																					//分析返回的搜索游标
 		SQLiteDatabase db = MyHelper_MainActivity.HelperSQLite.getWritableDatabase();
-		String selection = ""
+		String selection = "year_int=? and sort=?";
+		String selectionArgs[] = {showYear+"",showSort};
+		analyseCursor = db.query
+		(MainDatabase.ECONOMY_TABLE_NAME, null, selection, selectionArgs, null, null,  "_id desc", null);		//倒序排列最新的排在最前面
+		analyseCursor.moveToFirst();
 	}
 	
-	public void showPager(){
-		searchDB();
+	public void showPager(Cursor c){		
 		views = new ArrayList<View>();
 		LayoutInflater inflate = this.getLayoutInflater();
-		for(int i=0;i<curCursor.getCount();i++){
+		for(int i=0;i<c.getCount();i++){
 			View view = inflate.inflate(R.layout.account_affair_scanf_page, null);
 			
 			TextView date = (TextView)view.findViewById(R.id.date_show);							//获取时间
-			date.setText(curCursor.getString(6).toString());
+			date.setText(c.getString(6).toString());
 						
 			TextView sort  = (TextView)view.findViewById(R.id.sort_show);							//获取类型
-			sort.setText(curCursor.getString(2).toString());
+			sort.setText(c.getString(2).toString());
 			
 			TextView fee  = (TextView)view.findViewById(R.id.fee_show);								//获取金额
-			fee.setText(curCursor.getString(3).toString()+"元");
+			fee.setText(c.getString(3).toString()+"元");
 			
 			TextView content  = (TextView)view.findViewById(R.id.content_show);						//获取内容
-			content.setText(curCursor.getString(8).toString());
+			content.setText(c.getString(8).toString());
 			
 			TextView kind = (TextView)view.findViewById(R.id.kind_show);							//获取方式
-			if(curCursor.getString(1).toString().equals("收入")){
+			if(c.getString(1).toString().equals("收入")){
 				kind.setTextColor(this.getResources().getColor(R.color.forestgreen));				//设置收入为绿色
 			}
 			else{
 				kind.setTextColor(this.getResources().getColor(R.color.red));						//支出为红色
 			}			
-			kind.setText(curCursor.getString(1).toString());
+			kind.setText(c.getString(1).toString());
 			views.add(view);
-			if(curCursor.getString(8).toString().equals(showContent)){								//搜索按下的id
+			if(c.getString(8).toString().equals(showContent)){										//搜索按下的id
 				curItemId = i;																		//记录当前
 			}
-			curCursor.moveToNext();																	//走下一个游标
+			c.moveToNext();																			//走下一个游标
 			viewPage.setAdapter(new MyPagerAdapter(Affair_Account_Scanf.this,views));
-			//viewPage.setCurrentItem(curItemId);
 		}
 		
 		
@@ -107,8 +109,8 @@ public class Affair_Account_Scanf extends Activity {
 		curYear 		= intent.getIntExtra(Affair_Account_Amonth.YEAR_PARAMS, -1);
 		curMonth 		= intent.getIntExtra(Affair_Account_Amonth.MONTH_PARAMS, -1);
 		showContent		= intent.getStringExtra(Affair_Account_Amonth.CONTENT_PARAMS);
-		String showSort = intent.getStringExtra(Affair_Account_Analyse.SORT_ITEM);				//接受分析数据传来的
-		
+		showSort = intent.getStringExtra(Affair_Account_Analyse.SORT_ITEM);						//接受分析数据传来的
+		showYear = intent.getIntExtra(Affair_Account_Analyse.YEAR_PARAMS, -1);		
 	}
 	
 	public void customTitle(){
@@ -121,9 +123,13 @@ public class Affair_Account_Scanf extends Activity {
 		imgMenu.setVisibility(View.INVISIBLE);
 		if(curMonth==-1){
 			tvTitle.setText(showSort+"类型记录");
+			searchDb2();
+			showPager(analyseCursor);
 		}
 		else{
 		tvTitle.setText(curMonth+"月份账本");
+		searchDB();
+		showPager(curCursor);
 		}
 		Intent intent = this.getIntent();
 		
