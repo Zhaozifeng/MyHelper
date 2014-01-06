@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"    
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"    
+    >    
+    <TextView 
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="@string/note_content"        
+        />
+    
+    <EditText 
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:id="@+id/et_note_content"   
+        android:scrollbars="vertical"
+        android:gravity="top"   
+        />
+    
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/note_time"
+        android:textSize="20sp"
+        >  
+    </TextView>
+    
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_note_time"
+            android:text="显示当前时间"
+            android:textSize="20sp"
+            />              
+    </LinearLayout>
+    
+    <Button 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_note_date"
+        android:gravity="center"
+        android:text="设置年月日"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        />
+    <Button 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_note_time"
+        android:gravity="center"
+        android:text="设置时分秒"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        />
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        >
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/note_sound" 
+            android:textSize="20sp"  
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            ></TextView> 
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkbox_note_sound"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"           
+            ></CheckBox>        
+    </RelativeLayout>
+       
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/note_shake" 
+            android:textSize="20sp"  
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            ></TextView> 
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkbox_note_shake"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"           
+            ></CheckBox>      
+    </RelativeLayout>   
+</LinearLayout>
+</ScrollView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

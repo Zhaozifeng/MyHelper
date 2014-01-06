@@ -12,10 +12,17 @@ public class MainDatabase extends SQLiteOpenHelper {
 	
 	
 	
-	public static String DBASE_NAME       = "MainDatabase";
-	public static String DIARY_TABLE_NAME = "Diary" ;
-	public static String ECONOMY_TABLE_NAME="Economy";
-	public static String CREATE_DIARY_TABLE  = "create table "+DIARY_TABLE_NAME+				//建立日记表sql语句
+	public static String DBASE_NAME         = "MainDatabase";
+	public static String DIARY_TABLE_NAME   = "Diary" ;
+	public static String ECONOMY_TABLE_NAME ="Economy";
+	public static String NOTE_TABLE_NAME    ="Note";
+	
+	public static String CREATE_NOTE_TABLE = "create table "+NOTE_TABLE_NAME+					//建立备忘录表sql语句
+			"(_id integer primary key autoincrement,year integer,month integer,day integer,hour integer,"
+			+ "minute integer,second integer,content text,rang char,virbrate char)";
+	
+			
+    public static String CREATE_DIARY_TABLE  = "create table "+DIARY_TABLE_NAME+				//建立日记表sql语句
 			" (_id integer primary key autoincrement, time text, title text, emotion text, emotion_id integer, content text )";
 	
 	public static String CREATE_ECONOMY_TABLE = "create table "+ECONOMY_TABLE_NAME+			    //建立经济账本sql语句
@@ -36,6 +43,7 @@ public class MainDatabase extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(CREATE_DIARY_TABLE);					       //创建日记表
 		db.execSQL(CREATE_ECONOMY_TABLE);					   //创建经济表
+		db.execSQL(CREATE_NOTE_TABLE); 						   //创建备忘录表
 		MainSQLite = db;
 	}
 

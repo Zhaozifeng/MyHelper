@@ -75,7 +75,7 @@ public class Affair_Note_List extends Activity {
 	
 	public void initialTitle(){
 		
-		DisplayMetrics dm = new DisplayMetrics();									//获取屏幕长宽
+		DisplayMetrics dm = new DisplayMetrics();									  //获取屏幕长宽
 		this.getWindowManager().getDefaultDisplay().getMetrics(dm);
 		screenWidth = dm.widthPixels;
 		screenHeight = dm.heightPixels;
