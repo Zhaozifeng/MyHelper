@@ -13,7 +13,7 @@
     </style>
     
     <style name="CostomTitle" parent="android:Theme.Light">
-        <item name="android:windowTitleSize">50dp</item>:
+        <item name="android:windowTitleSize">50dp</item>
     </style>
     
 

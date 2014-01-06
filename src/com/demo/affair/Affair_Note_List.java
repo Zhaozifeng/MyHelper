@@ -57,7 +57,7 @@ public class Affair_Note_List extends Activity {
 				menuWindow.dismiss();
 				switch(arg2){				
 				case 0:																	//新建备忘录			
-					Intent intent = new Intent(Affair_Note_List.this,Affair_Note.class);					
+					Intent intent = new Intent(Affair_Note_List.this,Affair_Note_Add.class);					
 					startActivity(intent);
 					break;
 				case 1:

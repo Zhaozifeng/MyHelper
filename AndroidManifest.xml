@@ -15,7 +15,10 @@
         android:label="@string/app_name"
         android:theme="@style/CostomTitle">
         
-        
+        <receiver
+            android:name=".Affair_Note_Alarm"
+            android:process=":remote"
+            ></receiver>
         
         <activity
             android:name="com.demo.myhelper.MyHelper_Welcome"
@@ -37,7 +40,7 @@
             ></activity>
         
          <activity
-            android:name="com.demo.affair.Affair_Note"
+            android:name="com.demo.affair.Affair_Note_Add"          
             ></activity>
          
          <activity 
