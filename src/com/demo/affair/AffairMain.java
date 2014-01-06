@@ -60,7 +60,7 @@ public class AffairMain extends Activity {
 	void initialGrid(){																 //构建Grid
 		mGridView = (GridView)findViewById(R.id.gv_affair_main);
 		mGridView.setAdapter(new MyAdapter(mItemList,AffairMain.this));			
-		final Intent mIntents [] = {new Intent(AffairMain.this,Affair_Note.class),
+		final Intent mIntents [] = {new Intent(AffairMain.this,Affair_Note_List.class),
 									new Intent(AffairMain.this,Affair_Diary.class),
 									new Intent(AffairMain.this,Affair_Account.class)}; 
 		mGridView.setOnItemClickListener(new OnItemClickListener(){

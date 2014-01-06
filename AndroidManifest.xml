@@ -40,6 +40,10 @@
             android:name="com.demo.affair.Affair_Note"
             ></activity>
          
+         <activity 
+             android:name="com.demo.affair.Affair_Note_List"
+             ></activity>
+         
          <activity
             android:name="com.demo.affair.Affair_Diary"
             ></activity>

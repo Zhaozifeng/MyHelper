@@ -218,7 +218,7 @@ public class Affair_Account_Analyse extends Activity {
 	
 	public void paintIncomeOutcome(){
 		tvAnalyseItems.setText("总记录条数是: "+(incomes+outcomes));
-		tvAnalyseTotal.setVisibility(View.GONE);
+		
 		LinearLayout llcontainer = (LinearLayout)findViewById(R.id.ll_analyse_container);
 		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 		lp.setMargins(40, 5, 0, 0);																	//调整边距
@@ -226,7 +226,7 @@ public class Affair_Account_Analyse extends Activity {
 		tvIncome.setTextSize(20);
 		tvIncome.setText("收入条数是: "+incomes);
 		llcontainer.addView(tvIncome,lp);
-		
+		tvAnalyseTotal.setVisibility(View.GONE);
 		TextView tvTotalIncome = new TextView(this);
 		tvTotalIncome.setText("收入总额是: "+totalIncome);
 		tvTotalIncome.setTextSize(20);
@@ -245,33 +245,35 @@ public class Affair_Account_Analyse extends Activity {
 		TextView tvBalance = new TextView(this);
 		tvBalance.setTextSize(20);
 		double balance = totalIncome-totalOutcome;
-		tvBalance.setText("本月剩余: "+balance);	
+		tvBalance.setText("本月剩余资金: "+balance);	
 		llcontainer.addView(tvBalance,lp);
+		
+		
 		
 		//交叉画支出收入图
 		for(int i=0;i<6;i++){																			//先画收入统计图
-			LinearLayout ll = new LinearLayout(this);
-			ll.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,200));
-			ll.setOrientation(LinearLayout.HORIZONTAL);
-			ll.setGravity(Gravity.CENTER_VERTICAL);
+			LinearLayout incomeLay = new LinearLayout(this);
+			incomeLay.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,200));
+			incomeLay.setOrientation(LinearLayout.HORIZONTAL);
+			incomeLay.setGravity(Gravity.CENTER_VERTICAL);
 			TextView tv_name = new TextView(this);
 			tv_name.setText(Affair_Account_Add.INCOME_SORT[i]+" :");
 			tv_name.setTextSize(25);
 			tv_name.setLayoutParams(new LinearLayout.LayoutParams(150,LayoutParams.WRAP_CONTENT));
-			ll.addView(tv_name);
+			incomeLay.addView(tv_name);
 			
-			LinearLayout ll2 = new LinearLayout(this);												
+			LinearLayout incomeLay2 = new LinearLayout(this);												
 			double rate = IncomeEachValue[i]/totalIncome;
 			double value = (screenWidth-150)*rate;
 			int colorWidth = (int)value;
-			ll2.setLayoutParams(new LinearLayout.LayoutParams(colorWidth,100));
-			ll2.setBackgroundColor(this.getResources().getColor(R.color.forestgreen));
-			ll.addView(ll2);
+			incomeLay2.setLayoutParams(new LinearLayout.LayoutParams(colorWidth,100));
+			incomeLay2.setBackgroundColor(this.getResources().getColor(R.color.forestgreen));
+			incomeLay.addView(incomeLay2);
 						
-			ll.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.btn_push_style));
+			incomeLay.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.btn_push_style));
 			final String sorts;
 			sorts = Affair_Account_Add.INCOME_SORT[i];
-			ll.setOnClickListener(new OnClickListener(){
+			incomeLay.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View v) {													    //传递类型搜索
 					Intent i = new Intent(Affair_Account_Analyse.this,Affair_Account_Scanf.class);	
@@ -280,30 +282,30 @@ public class Affair_Account_Analyse extends Activity {
 					startActivity(i);
 				}				
 			});			
-			mainLayout.addView(ll);	
+			llcontainer.addView(incomeLay);	
 			
-			LinearLayout l2 = new LinearLayout(this);
-			l2.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,200));
-			l2.setOrientation(LinearLayout.HORIZONTAL);
-			l2.setGravity(Gravity.CENTER_VERTICAL);
+			LinearLayout outcomeLay = new LinearLayout(this);
+			outcomeLay.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,200));
+			outcomeLay.setOrientation(LinearLayout.HORIZONTAL);
+			outcomeLay.setGravity(Gravity.CENTER_VERTICAL);
 			TextView tv_name2 = new TextView(this);
 			tv_name2.setText(Affair_Account_Add.OUTCOME_SORT[i]+" :");
 			tv_name2.setTextSize(25);
 			tv_name2.setLayoutParams(new LinearLayout.LayoutParams(150,LayoutParams.WRAP_CONTENT));
-			l2.addView(tv_name2);
+			outcomeLay.addView(tv_name2);
 			
-			LinearLayout l22 = new LinearLayout(this);												
+			LinearLayout outcomeLay2 = new LinearLayout(this);												
 			double rate2 = OutcomeEachValue[i]/totalOutcome;
 			double value2 = (screenWidth-150)*rate;
 			int colorWidth2 = (int)value2;
-			ll2.setLayoutParams(new LinearLayout.LayoutParams(colorWidth2,100));
-			ll2.setBackgroundColor(this.getResources().getColor(R.color.red));
-			l2.addView(ll2);
+			outcomeLay2.setLayoutParams(new LinearLayout.LayoutParams(colorWidth2,100));
+			outcomeLay2.setBackgroundColor(this.getResources().getColor(R.color.red));
+			outcomeLay.addView(outcomeLay2);
 						
-			l2.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.btn_push_style));
+			outcomeLay.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.btn_push_style));
 			final String sorts2;
 			sorts2 = Affair_Account_Add.OUTCOME_SORT[i];
-			l2.setOnClickListener(new OnClickListener(){
+			outcomeLay.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View v) {													    //传递类型搜索
 					Intent i = new Intent(Affair_Account_Analyse.this,Affair_Account_Scanf.class);	
@@ -312,7 +314,7 @@ public class Affair_Account_Analyse extends Activity {
 					startActivity(i);
 				}				
 			});			
-			mainLayout.addView(l2);	
+			llcontainer.addView(outcomeLay);	
 						
 		}
 	}
