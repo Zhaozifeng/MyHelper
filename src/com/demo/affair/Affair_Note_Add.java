@@ -12,8 +12,10 @@ import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.app.TimePickerDialog.OnTimeSetListener;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -33,7 +35,9 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.TimePicker.OnTimeChangedListener;
 
+import com.demo.myhelper.MyHelper_MainActivity;
 import com.demo.myhelper.R;
+import com.demo.object.MainDatabase;
 
 public class Affair_Note_Add extends Activity {	
 
@@ -56,8 +60,9 @@ public class Affair_Note_Add extends Activity {
 	public 	int				day;
 	public 	int 			hour;
 	public 	int 			minute;
-	public	int				second;
 	
+	//返回列表刷新参数
+	public static String   RELESH_LIST = "reflesh_list";
 	
 	//主函数
 	protected void onCreate(Bundle savedInstanceState){
@@ -69,7 +74,8 @@ public class Affair_Note_Add extends Activity {
 		setListener();
 	}
 		
-	public void initialTitle(){														//初始化标题栏
+	//初始化标题栏
+	public void initialTitle(){															
 		tv_title    	= (TextView)findViewById(R.id.title_name);
 		tv_curTime		= (TextView)findViewById(R.id.tv_note_time);
 		tv_curDate		= (TextView)findViewById(R.id.tv_note_date);
@@ -79,86 +85,125 @@ public class Affair_Note_Add extends Activity {
 		mSoundCheck 	= (CheckBox)findViewById(R.id.checkbox_note_sound);
 		mVibrateCheck 	= (CheckBox)findViewById(R.id.checkbox_note_shake);		
 		btnSetTime 		= (Button)findViewById(R.id.btn_note_time);
-		btnSetDate		= (Button)findViewById(R.id.btn_note_date);
-		
+		btnSetDate		= (Button)findViewById(R.id.btn_note_date);		
 		mSoundCheck.setChecked(true);
-		mVibrateCheck.setChecked(true);
+		mVibrateCheck.setChecked(true);				
+		tv_title.setText(R.string.note);	
 				
-		image_commit.setBackgroundResource(R.drawable.btn_commit);
-		tv_title.setText(R.string.note);		
-		
-		calendar = Calendar.getInstance();                                         //获取当前时间      
-		calendar.setTimeInMillis(System.currentTimeMillis());
-		year	= calendar.get(Calendar.YEAR);
-		month	= calendar.get(Calendar.MONTH)+1;
-		day		= calendar.get(Calendar.DAY_OF_MONTH);
-		hour 	= calendar.get(Calendar.HOUR_OF_DAY);
-		minute  = calendar.get(Calendar.MINUTE);
+		//设置当前时间
+		calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(System.currentTimeMillis());		
+		year  = calendar.get(Calendar.YEAR);
+		month = calendar.get(Calendar.MONTH)+1;
+		day   = calendar.get(Calendar.DAY_OF_MONTH);
+		hour  = calendar.get(Calendar.HOUR_OF_DAY);
+		minute= calendar.get(Calendar.MINUTE);
 		tv_curDate.setText(year+"年"+month+"月"+day+"日");
-		tv_curTime.setText(hour+" : "+minute);		
-	}
-	
-	
-	public void setListener(){	
+		tv_curTime.setText(hour+" : "+minute);
+				
+		//返回按钮
+		image_left.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				
+				finish();				
+			}			
+		});
 		
-		image_commit.setOnClickListener(new OnClickListener(){					   //确定提交
+		//提交按钮
+		image_commit.setBackgroundResource(R.drawable.btn_commit);
+		image_commit.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(Affair_Note_Add.this,Affair_Note_Alarm.class);
-				PendingIntent pending = PendingIntent.getBroadcast(Affair_Note_Add.this, 0, intent, 0);
+				PendingIntent pi = PendingIntent.getBroadcast(Affair_Note_Add.this, 0, intent, 0);
 				AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
+				am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pi);
 				
-				am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pending);
-				Builder b = new Builder(Affair_Note_Add.this);
-				b
-				.setMessage("添加成功")
-				.setPositiveButton("好的", null);
-				b.create().show();
+				final SQLiteDatabase sql = MyHelper_MainActivity.HelperSQLite.getWritableDatabase();
+				final ContentValues cv = new ContentValues();
+				
+				//判断是否震动或者响铃，1是有设置，0是没有设置
+				int isVibrate;
+				int isSound; 				
+				if(mVibrateCheck.isSelected())
+					isVibrate = 1;
+				else
+					isVibrate = 0;
+				
+				if(mVibrateCheck.isSelected())
+					isSound = 1;
+				else
+					isSound = 0;					
+				String content    = edt_content.getText().toString();
+				
+				//传递给contentView
+				cv.put("content", content);
+				cv.put("year", calendar.get(Calendar.YEAR));
+				cv.put("month", calendar.get(Calendar.MONTH));
+				cv.put("day", calendar.get(Calendar.DAY_OF_MONTH));
+				cv.put("hour", calendar.get(Calendar.HOUR_OF_DAY));
+				cv.put("minute", calendar.get(Calendar.MINUTE));
+				cv.put("second", Calendar.SECOND);
+				cv.put("rang",isSound);
+				cv.put("vibrate", isVibrate);
+				
+				sql.insert(MainDatabase.NOTE_TABLE_NAME, null, cv);
+																				
+				Builder builder = new Builder(Affair_Note_Add.this);
+				builder
+				.setTitle("操作提示")
+				.setMessage("提交成功")
+				.setPositiveButton("好的", new DialogInterface.OnClickListener() {					
+					public void onClick(DialogInterface dialog, int which) {
+						Intent intent = new Intent(Affair_Note_Add.this,Affair_Note_List.class);
+						intent.putExtra(RELESH_LIST, true);
+						intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						startActivity(intent);
+						finish();						
+					}
+				});
+				builder.create().show();
 			}			
-		});				
-		image_left.setOnClickListener(new OnClickListener(){					   //返回按钮
-			public void onClick(View v){
-				finish();
-			}
 		});
-		btnSetTime.setOnClickListener(new OnClickListener(){					 //时间按钮设置监听
+			
+	}
+	
+	//设置监听
+	public void setListener(){
+		
+		//时间窗口
+		btnSetTime.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				
-				TimePickerDialog timePick = new TimePickerDialog(Affair_Note_Add.this,new OnTimeSetListener(){
+				TimePickerDialog tp = new TimePickerDialog(Affair_Note_Add.this, new OnTimeSetListener(){
 					@Override
 					public void onTimeSet(TimePicker view, int hourOfDay,
 							int minute) {
-						tv_curTime.setText(hourOfDay+" : "+minute);	
-						calendar.setTimeInMillis(System.currentTimeMillis());
 						calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-						calendar.set(Calendar.MINUTE, minute);
-						calendar.set(Calendar.SECOND, 0);
-						calendar.set(Calendar.MILLISECOND, 0);
+						calendar.set(Calendar.MINUTE, minute);						
 					}					
-				}, calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE), true);
-				timePick.show();
+				},hour, minute, true);
+				tp.show();
 			}			
-		});		
-		btnSetDate.setOnClickListener(new OnClickListener(){					    //日期按钮设置监听
+		});
+		
+		//日期窗口
+		btnSetDate.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				DatePickerDialog datePicker = new DatePickerDialog(Affair_Note_Add.this,new OnDateSetListener(){
+				DatePickerDialog dp = new DatePickerDialog(Affair_Note_Add.this,new OnDateSetListener(){
 					@Override
 					public void onDateSet(DatePicker arg0, int arg1, int arg2,
 							int arg3) {
-						calendar.set(arg1, arg2, arg3);
-						arg2++;
-						tv_curDate.setText(arg1+"年"+arg2+"月"+arg3+"日");								
+						calendar.set(arg1, arg2, arg3);						
 					}					
-				},year,month-1,day);
-				datePicker.show();
+				},year,month,day);				
 			}			
 		});
+		
 	}
 	
-	
-
 }
 
 

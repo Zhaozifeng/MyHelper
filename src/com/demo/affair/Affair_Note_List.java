@@ -3,6 +3,8 @@ package com.demo.affair;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -26,7 +28,9 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.demo.myhelper.MyHelper_MainActivity;
 import com.demo.myhelper.R;
+import com.demo.object.MainDatabase;
 
 public class Affair_Note_List extends Activity {
 	
@@ -34,8 +38,12 @@ public class Affair_Note_List extends Activity {
 	private ImageView rollBack;
 	private ImageView imgMenu;
 	private ListView  menuList;
+	private ListView  noteList;
 	private PopupMenu menu;
 	private PopupWindow  menuWindow = null;
+	
+	private Cursor    cursor;
+	private SQLiteDatabase mainDB;
 	
 	public int screenWidth;
 	public int screenHeight;
@@ -46,7 +54,16 @@ public class Affair_Note_List extends Activity {
 		setContentView(R.layout.activity_affair_note_list);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title_layout);
 		initialTitle();	
+		getCursor();
 		setListener();																	//设定列表监听
+	}
+	
+	//获取数据库中Note表
+	public void getCursor(){
+		mainDB = MyHelper_MainActivity.HelperSQLite.getReadableDatabase();
+		cursor = mainDB.query(MainDatabase.NOTE_TABLE_NAME, null, null, null, null, null, null);
+		cursor.moveToFirst();
+		noteList.setAdapter(new NoteAdapter(Affair_Note_List.this,cursor));
 	}
 	
 	public void setListener(){
@@ -71,8 +88,7 @@ public class Affair_Note_List extends Activity {
 			}			
 		});
 	}
-	
-	
+		
 	public void initialTitle(){
 		
 		DisplayMetrics dm = new DisplayMetrics();									  //获取屏幕长宽
@@ -80,11 +96,11 @@ public class Affair_Note_List extends Activity {
 		screenWidth = dm.widthPixels;
 		screenHeight = dm.heightPixels;
 		
+		//实例备忘录列表
+		noteList = (ListView)findViewById(R.id.ls_affair_note);		
 		LayoutInflater lf = LayoutInflater.from(Affair_Note_List.this);
 		View view = lf.inflate(R.layout.account_menu_list2, null);
 		menuList = (ListView)view.findViewById(R.id.account_menu_title_list);
-		
-		
 		menuList.setAdapter(new MenuAdapter(Affair_Note_List.this));
 		tvTitle  = (TextView)findViewById(R.id.title_name);
 		tvTitle.setText("备忘录列表");
@@ -106,6 +122,7 @@ public class Affair_Note_List extends Activity {
 		menuWindow.setBackgroundDrawable(new BitmapDrawable());
 	}
 	
+	//定义菜单列表适配类
 	private class MenuAdapter extends BaseAdapter{
 		
 		public String[] menus = {"新建","删除","设置"};
@@ -137,6 +154,69 @@ public class Affair_Note_List extends Activity {
 			tv.setText(menus[arg0]);
 			l.addView(tv);
 			return l;
+		}
+		
+	}
+	
+	//定义备忘录列表适配类
+	private class NoteAdapter extends BaseAdapter{
+		
+		private Cursor  mcursor;
+		private Context context;
+		private int		size;
+		
+		public NoteAdapter(Context context, Cursor c){
+			this.mcursor = c;
+			this.context = context;
+			size = c.getCount();
+		}
+
+		@Override
+		public int getCount() {
+			return size;
+		}
+
+		@Override
+		public Object getItem(int arg0) {
+			return null;
+		}
+
+		@Override
+		public long getItemId(int arg0) {
+			return arg0;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			RelativeLayout rl = new RelativeLayout(context);
+			rl.setLayoutParams(new ListView.LayoutParams(LayoutParams.FILL_PARENT,200));
+			
+			//添加日期显示
+			TextView time = new TextView(context);
+			time.setTextSize(20);
+			int year  	= mcursor.getInt(1);
+			int month 	= mcursor.getInt(2)+1;
+			int day   	= mcursor.getInt(3);
+			int hour  	= mcursor.getInt(4);
+			int minute	= mcursor.getInt(5);
+			time.setText("日期 : "+year+"."+month+"."+day+"  "+hour+" : "+minute);
+			RelativeLayout.LayoutParams rLayout = new RelativeLayout.LayoutParams
+			(new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
+			rLayout.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+			rLayout.setMargins(10, 5, 0, 0);
+			rl.addView(time,rLayout);
+			
+			//添加内容显示
+			TextView content = new TextView(context);
+			content.setTextSize(25);
+			content.setText(mcursor.getString(7));
+			RelativeLayout.LayoutParams rLayout2 = new RelativeLayout.LayoutParams
+			(new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
+			rLayout2.addRule(RelativeLayout.RIGHT_OF,time.getId());
+			rl.addView(content,rLayout2);
+	
+			mcursor.moveToNext();
+			return rl;
 		}
 		
 	}

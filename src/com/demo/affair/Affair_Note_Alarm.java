@@ -10,10 +10,5 @@ public class Affair_Note_Alarm extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context arg0, Intent arg1) {
 		Toast.makeText(arg0, "时间到了！", 8000).show();	
-		Builder builder = new Builder(arg0);
-		builder
-		.setTitle("your clock")
-		.setMessage("ha ha")
-		.create().show();
 	}
 }

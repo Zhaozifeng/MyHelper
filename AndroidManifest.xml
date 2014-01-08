@@ -16,7 +16,11 @@
         android:theme="@style/CostomTitle">
         
         <receiver
-            android:name=".Affair_Note_Alarm"
+            android:name="com.demo.affair.Affair_Note_Alarm"
+            android:process=":remote"
+            ></receiver>
+        <receiver 
+            android:name="com.demo.affair.DemoCall"
             android:process=":remote"
             ></receiver>
         
@@ -25,10 +29,13 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity 
+            android:name="com.demo.affair.Demo"
+            ></activity>
         
         <activity
             android:theme="@style/AppTheme"

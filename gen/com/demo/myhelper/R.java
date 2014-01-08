@@ -153,12 +153,14 @@ public final class R {
         public static final int diary=0x7f02000a;
         public static final int ic_launcher=0x7f02000b;
         public static final int note=0x7f02000c;
-        public static final int sucess=0x7f02000d;
-        public static final int title_menu=0x7f02000e;
-        public static final int welcome1=0x7f02000f;
-        public static final int welcome2=0x7f020010;
-        public static final int welcome3=0x7f020011;
-        public static final int welcome4=0x7f020012;
+        public static final int note_sound=0x7f02000d;
+        public static final int note_vibrate=0x7f02000e;
+        public static final int sucess=0x7f02000f;
+        public static final int title_menu=0x7f020010;
+        public static final int welcome1=0x7f020011;
+        public static final int welcome2=0x7f020012;
+        public static final int welcome3=0x7f020013;
+        public static final int welcome4=0x7f020014;
     }
     public static final class id {
         public static final int account_add_radiogroup=0x7f0a0001;
@@ -179,13 +181,13 @@ public final class R {
         public static final int account_tv_in_out=0x7f0a0000;
         public static final int account_yearSpinner=0x7f0a0028;
         public static final int accout_add_sort=0x7f0a0005;
-        public static final int action_settings=0x7f0a004c;
+        public static final int action_settings=0x7f0a004d;
         public static final int affair_main=0x7f0a002c;
         public static final int analyse_layout=0x7f0a0010;
-        public static final int btn_add_emotion=0x7f0a0045;
+        public static final int btn_add_emotion=0x7f0a0046;
         public static final int btn_note_date=0x7f0a0035;
         public static final int btn_note_time=0x7f0a0036;
-        public static final int btn_time_edt=0x7f0a0047;
+        public static final int btn_time_edt=0x7f0a0048;
         public static final int checkbox_note_shake=0x7f0a0032;
         public static final int checkbox_note_sound=0x7f0a0031;
         public static final int content_label=0x7f0a001a;
@@ -200,9 +202,9 @@ public final class R {
         public static final int datepicker_note=0x7f0a002f;
         public static final int economy_exchange=0x7f0a0008;
         public static final int edtFee=0x7f0a0007;
-        public static final int edt_diary_content=0x7f0a0048;
-        public static final int edt_diary_name=0x7f0a0043;
-        public static final int edt_diary_time=0x7f0a0046;
+        public static final int edt_diary_content=0x7f0a0049;
+        public static final int edt_diary_name=0x7f0a0044;
+        public static final int edt_diary_time=0x7f0a0047;
         public static final int edt_economy_content=0x7f0a000b;
         public static final int et_note_content=0x7f0a002e;
         public static final int fee_label=0x7f0a0016;
@@ -215,16 +217,17 @@ public final class R {
         public static final int ls_account_amonth=0x7f0a0022;
         public static final int ls_affair_note=0x7f0a0038;
         public static final int ls_diary=0x7f0a002b;
-        public static final int menu_edit=0x7f0a004d;
+        public static final int menu_edit=0x7f0a004e;
+        public static final int myBtn=0x7f0a0043;
         public static final int note_list_main=0x7f0a0037;
-        public static final int note_menu=0x7f0a004e;
+        public static final int note_menu=0x7f0a004f;
         public static final int radio_income=0x7f0a0002;
         public static final int radio_outcome=0x7f0a0003;
         public static final int rl_can_container=0x7f0a0039;
         public static final int sort_label=0x7f0a0018;
         public static final int sort_show=0x7f0a0019;
-        public static final int spinner_emotion=0x7f0a0044;
-        public static final int time_picker=0x7f0a004b;
+        public static final int spinner_emotion=0x7f0a0045;
+        public static final int time_picker=0x7f0a004c;
         public static final int timepicker_note=0x7f0a0030;
         public static final int title_name=0x7f0a003e;
         public static final int title_name2=0x7f0a0041;
@@ -235,8 +238,8 @@ public final class R {
         public static final int tv_analyse_items=0x7f0a000e;
         public static final int tv_analyse_title=0x7f0a000d;
         public static final int tv_analyse_total=0x7f0a000f;
-        public static final int tv_diary_time=0x7f0a004a;
-        public static final int tv_diary_title=0x7f0a0049;
+        public static final int tv_diary_time=0x7f0a004b;
+        public static final int tv_diary_title=0x7f0a004a;
         public static final int tv_note_date=0x7f0a0033;
         public static final int tv_note_time=0x7f0a0034;
         public static final int vp_myhelper_welcome=0x7f0a003b;
@@ -262,9 +265,10 @@ public final class R {
         public static final int activity_setting_main=0x7f030011;
         public static final int custom_title_layout=0x7f030012;
         public static final int custom_title_layout2=0x7f030013;
-        public static final int diary_add=0x7f030014;
-        public static final int diary_row=0x7f030015;
-        public static final int time_picker=0x7f030016;
+        public static final int demo=0x7f030014;
+        public static final int diary_add=0x7f030015;
+        public static final int diary_row=0x7f030016;
+        public static final int time_picker=0x7f030017;
     }
     public static final class menu {
         public static final int my_helper_main=0x7f090000;
