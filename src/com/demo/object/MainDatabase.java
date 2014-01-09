@@ -19,7 +19,7 @@ public class MainDatabase extends SQLiteOpenHelper {
 	
 	public static String CREATE_NOTE_TABLE = "create table "+NOTE_TABLE_NAME+					//建立备忘录表sql语句
 			"(_id integer primary key autoincrement,year integer,month integer,day integer,hour integer,"
-			+ "minute integer,second integer,content text,rang integer,vibrate integer)";
+			+ "minute integer,second integer,content text,rang integer,vibrate integer,is_action text)";
 	
 			
     public static String CREATE_DIARY_TABLE  = "create table "+DIARY_TABLE_NAME+				//建立日记表sql语句

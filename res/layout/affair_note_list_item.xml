@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"    
+    >
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:text="显示日期"
+        android:id="@+id/tv_note_item"
+        />
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_note_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="23dp"
+            android:text="显示状态"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_note_content"
+            android:layout_width="wrap_content"
+            android:maxWidth="250dp"
+            android:singleLine="true"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="21dp"
+            android:text="显示内容"
+            android:textSize="30sp" />
+       
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
+        >
+
+        <ImageView
+            android:id="@+id/img_note_sound"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="23dp"
+            android:background="@drawable/note_sound" />
+
+        <ImageView
+            android:id="@+id/img_note_vibrate"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="22dp"
+            android:layout_toRightOf="@+id/img_note_sound"
+            android:background="@drawable/note_vibrate" />
+
+    </RelativeLayout>
+    
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

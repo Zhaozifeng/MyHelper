@@ -1,11 +1,14 @@
 package com.demo.affair;
 
+import java.util.Calendar;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -16,6 +19,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewGroup;
+import android.view.ViewGroup.MarginLayoutParams;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -73,14 +77,20 @@ public class Affair_Note_List extends Activity {
 					long arg3) {	
 				menuWindow.dismiss();
 				switch(arg2){				
-				case 0:																	//新建备忘录			
+				case 0:	
+					//新建备忘录			
 					Intent intent = new Intent(Affair_Note_List.this,Affair_Note_Add.class);					
 					startActivity(intent);
 					break;
 				case 1:
-					RelativeLayout main = (RelativeLayout)findViewById(R.id.note_list_main);
-					RelativeLayout rl = (RelativeLayout)findViewById(R.id.rl_can_container);
+					//显示垃圾桶
+					noteList.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT,screenHeight-250));
+					RelativeLayout rl = (RelativeLayout)findViewById(R.id.rl_can_container);					
 					rl.setVisibility(View.VISIBLE);
+					noteList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+					noteList.setAdapter(new NoteAdapter(Affair_Note_List.this,cursor));
+					
+					
 					break;
 				case 2:
 					break;
@@ -98,6 +108,8 @@ public class Affair_Note_List extends Activity {
 		
 		//实例备忘录列表
 		noteList = (ListView)findViewById(R.id.ls_affair_note);		
+		noteList.setDivider(this.getResources().getDrawable(R.color.ivory));
+		noteList.setDividerHeight(3);
 		LayoutInflater lf = LayoutInflater.from(Affair_Note_List.this);
 		View view = lf.inflate(R.layout.account_menu_list2, null);
 		menuList = (ListView)view.findViewById(R.id.account_menu_title_list);
@@ -165,9 +177,14 @@ public class Affair_Note_List extends Activity {
 		private Context context;
 		private int		size;
 		
+		private String  OVER_TIME  = "已过期";
+		private String  ON_ACTION  = "已激活";
+		private String  OFF_ACTION = "已取消";
+		
 		public NoteAdapter(Context context, Cursor c){
 			this.mcursor = c;
 			this.context = context;
+			mcursor.moveToLast();
 			size = c.getCount();
 		}
 
@@ -187,36 +204,87 @@ public class Affair_Note_List extends Activity {
 		}
 
 		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			RelativeLayout rl = new RelativeLayout(context);
-			rl.setLayoutParams(new ListView.LayoutParams(LayoutParams.FILL_PARENT,200));
+		public View getView(int position, View convertView, ViewGroup parent) {			
+			mcursor.moveToPosition(size-1-position);
+			LayoutInflater inflater = LayoutInflater.from(context);
+			View view = inflater.inflate(R.layout.affair_note_list_item, null);
 			
-			//添加日期显示
-			TextView time = new TextView(context);
-			time.setTextSize(20);
-			int year  	= mcursor.getInt(1);
-			int month 	= mcursor.getInt(2)+1;
-			int day   	= mcursor.getInt(3);
-			int hour  	= mcursor.getInt(4);
-			int minute	= mcursor.getInt(5);
-			time.setText("日期 : "+year+"."+month+"."+day+"  "+hour+" : "+minute);
-			RelativeLayout.LayoutParams rLayout = new RelativeLayout.LayoutParams
-			(new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
-			rLayout.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-			rLayout.setMargins(10, 5, 0, 0);
-			rl.addView(time,rLayout);
+			//显示日期
+			TextView date = (TextView)view.findViewById(R.id.tv_note_item);
+			int year  	  = mcursor.getInt(1);
+			int month 	  = mcursor.getInt(2)+1;
+			int day   	  = mcursor.getInt(3);
+			int hour  	  = mcursor.getInt(4);
+			int minute	  = mcursor.getInt(5);
+			date.setText("日期 : "+year+"."+month+"."+day+"  "+hour+" : "+minute);
 			
-			//添加内容显示
-			TextView content = new TextView(context);
-			content.setTextSize(25);
+			//显示内容
+			TextView content = (TextView)view.findViewById(R.id.tv_note_content);
 			content.setText(mcursor.getString(7));
-			RelativeLayout.LayoutParams rLayout2 = new RelativeLayout.LayoutParams
-			(new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
-			rLayout2.addRule(RelativeLayout.RIGHT_OF,time.getId());
-			rl.addView(content,rLayout2);
-	
-			mcursor.moveToNext();
-			return rl;
+			
+			//显示状态
+			TextView status  = (TextView)view.findViewById(R.id.tv_note_status);
+			if(isOverTime(mcursor).equals(OVER_TIME)){
+				status.setTextColor(context.getResources().getColor(R.color.red));
+				status.setText(OVER_TIME);
+			}
+			else{
+				status.setTextColor(context.getResources().getColor(R.color.darkseagreen));
+				status.setText(mcursor.getString(10));
+			}			
+			
+			
+			//显示声音
+			ImageView sound  = (ImageView)view.findViewById(R.id.img_note_sound);
+			if(mcursor.getInt(8)==0){
+				sound.setVisibility(View.INVISIBLE);
+			}
+			//显示震动
+			ImageView vibrate  = (ImageView)view.findViewById(R.id.img_note_vibrate);
+			if(mcursor.getInt(9)==0){
+				vibrate.setVisibility(View.INVISIBLE);
+			}
+			
+			return view;
+		}
+		
+		//判断是否过期函数
+		public String isOverTime(Cursor c){ 
+			
+			Calendar cal = Calendar.getInstance();
+			cal.setTimeInMillis(System.currentTimeMillis());
+			int year  	= cal.get(Calendar.YEAR);
+			int month 	= cal.get(Calendar.MONTH);
+			int day   	= cal.get(Calendar.DAY_OF_MONTH);
+			int hour  	= cal.get(Calendar.HOUR_OF_DAY);
+			int minute	= cal.get(Calendar.MINUTE);
+			
+			if(mcursor.getString(10).equals(ON_ACTION)){
+				if(c.getInt(1)<year){
+					return OVER_TIME;
+				}
+				else if(c.getInt(1)==year){
+					if(c.getInt(2)<month){
+						return OVER_TIME;
+					}
+					else if(c.getInt(2)==month){
+						if(c.getInt(3)<day){
+							return OVER_TIME;
+						}
+						else if(c.getInt(3)==day){
+							if(c.getInt(4)<hour){
+								return OVER_TIME;
+							}
+							else if(c.getInt(4)==hour){
+								if(c.getInt(5)<minute){
+									return OVER_TIME;
+								}
+							}
+						}
+					}
+				}
+			}
+			return mcursor.getString(7);
 		}
 		
 	}

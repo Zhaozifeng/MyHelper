@@ -126,12 +126,12 @@ public class Affair_Note_Add extends Activity {
 				//判断是否震动或者响铃，1是有设置，0是没有设置
 				int isVibrate;
 				int isSound; 				
-				if(mVibrateCheck.isSelected())
+				if(mVibrateCheck.isChecked())
 					isVibrate = 1;
 				else
 					isVibrate = 0;
 				
-				if(mVibrateCheck.isSelected())
+				if(mVibrateCheck.isChecked())
 					isSound = 1;
 				else
 					isSound = 0;					
@@ -147,6 +147,8 @@ public class Affair_Note_Add extends Activity {
 				cv.put("second", Calendar.SECOND);
 				cv.put("rang",isSound);
 				cv.put("vibrate", isVibrate);
+				//1为该备忘录已启动，0是没有启动
+				cv.put("is_action", "已激活");
 				
 				sql.insert(MainDatabase.NOTE_TABLE_NAME, null, cv);
 																				
@@ -181,7 +183,8 @@ public class Affair_Note_Add extends Activity {
 					public void onTimeSet(TimePicker view, int hourOfDay,
 							int minute) {
 						calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-						calendar.set(Calendar.MINUTE, minute);						
+						calendar.set(Calendar.MINUTE, minute);	
+						tv_curTime.setText(hourOfDay+" : "+minute);
 					}					
 				},hour, minute, true);
 				tp.show();
@@ -195,10 +198,13 @@ public class Affair_Note_Add extends Activity {
 				DatePickerDialog dp = new DatePickerDialog(Affair_Note_Add.this,new OnDateSetListener(){
 					@Override
 					public void onDateSet(DatePicker arg0, int arg1, int arg2,
-							int arg3) {
-						calendar.set(arg1, arg2, arg3);						
+							int arg3) {					
+						calendar.set(arg1, arg2, arg3);	
+						arg2++;
+						tv_curDate.setText(arg1+"年"+arg2+"月"+arg3+"日");
 					}					
-				},year,month,day);				
+				},year,month-1,day);	
+				dp.show();
 			}			
 		});
 		
