@@ -9,10 +9,12 @@
     <string name="app_exit_exitbutton">退出</string>
     <string name="app_exit_cancel">取消</string>
     <string name="affair_helper">事务达人</string>
-    <string name="health_helper">健康伴侣</string>
+    <string name="health_helper">健康管家</string>
+    <string name="birthday">生日馆</string>
+    <string name="festival">节日港</string>
     <string name="main_setting">设置</string>  
     <string name="note">备忘录</string>
-    <string name="diary">日记</string>
+    <string name="diary">日记箱</string>
     <string name="account">小账本</string>
     
     <!-- 备忘录页面中文信息 -->

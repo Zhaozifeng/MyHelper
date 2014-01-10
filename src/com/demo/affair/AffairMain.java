@@ -24,10 +24,12 @@ public class AffairMain extends Activity {
 	
 	private GridView   			mGridView;
 	private ArrayList<View> 	mItemList;
-	private int 				ItemCount = 3;
+	private int 				ItemCount = 5;
 	
-	public  int     ItemImageIds[] = {R.drawable.note,R.drawable.diary,R.drawable.account};
-	public  int     ItemsNameIds[] = {R.string.note,R.string.diary,R.string.account};
+	public  int     ItemImageIds[] = {R.drawable.note,R.drawable.diary,R.drawable.account,
+			R.drawable.birthday,R.drawable.holiday};
+	public  int     ItemsNameIds[] = {R.string.note,R.string.diary,R.string.account,
+			R.string.birthday,R.string.festival};
 	
 	protected void onCreate(Bundle savedInstanceState) {		
 		super.onCreate(savedInstanceState);	
@@ -62,7 +64,9 @@ public class AffairMain extends Activity {
 		mGridView.setAdapter(new MyAdapter(mItemList,AffairMain.this));			
 		final Intent mIntents [] = {new Intent(AffairMain.this,Affair_Note_List.class),
 									new Intent(AffairMain.this,Affair_Diary.class),
-									new Intent(AffairMain.this,Affair_Account.class)}; 
+									new Intent(AffairMain.this,Affair_Account.class),
+									new Intent(AffairMain.this,Affair_Birthday.class),
+									new Intent(AffairMain.this,Affair_Festival.class)}; 
 		mGridView.setOnItemClickListener(new OnItemClickListener(){
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id){
 				startActivity(mIntents[position]);

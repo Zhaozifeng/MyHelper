@@ -81,6 +81,14 @@
          <activity 
              android:name="com.demo.affair.Affair_Account_Amonth"
              ></activity>
+         
+         <activity 
+             android:name="com.demo.affair.Affair_Birthday"
+             ></activity>
+         
+         <activity 
+             android:name="com.demo.affair.Affair_Festival"
+             ></activity>
         
         <activity
             android:name="com.demo.health.HealthMain"            
@@ -89,6 +97,15 @@
         <activity
             android:name="com.demo.myhelper.MyHelper_Setting"
             ></activity>
+        
+        <activity 
+            android:name="com.demo.tools.Utools"
+            ></activity>
+        
+        <activity 
+            android:name="com.demo.myhelper.MyHelper_Recall"
+            ></activity>
+        
     </application>
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.INTERNET" />

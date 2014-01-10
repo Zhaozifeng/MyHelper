@@ -142,25 +142,27 @@ public final class R {
     public static final class drawable {
         public static final int account=0x7f020000;
         public static final int app_icon=0x7f020001;
-        public static final int btn_add=0x7f020002;
-        public static final int btn_back=0x7f020003;
-        public static final int btn_commit=0x7f020004;
-        public static final int btn_left=0x7f020005;
-        public static final int btn_push_style=0x7f020006;
-        public static final int btn_setting=0x7f020007;
-        public static final int can=0x7f020008;
-        public static final int delete=0x7f020009;
-        public static final int diary=0x7f02000a;
-        public static final int ic_launcher=0x7f02000b;
-        public static final int note=0x7f02000c;
-        public static final int note_sound=0x7f02000d;
-        public static final int note_vibrate=0x7f02000e;
-        public static final int sucess=0x7f02000f;
-        public static final int title_menu=0x7f020010;
-        public static final int welcome1=0x7f020011;
-        public static final int welcome2=0x7f020012;
-        public static final int welcome3=0x7f020013;
-        public static final int welcome4=0x7f020014;
+        public static final int birthday=0x7f020002;
+        public static final int btn_add=0x7f020003;
+        public static final int btn_back=0x7f020004;
+        public static final int btn_commit=0x7f020005;
+        public static final int btn_left=0x7f020006;
+        public static final int btn_push_style=0x7f020007;
+        public static final int btn_setting=0x7f020008;
+        public static final int can=0x7f020009;
+        public static final int delete=0x7f02000a;
+        public static final int diary=0x7f02000b;
+        public static final int holiday=0x7f02000c;
+        public static final int ic_launcher=0x7f02000d;
+        public static final int note=0x7f02000e;
+        public static final int note_sound=0x7f02000f;
+        public static final int note_vibrate=0x7f020010;
+        public static final int sucess=0x7f020011;
+        public static final int title_menu=0x7f020012;
+        public static final int welcome1=0x7f020013;
+        public static final int welcome2=0x7f020014;
+        public static final int welcome3=0x7f020015;
+        public static final int welcome4=0x7f020016;
     }
     public static final class id {
         public static final int account_add_radiogroup=0x7f0a0001;
@@ -259,22 +261,25 @@ public final class R {
         public static final int account_month=0x7f030006;
         public static final int account_row=0x7f030007;
         public static final int activity_affair_account=0x7f030008;
-        public static final int activity_affair_diary=0x7f030009;
-        public static final int activity_affair_main=0x7f03000a;
-        public static final int activity_affair_note=0x7f03000b;
-        public static final int activity_affair_note2=0x7f03000c;
-        public static final int activity_affair_note_list=0x7f03000d;
-        public static final int activity_health_main=0x7f03000e;
-        public static final int activity_my_helper_main=0x7f03000f;
-        public static final int activity_my_helper_welcome=0x7f030010;
-        public static final int activity_setting_main=0x7f030011;
-        public static final int affair_note_list_item=0x7f030012;
-        public static final int custom_title_layout=0x7f030013;
-        public static final int custom_title_layout2=0x7f030014;
-        public static final int demo=0x7f030015;
-        public static final int diary_add=0x7f030016;
-        public static final int diary_row=0x7f030017;
-        public static final int time_picker=0x7f030018;
+        public static final int activity_affair_birthday=0x7f030009;
+        public static final int activity_affair_diary=0x7f03000a;
+        public static final int activity_affair_festival=0x7f03000b;
+        public static final int activity_affair_main=0x7f03000c;
+        public static final int activity_affair_note=0x7f03000d;
+        public static final int activity_affair_note2=0x7f03000e;
+        public static final int activity_affair_note_list=0x7f03000f;
+        public static final int activity_health_main=0x7f030010;
+        public static final int activity_my_helper_main=0x7f030011;
+        public static final int activity_my_helper_welcome=0x7f030012;
+        public static final int activity_setting_main=0x7f030013;
+        public static final int affair_note_list_item=0x7f030014;
+        public static final int custom_title_layout=0x7f030015;
+        public static final int custom_title_layout2=0x7f030016;
+        public static final int demo=0x7f030017;
+        public static final int diary_add=0x7f030018;
+        public static final int diary_row=0x7f030019;
+        public static final int note_alarm=0x7f03001a;
+        public static final int time_picker=0x7f03001b;
     }
     public static final class menu {
         public static final int my_helper_main=0x7f090000;
@@ -284,7 +289,7 @@ public final class R {
         public static final int silent_cry=0x7f040000;
     }
     public static final class string {
-        public static final int account=0x7f07000c;
+        public static final int account=0x7f07000e;
         public static final int action_settings=0x7f070002;
         public static final int affair_helper=0x7f070007;
         public static final int app_enter=0x7f070001;
@@ -295,60 +300,62 @@ public final class R {
         /**  activity_my_helper_main中文信息 
          */
         public static final int app_name=0x7f070000;
-        public static final int diary=0x7f07000b;
-        public static final int diary_add_message=0x7f070023;
-        public static final int diary_add_title=0x7f070021;
-        public static final int diary_add_yes=0x7f070024;
-        public static final int diary_cancel=0x7f07001e;
-        public static final int diary_choose_emotion=0x7f070018;
-        public static final int diary_choose_time=0x7f070019;
-        public static final int diary_commit=0x7f070022;
-        public static final int diary_content=0x7f07001b;
-        public static final int diary_delete_sucess=0x7f07001f;
-        public static final int diary_emotion=0x7f07001a;
-        public static final int diary_emotion_add=0x7f070026;
-        public static final int diary_name=0x7f07001c;
-        public static final int diary_time=0x7f07001d;
-        public static final int diary_time_edt=0x7f070020;
+        public static final int birthday=0x7f070009;
+        public static final int diary=0x7f07000d;
+        public static final int diary_add_message=0x7f070025;
+        public static final int diary_add_title=0x7f070023;
+        public static final int diary_add_yes=0x7f070026;
+        public static final int diary_cancel=0x7f070020;
+        public static final int diary_choose_emotion=0x7f07001a;
+        public static final int diary_choose_time=0x7f07001b;
+        public static final int diary_commit=0x7f070024;
+        public static final int diary_content=0x7f07001d;
+        public static final int diary_delete_sucess=0x7f070021;
+        public static final int diary_emotion=0x7f07001c;
+        public static final int diary_emotion_add=0x7f070028;
+        public static final int diary_name=0x7f07001e;
+        public static final int diary_time=0x7f07001f;
+        public static final int diary_time_edt=0x7f070022;
         /**  日记页面中文信息 
          */
-        public static final int diary_title=0x7f070017;
-        public static final int diry_add_no=0x7f070025;
-        public static final int economy_add_sort=0x7f070029;
-        public static final int economy_add_title=0x7f07002a;
-        public static final int economy_analyse_items=0x7f070037;
-        public static final int economy_analyse_title=0x7f070036;
-        public static final int economy_analyse_total=0x7f070038;
-        public static final int economy_change=0x7f070034;
-        public static final int economy_content=0x7f070035;
-        public static final int economy_cook=0x7f07002f;
-        public static final int economy_date=0x7f070032;
-        public static final int economy_exchange=0x7f070031;
-        public static final int economy_fee=0x7f070030;
-        public static final int economy_in=0x7f07002c;
-        public static final int economy_in_out=0x7f070028;
-        public static final int economy_out=0x7f07002d;
-        public static final int economy_please_choose=0x7f07002b;
-        public static final int economy_sort=0x7f07002e;
-        public static final int economy_time=0x7f070033;
+        public static final int diary_title=0x7f070019;
+        public static final int diry_add_no=0x7f070027;
+        public static final int economy_add_sort=0x7f07002b;
+        public static final int economy_add_title=0x7f07002c;
+        public static final int economy_analyse_items=0x7f070039;
+        public static final int economy_analyse_title=0x7f070038;
+        public static final int economy_analyse_total=0x7f07003a;
+        public static final int economy_change=0x7f070036;
+        public static final int economy_content=0x7f070037;
+        public static final int economy_cook=0x7f070031;
+        public static final int economy_date=0x7f070034;
+        public static final int economy_exchange=0x7f070033;
+        public static final int economy_fee=0x7f070032;
+        public static final int economy_in=0x7f07002e;
+        public static final int economy_in_out=0x7f07002a;
+        public static final int economy_out=0x7f07002f;
+        public static final int economy_please_choose=0x7f07002d;
+        public static final int economy_sort=0x7f070030;
+        public static final int economy_time=0x7f070035;
         /**  经济账本页面中文信息 
          */
-        public static final int economy_title=0x7f070027;
+        public static final int economy_title=0x7f070029;
+        public static final int festival=0x7f07000a;
         public static final int health_helper=0x7f070008;
-        public static final int main_setting=0x7f070009;
-        public static final int note=0x7f07000a;
+        public static final int main_setting=0x7f07000b;
+        public static final int note=0x7f07000c;
         /**  备忘录页面中文信息 
          */
-        public static final int note_content=0x7f07000d;
-        public static final int note_dialog_cancel=0x7f070014;
-        public static final int note_dialog_commit=0x7f070013;
-        public static final int note_dialog_known=0x7f070016;
-        public static final int note_dialog_message=0x7f070012;
-        public static final int note_dialog_timeup_title=0x7f070015;
-        public static final int note_dialog_title=0x7f070011;
-        public static final int note_shake=0x7f070010;
-        public static final int note_sound=0x7f07000f;
-        public static final int note_time=0x7f07000e;
+        public static final int note_content=0x7f07000f;
+        public static final int note_dialog_cancel=0x7f070016;
+        public static final int note_dialog_commit=0x7f070015;
+        public static final int note_dialog_known=0x7f070018;
+        public static final int note_dialog_message=0x7f070014;
+        public static final int note_dialog_timeup_title=0x7f070017;
+        public static final int note_dialog_title=0x7f070013;
+        public static final int note_shake=0x7f070012;
+        public static final int note_sound=0x7f070011;
+        public static final int note_time=0x7f070010;
     }
     public static final class style {
         /** 

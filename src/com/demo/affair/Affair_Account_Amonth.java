@@ -33,6 +33,7 @@ import android.widget.TextView;
 import com.demo.myhelper.MyHelper_MainActivity;
 import com.demo.myhelper.R;
 import com.demo.object.MainDatabase;
+import com.demo.tools.Utools;
 
 public class Affair_Account_Amonth extends Activity {
 	
@@ -180,8 +181,7 @@ public class Affair_Account_Amonth extends Activity {
 				TextView tv2 = (TextView)arg1.findViewById(R.id.tv_account_row_date);
 				final String   delete_content = tv1.getText().toString();
 				final String   delete_date = tv2.getText().toString();
-				Vibrator v = (Vibrator)getSystemService(Service.VIBRATOR_SERVICE);								//震动一下
-				v.vibrate(100);
+				Utools.setVibrator(Affair_Account_Amonth.this, 100);
 				Builder builder = new Builder(Affair_Account_Amonth.this);
 				builder
 				.setTitle("操作提示")

@@ -3,7 +3,9 @@ package com.demo.affair;
 import java.util.Calendar;
 
 import android.app.Activity;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,12 +19,14 @@ import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -35,6 +39,7 @@ import android.widget.TextView;
 import com.demo.myhelper.MyHelper_MainActivity;
 import com.demo.myhelper.R;
 import com.demo.object.MainDatabase;
+import com.demo.tools.Utools;
 
 public class Affair_Note_List extends Activity {
 	
@@ -46,7 +51,7 @@ public class Affair_Note_List extends Activity {
 	private PopupMenu menu;
 	private PopupWindow  menuWindow = null;
 	
-	private Cursor    cursor;
+	private Cursor    	   cursor;
 	private SQLiteDatabase mainDB;
 	
 	public int screenWidth;
@@ -71,6 +76,7 @@ public class Affair_Note_List extends Activity {
 	}
 	
 	public void setListener(){
+		//菜单列表监听
 		menuList.setOnItemClickListener(new OnItemClickListener(){						
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
@@ -82,23 +88,63 @@ public class Affair_Note_List extends Activity {
 					Intent intent = new Intent(Affair_Note_List.this,Affair_Note_Add.class);					
 					startActivity(intent);
 					break;
-				case 1:
-					//显示垃圾桶
-					noteList.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT,screenHeight-250));
-					RelativeLayout rl = (RelativeLayout)findViewById(R.id.rl_can_container);					
-					rl.setVisibility(View.VISIBLE);
-					noteList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-					noteList.setAdapter(new NoteAdapter(Affair_Note_List.this,cursor));
-					
-					
+				case 1:	
 					break;
 				case 2:
 					break;
 				}
 			}			
 		});
+		
+		//备忘录列表长按监听
+		noteList.setOnItemLongClickListener(new OnItemLongClickListener(){
+			@Override
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				//调用震动函数
+				//由于是倒着展示，所以下标有所改变
+				final int position = cursor.getCount()-arg2-1;
+				Utools.setVibrator(Affair_Note_List.this, 100);
+				Builder builder = new Builder(Affair_Note_List.this);
+				builder
+				.setIcon(R.drawable.delete)
+				.setTitle("操作提示")
+				.setMessage("你是否删除该提醒?")
+				.setPositiveButton("保留", null)
+				.setNegativeButton("删除", new DialogInterface.OnClickListener() {					
+					public void onClick(DialogInterface dialog, int which) {
+						deleteItem(position);						
+					}
+				});			
+				builder.create().show();				
+				return false;
+			}			
+		});
+	
+	}
+	
+	
+	//删除项目
+	public void deleteItem(int position){
+		cursor.moveToPosition(position);
+		String strYear  	= cursor.getInt(1)+"";
+		String strMonth 	= cursor.getInt(2)+"";
+		String strDay   	= cursor.getInt(3)+"";
+		String strHour  	= cursor.getInt(4)+"";
+		String strMinute	= cursor.getInt(5)+"";
+		String strContent	= cursor.getString(7);
+		
+		//定义搜索范围
+		String condition	= "year=? and month=? and day=? and hour=? "
+				+ "and minute=? and content=?";
+		//定义搜索条件
+		String values[]     = {strYear,strMonth,strDay,strHour,strMinute,strContent};
+		SQLiteDatabase db = MyHelper_MainActivity.HelperSQLite.getWritableDatabase();
+		db.delete(MainDatabase.NOTE_TABLE_NAME, condition, values);
+		getCursor();
 	}
 		
+	//初始化标题栏
 	public void initialTitle(){
 		
 		DisplayMetrics dm = new DisplayMetrics();									  //获取屏幕长宽
@@ -110,6 +156,7 @@ public class Affair_Note_List extends Activity {
 		noteList = (ListView)findViewById(R.id.ls_affair_note);		
 		noteList.setDivider(this.getResources().getDrawable(R.color.ivory));
 		noteList.setDividerHeight(3);
+		//设置标题栏
 		LayoutInflater lf = LayoutInflater.from(Affair_Note_List.this);
 		View view = lf.inflate(R.layout.account_menu_list2, null);
 		menuList = (ListView)view.findViewById(R.id.account_menu_title_list);
@@ -137,7 +184,7 @@ public class Affair_Note_List extends Activity {
 	//定义菜单列表适配类
 	private class MenuAdapter extends BaseAdapter{
 		
-		public String[] menus = {"新建","删除","设置"};
+		public String[] menus = {"新建","生日达人","我的节日","设置"};
 		private Context mcontext;
 		
 		public MenuAdapter(Context context){

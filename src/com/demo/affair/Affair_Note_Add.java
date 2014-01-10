@@ -116,6 +116,7 @@ public class Affair_Note_Add extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(Affair_Note_Add.this,Affair_Note_Alarm.class);
+				//intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				PendingIntent pi = PendingIntent.getBroadcast(Affair_Note_Add.this, 0, intent, 0);
 				AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
 				am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pi);
@@ -131,7 +132,7 @@ public class Affair_Note_Add extends Activity {
 				else
 					isVibrate = 0;
 				
-				if(mVibrateCheck.isChecked())
+				if(mSoundCheck.isChecked())
 					isSound = 1;
 				else
 					isSound = 0;					

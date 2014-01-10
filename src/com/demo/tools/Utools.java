@@ -2,11 +2,15 @@ package com.demo.tools;
 
 import java.util.Calendar;
 
+import com.demo.myhelper.MyHelper_MainActivity;
+
 import android.app.Activity;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Vibrator;
 
-public class Utools extends Activity {
+public class Utools extends Activity{
 	
 	private 	String mYear;
 	private 	String mMonth;
@@ -16,7 +20,7 @@ public class Utools extends Activity {
 	private 	Calendar mCalendar;
 	private 	Context  mContext;
 
-	public Vibrator vibrator;
+	public static Vibrator vibrator;
 	
 	
 	public void Utools(Context c){
@@ -36,9 +40,15 @@ public class Utools extends Activity {
 	}
 	
 	
-	public void setVibrator(long second){
-		vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+	//震动处理
+	public static void setVibrator(Context context,long second){
+		vibrator = (Vibrator) context.getSystemService(VIBRATOR_SERVICE);
 		vibrator.vibrate(second);
+	}
+	
+	//删除数据库项目
+	public static void deleteTableItem(String tableName,Cursor c,int position){
+		SQLiteDatabase db = MyHelper_MainActivity.HelperSQLite.getWritableDatabase(); 
 	}
 
 }
