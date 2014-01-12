@@ -152,8 +152,6 @@ public class Affair_Diary_Add extends Activity{
 						title   = edtName.getText().toString();
 						emotion = spEmotion.getSelectedItem().toString();
 						emotion_id = spEmotion.getSelectedItemPosition();
-						//Utools u = new Utools();
-						//u.setDate();
 						time    = edtTime.getText().toString();
 						content = edtContent.getText().toString();
 						ContentValues cv = new ContentValues();

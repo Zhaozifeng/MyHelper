@@ -181,7 +181,7 @@ public class Affair_Account_Amonth extends Activity {
 				TextView tv2 = (TextView)arg1.findViewById(R.id.tv_account_row_date);
 				final String   delete_content = tv1.getText().toString();
 				final String   delete_date = tv2.getText().toString();
-				Utools.setVibrator(Affair_Account_Amonth.this, 100,0);
+				Utools.setVibrator(Affair_Account_Amonth.this, 100,1);
 				Builder builder = new Builder(Affair_Account_Amonth.this);
 				builder
 				.setTitle("操作提示")

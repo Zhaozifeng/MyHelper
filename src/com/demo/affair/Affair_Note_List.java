@@ -113,7 +113,8 @@ public class Affair_Note_List extends Activity {
 				.setPositiveButton("保留", null)
 				.setNegativeButton("删除", new DialogInterface.OnClickListener() {					
 					public void onClick(DialogInterface dialog, int which) {
-						deleteItem(position);						
+						Utools.setVibrator(Affair_Note_List.this, 100, 1);
+						deleteItem(position);							
 					}
 				});			
 				builder.create().show();				

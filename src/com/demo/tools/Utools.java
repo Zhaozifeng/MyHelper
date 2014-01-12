@@ -34,10 +34,10 @@ public class Utools extends Activity{
 	//设置时间字符串
 	public void setDate(){                                                                                        
         mCalendar  = Calendar.getInstance();
-        mYear      = ""+mCalendar.get(Calendar.YEAR);
-        mMonth     = ""+mCalendar.get(Calendar.MONTH);
-        mDay       = ""+mCalendar.get(Calendar.DAY_OF_MONTH);
-        mDayOfWeek = ""+mCalendar.get(Calendar.DAY_OF_WEEK);                
+        mYear      = mCalendar.get(Calendar.YEAR)+"";
+        mMonth     = mCalendar.get(Calendar.MONTH)+1+"";
+        mDay       = mCalendar.get(Calendar.DAY_OF_MONTH)+"";
+        mDayOfWeek = mCalendar.get(Calendar.DAY_OF_WEEK)+"";                
 	}
 	
 	//返回字符串
