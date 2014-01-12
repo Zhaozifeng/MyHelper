@@ -42,25 +42,20 @@ public class Affair_Note_Recall extends Activity {
 	public int     isvibrate=1; 
 	public String  content;
 	public Cursor  cursor;
-	
-	
+		
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.note_alarm);
 		initialInstance();		
 		showAlarm();
-		//test();
 		Toast.makeText(Affair_Note_Recall.this, "time up", 3000).show();
 	}
 	
 	public void test(){
 		Vibrator  vibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
-		vibrator.vibrate(5000);
-		
+		vibrator.vibrate(5000);		
 	}
-	
-	
-	
+
 	public void initialInstance(){
 		
 		Calendar c    = Calendar.getInstance();
@@ -72,9 +67,11 @@ public class Affair_Note_Recall extends Activity {
 		
 		String condition = "year=? and month=? and day=? and hour=? and minute=?";
 		String values[]  = {year,month,day,hour,minute};
-				
-		SQLiteDatabase db = MyHelper_MainActivity.HelperSQLite.getReadableDatabase();
-		cursor     = db.query(MainDatabase.NOTE_TABLE_NAME, null, condition, values, null, null, null);
+			
+		//这里需要重新初始化数据库
+		MainDatabase HelperSQLite = new MainDatabase(Affair_Note_Recall.this,1);
+		SQLiteDatabase db         = HelperSQLite.getReadableDatabase();
+		cursor                    = db.query(MainDatabase.NOTE_TABLE_NAME, null, condition, values, null, null, null);
 		cursor.moveToFirst();
 		
 		tvContent = (TextView)findViewById(R.id.tv_recall_content);
@@ -87,9 +84,8 @@ public class Affair_Note_Recall extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				if(cursor.getInt(8)==1){
-					
-				}
-					
+					Utools.setMedia(Affair_Note_Recall.this, 0);
+				}					
 				if(cursor.getInt(9)==1)
 					Utools.setVibrator(Affair_Note_Recall.this, 0, 0);
 				finish();
@@ -124,20 +120,10 @@ public class Affair_Note_Recall extends Activity {
 		layoutParams.alpha  = 0.7f;
 		window.setAttributes(layoutParams);		
 		if(cursor.getInt(8)==1){
-			MediaPlayer mediaplayer = MediaPlayer.create(this, R.raw.silent_cry);
-			try {
-				mediaplayer.prepare();
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				Toast.makeText(this, "播放音频异常，请检查是否存在该音频文件", 8000).show();
-				e.printStackTrace();
-			}
-			mediaplayer.start();
+			Utools.setMedia(Affair_Note_Recall.this, 1);
 		}
 		if(cursor.getInt(9)==1){
-			Vibrator vibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
-			vibrator.vibrate(5000);
+			Utools.setVibrator(Affair_Note_Recall.this, 5000, 1);
 		}	
 	}
 

@@ -22,7 +22,9 @@
         <receiver 
             android:name="com.demo.affair.DemoCall"
             android:process=":remote"
-            ></receiver>
+            >
+            
+        </receiver>
         
         <activity
             android:name="com.demo.myhelper.MyHelper_Welcome"
