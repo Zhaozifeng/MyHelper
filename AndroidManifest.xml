@@ -54,6 +54,11 @@
              android:name="com.demo.affair.Affair_Note_List"
              ></activity>
          
+         <activity 
+             android:name="com.demo.affair.Affair_Note_Recall"
+			 android:theme="@style/DeskDialog"
+             ></activity>
+         
          <activity
             android:name="com.demo.affair.Affair_Diary"
             ></activity>
@@ -89,23 +94,26 @@
          <activity 
              android:name="com.demo.affair.Affair_Festival"
              ></activity>
+         
+         <activity 
+             android:name="com.demo.affair.Affair_Mode"
+             ></activity>
         
-        <activity
+         <activity 
+             android:name="com.demo.affair.Affair_Flashlight"
+             ></activity>
+         <activity
             android:name="com.demo.health.HealthMain"            
             ></activity>
         
-        <activity
+         <activity
             android:name="com.demo.myhelper.MyHelper_Setting"
             ></activity>
         
-        <activity 
+         <activity 
             android:name="com.demo.tools.Utools"
             ></activity>
-        
-        <activity 
-            android:name="com.demo.myhelper.MyHelper_Recall"
-            ></activity>
-        
+                  
     </application>
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.INTERNET" />

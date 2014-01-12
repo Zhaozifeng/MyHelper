@@ -104,7 +104,7 @@ public class Affair_Note_List extends Activity {
 				//调用震动函数
 				//由于是倒着展示，所以下标有所改变
 				final int position = cursor.getCount()-arg2-1;
-				Utools.setVibrator(Affair_Note_List.this, 100);
+				Utools.setVibrator(Affair_Note_List.this, 100,0);
 				Builder builder = new Builder(Affair_Note_List.this);
 				builder
 				.setIcon(R.drawable.delete)

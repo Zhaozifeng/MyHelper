@@ -1,10 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#000000"
     android:orientation="vertical"
+    android:id="@+id/recall_main_conainer"
     >
     
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/recall_title_container"
+        >
+        
+        <ImageView 
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/app_icon"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            />
+        
+        
+        
+	    <TextView 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_centerInParent="true"
+	        android:text="时间到啦！"
+	        android:textStyle="bold"
+	        android:textColor="#FFFFFF"
+	        android:gravity="center"
+	        android:textSize="25sp"
+	        />
+    </RelativeLayout>
     
-</LinearLayout>
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/recall_title_container"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:id="@+id/reacall_line1_container"
+        ></LinearLayout>
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recall_content_container"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/reacall_line1_container"
+        >   
+	    <TextView 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/tv_recall_content"
+	        android:textSize="20sp"
+	        android:text="这里显示内容"
+	        android:textColor="#FFFFFF"
+	        android:gravity="center"
+	        android:layout_centerHorizontal="true"
+	        android:layout_centerVertical="true"
+	        />  
+    </RelativeLayout>
+    
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"        
+        >
+	   <Button 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_below="@+id/recall_content_container"
+		    android:layout_alignParentBottom="true"
+		    android:layout_centerHorizontal="true"
+		    android:layout_marginTop="20dp"
+		    android:id="@+id/btn_noterecall_ok"
+		    android:layout_gravity="center_horizontal"
+		    android:text="嗯，我知道了 !"
+		    android:textSize="20sp"
+		    android:textColor="#FFFFFF"
+		    android:layout_marginBottom="10dp"
+	        />               
+    </LinearLayout>
+    
+    
+</RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

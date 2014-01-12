@@ -7,13 +7,14 @@
     >
     
     <GridView 
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/gv_affair_main"
         android:columnWidth="90dp"
         android:numColumns="auto_fit"
-        android:horizontalSpacing="10dp"
-        android:verticalSpacing="10dp"
+        android:horizontalSpacing="15dp"
+        android:verticalSpacing="80dp"
         android:stretchMode="columnWidth"
         android:gravity="center"             
         ></GridView>  

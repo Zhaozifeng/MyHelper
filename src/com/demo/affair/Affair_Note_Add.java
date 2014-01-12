@@ -61,8 +61,11 @@ public class Affair_Note_Add extends Activity {
 	public 	int 			hour;
 	public 	int 			minute;
 	
+	public  static String PARAMS_VIBRATE = "params_vibrate";
+	public  static String PARAMS_SOUND   = "params_sound";
+	public  static String PARAMS_CONTENT = "params_content"; 	
 	//返回列表刷新参数
-	public static String   RELESH_LIST = "reflesh_list";
+	public  static String   RELESH_LIST = "reflesh_list";
 	
 	//主函数
 	protected void onCreate(Bundle savedInstanceState){
@@ -115,15 +118,6 @@ public class Affair_Note_Add extends Activity {
 		image_commit.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(Affair_Note_Add.this,Affair_Note_Alarm.class);
-				//intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				PendingIntent pi = PendingIntent.getBroadcast(Affair_Note_Add.this, 0, intent, 0);
-				AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
-				am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pi);
-				
-				final SQLiteDatabase sql = MyHelper_MainActivity.HelperSQLite.getWritableDatabase();
-				final ContentValues cv = new ContentValues();
-				
 				//判断是否震动或者响铃，1是有设置，0是没有设置
 				int isVibrate;
 				int isSound; 				
@@ -135,9 +129,20 @@ public class Affair_Note_Add extends Activity {
 				if(mSoundCheck.isChecked())
 					isSound = 1;
 				else
-					isSound = 0;					
+					isSound = 0;										
 				String content    = edt_content.getText().toString();
 				
+				Intent intent = new Intent(Affair_Note_Add.this,Affair_Note_Alarm.class);	
+				intent.putExtra(PARAMS_VIBRATE, isVibrate);
+				intent.putExtra(PARAMS_SOUND, isSound);
+				intent.putExtra(PARAMS_CONTENT, content);
+				PendingIntent pi = PendingIntent.getBroadcast(Affair_Note_Add.this, 0, intent, 0);
+				AlarmManager  am = (AlarmManager)getSystemService(ALARM_SERVICE);
+				am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pi);
+								
+				final SQLiteDatabase sql = MyHelper_MainActivity.HelperSQLite.getWritableDatabase();
+				final ContentValues cv = new ContentValues();								
+								
 				//传递给contentView
 				cv.put("content", content);
 				cv.put("year", calendar.get(Calendar.YEAR));

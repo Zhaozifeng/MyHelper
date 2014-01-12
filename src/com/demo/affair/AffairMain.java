@@ -24,18 +24,17 @@ public class AffairMain extends Activity {
 	
 	private GridView   			mGridView;
 	private ArrayList<View> 	mItemList;
-	private int 				ItemCount = 5;
+	private int 				ItemCount = 7;
 	
+	//定义图标和文字
 	public  int     ItemImageIds[] = {R.drawable.note,R.drawable.diary,R.drawable.account,
-			R.drawable.birthday,R.drawable.holiday};
+			R.drawable.birthday,R.drawable.holiday,R.drawable.sceen_mode,R.drawable.flashligth};
 	public  int     ItemsNameIds[] = {R.string.note,R.string.diary,R.string.account,
-			R.string.birthday,R.string.festival};
+			R.string.birthday,R.string.festival,R.string.mode,R.string.flahlight};
 	
 	protected void onCreate(Bundle savedInstanceState) {		
 		super.onCreate(savedInstanceState);	
-		//requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.activity_affair_main);		
-		//getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title_layout);
 		initialList();
 		initialGrid();		
 	}
@@ -59,14 +58,19 @@ public class AffairMain extends Activity {
 		}
 	}
 	
-	void initialGrid(){																 //构建Grid
+	//定义入港额Intent,构建Grid
+	void initialGrid(){																 
 		mGridView = (GridView)findViewById(R.id.gv_affair_main);
 		mGridView.setAdapter(new MyAdapter(mItemList,AffairMain.this));			
 		final Intent mIntents [] = {new Intent(AffairMain.this,Affair_Note_List.class),
 									new Intent(AffairMain.this,Affair_Diary.class),
 									new Intent(AffairMain.this,Affair_Account.class),
 									new Intent(AffairMain.this,Affair_Birthday.class),
-									new Intent(AffairMain.this,Affair_Festival.class)}; 
+									new Intent(AffairMain.this,Affair_Festival.class),
+									new Intent(AffairMain.this,Affair_Mode.class),
+									new Intent(AffairMain.this,Affair_Flashlight.class)	
+									}; 
+		
 		mGridView.setOnItemClickListener(new OnItemClickListener(){
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id){
 				startActivity(mIntents[position]);
