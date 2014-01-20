@@ -69,6 +69,14 @@
 	<string name="economy_analyse_title">经济小助手告诉您，情况如下: </string>
 	<string name="economy_analyse_items">记录条数是: </string>
 	<string name="economy_analyse_total">总额为: </string>
+	
+	
+	
+	<!-- 经济建议 -->
+	<string name="suggestion1">哇，你本月用了很少钱喔，你果然是个勤俭节约的好孩纸。大眼仔都要向你学习啦！</string>
+	<string name="suggestion2">本月的收支比较平衡，合理的理财能为生活带来不少方便和收益，不错！！</string>
+	<string name="suggestion3">额，，本月好像透支了，不知不觉做了月光族了，人艰不拆啊！！</string>
+	<string name="suggestion4">啊，本月你严重透支了，看来你今晚的饭餐没有着落了。。。。</string>
 </resources>
 
 

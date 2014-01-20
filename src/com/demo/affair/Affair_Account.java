@@ -39,7 +39,7 @@ public class Affair_Account extends Activity {
 	public Adapter classAdapter;
 	public ArrayAdapter yearAdapter;
 	public String CLASS_SORT[]={"视图","列表"}; 
-	public String YEARS[]={"2013","2014","2015"};
+	public String YEARS[]={"2014","2015","2016","2017"};
 	public List<String>   monthLists;
 	
 	public static String MONTH = "month";								//传递参数名字

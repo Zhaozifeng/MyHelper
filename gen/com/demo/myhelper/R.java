@@ -141,31 +141,32 @@ public final class R {
     }
     public static final class drawable {
         public static final int account=0x7f020000;
-        public static final int app_icon=0x7f020001;
-        public static final int birthday=0x7f020002;
-        public static final int btn_add=0x7f020003;
-        public static final int btn_back=0x7f020004;
-        public static final int btn_commit=0x7f020005;
-        public static final int btn_left=0x7f020006;
-        public static final int btn_push_style=0x7f020007;
-        public static final int btn_setting=0x7f020008;
-        public static final int can=0x7f020009;
-        public static final int delete=0x7f02000a;
-        public static final int diary=0x7f02000b;
-        public static final int flashligth=0x7f02000c;
-        public static final int holiday=0x7f02000d;
-        public static final int ic_launcher=0x7f02000e;
-        public static final int mainback=0x7f02000f;
-        public static final int note=0x7f020010;
-        public static final int note_sound=0x7f020011;
-        public static final int note_vibrate=0x7f020012;
-        public static final int sceen_mode=0x7f020013;
-        public static final int sucess=0x7f020014;
-        public static final int title_menu=0x7f020015;
-        public static final int welcome1=0x7f020016;
-        public static final int welcome2=0x7f020017;
-        public static final int welcome3=0x7f020018;
-        public static final int welcome4=0x7f020019;
+        public static final int analyse_tips=0x7f020001;
+        public static final int app_icon=0x7f020002;
+        public static final int birthday=0x7f020003;
+        public static final int btn_add=0x7f020004;
+        public static final int btn_back=0x7f020005;
+        public static final int btn_commit=0x7f020006;
+        public static final int btn_left=0x7f020007;
+        public static final int btn_push_style=0x7f020008;
+        public static final int btn_setting=0x7f020009;
+        public static final int can=0x7f02000a;
+        public static final int delete=0x7f02000b;
+        public static final int diary=0x7f02000c;
+        public static final int flashligth=0x7f02000d;
+        public static final int holiday=0x7f02000e;
+        public static final int ic_launcher=0x7f02000f;
+        public static final int mainback=0x7f020010;
+        public static final int note=0x7f020011;
+        public static final int note_sound=0x7f020012;
+        public static final int note_vibrate=0x7f020013;
+        public static final int sceen_mode=0x7f020014;
+        public static final int sucess=0x7f020015;
+        public static final int title_menu=0x7f020016;
+        public static final int welcome1=0x7f020017;
+        public static final int welcome2=0x7f020018;
+        public static final int welcome3=0x7f020019;
+        public static final int welcome4=0x7f02001a;
     }
     public static final class id {
         public static final int account_add_radiogroup=0x7f0a0001;
@@ -369,6 +370,12 @@ public final class R {
         public static final int note_shake=0x7f070014;
         public static final int note_sound=0x7f070013;
         public static final int note_time=0x7f070012;
+        /**  经济建议 
+         */
+        public static final int suggestion1=0x7f07003d;
+        public static final int suggestion2=0x7f07003e;
+        public static final int suggestion3=0x7f07003f;
+        public static final int suggestion4=0x7f070040;
     }
     public static final class style {
         /** 

@@ -2,6 +2,7 @@ package com.demo.affair;
 
 import android.app.Activity;
 import android.app.AlertDialog.Builder;
+import android.app.ProgressDialog;
 import android.app.Service;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,6 +11,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.Vibrator;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -43,14 +46,21 @@ public class Affair_Account_Amonth extends Activity {
 	private PopupWindow puWindow = null;
 	private ListView  menuList;
 	private ListView  amonthList;
+	private ProgressDialog  analyseDialog;
 	private int totalCursor;
 	
-	private Cursor curDiary;
+	private Cursor curEconomy;
 	
 	
 	public  String	  titleMonth; 
 	public  int curMonth;
 	public  int curYear;
+	public  int curMonthIncome;
+	public  int curMonthOutcome;
+	
+	//建议文字id
+	public  int    suggestions []={R.string.suggestion1,R.string.suggestion2,
+			R.string.suggestion3,R.string.suggestion4};
 	
 	public  static String menus[]={"添加","支出统计图","收入统计图","支出收入对比图","经济分析建议","设置"};
 		
@@ -137,6 +147,16 @@ public class Affair_Account_Amonth extends Activity {
 					puWindow.dismiss();
 					startActivity(intent2);
 					break;
+				case 4:
+					analyseDialog = new ProgressDialog(Affair_Account_Amonth.this);
+					analyseDialog.setIcon(R.drawable.app_icon);
+					analyseDialog.setTitle("请稍后");
+					analyseDialog.setMessage("大眼仔正在很辛苦地帮你分析本月财务情况，很快就有结果啦。");
+					analyseDialog.show();
+					CountTotal count = new CountTotal();
+					count.start();
+					puWindow.dismiss();
+					break;
 				default:break;								
 				}
 				
@@ -144,20 +164,74 @@ public class Affair_Account_Amonth extends Activity {
 			}     	
         });
         	puWindow = new PopupWindow(popupWindow, 300, 650,true);
-            puWindow.setBackgroundDrawable(new BitmapDrawable());
-        
+            puWindow.setBackgroundDrawable(new BitmapDrawable());     
 	}
+	
+	/**
+	 * 添加后台线程统计本月收支总额
+	 * 利用收入和支出的比值求出参数，根据参数给出建议
+	 * 
+	 */	
+	Handler handler = new Handler(){
+		public void handleMessage(Message msg){
+			analyseDialog.dismiss();
+			float level      = (curMonthIncome-curMonthOutcome)/(curMonthIncome+1);
+			int suggestionId = whichLevel(level);
+			Builder builder  = new Builder(Affair_Account_Amonth.this);
+			builder
+			.setTitle("分析结果")
+			.setIcon(R.drawable.analyse_tips)
+			.setMessage(suggestions[suggestionId])
+			.setPositiveButton("哦，知道了", null);
+			builder.create().show();
+		}
+	};	
+	public int whichLevel(float level){
+		if(level>0.5)
+			return 0;
+		else{
+			if(level>=0){
+				return 1;
+			}
+			else{
+				if(level>-0.5){
+					return 2;
+				}
+				else
+					return 3;
+			}
+		}
+	}	
+	private class CountTotal extends Thread{
+		public void run(){
+			curEconomy.moveToFirst();
+			int size = curEconomy.getCount();
+			for(int i=0;i<size;i++){
+				if(curEconomy.getString(1).equals("支出"))
+					curMonthOutcome++;
+				else
+					curMonthIncome++;
+			}	
+			try {
+				Thread.sleep(8000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			handler.sendEmptyMessage(0);
+		}
+	}	
 	
 	public void showList(){
 		SQLiteDatabase db = MyHelper_MainActivity.HelperSQLite.getReadableDatabase();
-		String selection = "month_int=?";
-		String selectionArgs[] = {curMonth+""};
-		curDiary = db.query
+		String selection = "year_int=? and month_int=?";
+		String selectionArgs[] = {curYear+"",curMonth+""};
+		curEconomy = db.query
 		(MainDatabase.ECONOMY_TABLE_NAME, null, selection, selectionArgs, null, null,  "_id desc", null);		//倒序排列最新的排在最前面
-		curDiary.moveToFirst();																					//自动递增的id要下表_id
-		totalCursor = curDiary.getCount();
+		curEconomy.moveToFirst();																					//自动递增的id要下表_id
+		totalCursor = curEconomy.getCount();
 		SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(Affair_Account_Amonth.this,
-				R.layout.account_row, curDiary, from, to);
+				R.layout.account_row, curEconomy, from, to);
 		amonthList.setAdapter(cursorAdapter);
 		
 		amonthList.setOnItemClickListener(new OnItemClickListener(){											//单击列表其中一项
