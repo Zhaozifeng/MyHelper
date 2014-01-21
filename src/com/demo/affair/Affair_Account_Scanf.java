@@ -39,6 +39,8 @@ public class Affair_Account_Scanf extends Activity {
 	public String showSort;																		//从分析activity跳转过来的数据
 	public int    showYear;
 	
+	public boolean isAnalyse;																	//判断是否分析传来的页面
+	
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);										//设置自定义标题栏
@@ -93,12 +95,14 @@ public class Affair_Account_Scanf extends Activity {
 			}			
 			kind.setText(c.getString(1).toString());
 			views.add(view);
-			if(c.getString(8).toString().equals(showContent)){										//搜索按下的id
+			/*if(c.getString(8).toString().equals(showContent)){										//搜索按下的id
 				curItemId = i;																		//记录当前
-			}
-			c.moveToNext();																			//走下一个游标
+			}*/
+			c.moveToNext();	
+			}																						//走下一个游标
+			c.moveToFirst();
 			viewPage.setAdapter(new MyPagerAdapter(Affair_Account_Scanf.this,views));
-		}
+			viewPage.setCurrentItem(curItemId);
 		
 		
 	}
@@ -109,8 +113,10 @@ public class Affair_Account_Scanf extends Activity {
 		curYear 		= intent.getIntExtra(Affair_Account_Amonth.YEAR_PARAMS, -1);
 		curMonth 		= intent.getIntExtra(Affair_Account_Amonth.MONTH_PARAMS, -1);
 		showContent		= intent.getStringExtra(Affair_Account_Amonth.CONTENT_PARAMS);
+		curItemId       = intent.getIntExtra(Affair_Account_Amonth.WHICH_ITEM, -1);
 		showSort = intent.getStringExtra(Affair_Account_Analyse.SORT_ITEM);						//接受分析数据传来的
 		showYear = intent.getIntExtra(Affair_Account_Analyse.YEAR_PARAMS, -1);		
+		isAnalyse       = intent.getBooleanExtra(Affair_Account_Analyse.IS_ANALYSE, false); 
 	}
 	
 	public void customTitle(){
@@ -121,7 +127,7 @@ public class Affair_Account_Scanf extends Activity {
 		viewPage = (ViewPager)findViewById(R.id.account_pager);
 		imgBack.setVisibility(View.INVISIBLE);
 		imgMenu.setVisibility(View.INVISIBLE);
-		if(curMonth==-1){
+		if(isAnalyse){
 			tvTitle.setText(showSort+"类型记录");
 			searchDb2();
 			showPager(analyseCursor);

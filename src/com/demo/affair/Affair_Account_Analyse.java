@@ -47,7 +47,8 @@ public class Affair_Account_Analyse extends Activity {
 	public Double[] OutcomeEachValue= new Double[6];												//定义支出类型数组
 	
 	public static String SORT_ITEM   = "sort_items";												//定义传递类型参数
-	public static String YEAR_PARAMS = "year";														//定义年参数名称														 
+	public static String YEAR_PARAMS = "year";														//定义年参数名称
+	public static String IS_ANALYSE  = "is_analyse";
 	
 	
 	
@@ -162,7 +163,7 @@ public class Affair_Account_Analyse extends Activity {
 
 	public void paintItems(String which){												//画出各项比例	
 		mainLayout.removeAllViews();
-		String temp_sort[];
+		final String temp_sort[];
 		Double each_values[];
 		double totalValue;
 		if(which.equals("支出")){															//判断是支出时赋初始值
@@ -195,10 +196,14 @@ public class Affair_Account_Analyse extends Activity {
 			double value = (screenWidth-150)*rate;
 			int colorWidth = (int)value;
 			ll2.setLayoutParams(new LinearLayout.LayoutParams(colorWidth,100));
-			if(which.equals("支出"))
+			if(which.equals("支出")){
 				ll2.setBackgroundColor(this.getResources().getColor(R.color.red));					//如果是支出即显示红色
-			else
-				ll2.setBackgroundColor(this.getResources().getColor(R.color.forestgreen));
+				ll.setId(i);
+			}	
+			else{
+				ll2.setBackgroundColor(this.getResources().getColor(R.color.forestgreen));			//标记框架，以便被按下识别到
+				ll.setId(i+6);
+			}
 			ll.addView(ll2);
 			ll.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.btn_push_style));
 			final String sorts;
@@ -206,9 +211,17 @@ public class Affair_Account_Analyse extends Activity {
 			ll.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View v) {													    //传递类型搜索
-					Intent i = new Intent(Affair_Account_Analyse.this,Affair_Account_Scanf.class);	
+					Intent i = new Intent(Affair_Account_Analyse.this,Affair_Account_Scanf.class);
+				/*	if(v.getId()>=6){
+						i.putExtra(SORT_ITEM, Affair_Account_Add.INCOME_SORT[v.getId()-6]);			//标号1-5是收入，6至更多是支出
+					}
+					else{
+						i.putExtra(SORT_ITEM, Affair_Account_Add.OUTCOME_SORT[v.getId()]);
+					}	
+					*/
 					i.putExtra(SORT_ITEM, sorts);
 					i.putExtra(YEAR_PARAMS, curYear);
+					i.putExtra(IS_ANALYSE, true);
 					startActivity(i);
 				}				
 			});			
@@ -279,6 +292,7 @@ public class Affair_Account_Analyse extends Activity {
 					Intent i = new Intent(Affair_Account_Analyse.this,Affair_Account_Scanf.class);	
 					i.putExtra(SORT_ITEM, sorts);
 					i.putExtra(YEAR_PARAMS, curYear);
+					i.putExtra(IS_ANALYSE, true);
 					startActivity(i);
 				}				
 			});			
@@ -296,7 +310,7 @@ public class Affair_Account_Analyse extends Activity {
 			
 			LinearLayout outcomeLay2 = new LinearLayout(this);												
 			double rate2 = OutcomeEachValue[i]/totalOutcome;
-			double value2 = (screenWidth-150)*rate;
+			double value2 = (screenWidth-150)*rate2;
 			int colorWidth2 = (int)value2;
 			outcomeLay2.setLayoutParams(new LinearLayout.LayoutParams(colorWidth2,100));
 			outcomeLay2.setBackgroundColor(this.getResources().getColor(R.color.red));
@@ -309,8 +323,9 @@ public class Affair_Account_Analyse extends Activity {
 				@Override
 				public void onClick(View v) {													    //传递类型搜索
 					Intent i = new Intent(Affair_Account_Analyse.this,Affair_Account_Scanf.class);	
-					i.putExtra(SORT_ITEM, sorts);
+					i.putExtra(SORT_ITEM, sorts2);
 					i.putExtra(YEAR_PARAMS, curYear);
+					i.putExtra(IS_ANALYSE, true);
 					startActivity(i);
 				}				
 			});			

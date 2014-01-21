@@ -55,8 +55,8 @@ public class Affair_Account_Amonth extends Activity {
 	public  String	  titleMonth; 
 	public  int curMonth;
 	public  int curYear;
-	public  int curMonthIncome;
-	public  int curMonthOutcome;
+	public  float curMonthIncome;
+	public  float curMonthOutcome;
 	
 	//建议文字id
 	public  int    suggestions []={R.string.suggestion1,R.string.suggestion2,
@@ -69,10 +69,11 @@ public class Affair_Account_Amonth extends Activity {
 	public  static String TABLE_KIND = "kind";
 	public 	static String TABLE_FEE = "fee";
 	
-	public  static String YEAR_PARAMS = "year";										//用于传递参数的变量名
-	public  static String MONTH_PARAMS = "month";
+	public  static String YEAR_PARAMS    = "year";										//用于传递参数的变量名
+	public  static String MONTH_PARAMS   = "month";
 	public  static String CONTENT_PARAMS = "content";
-	public  static String WHICH_ANALSE = "analyse";
+	public  static String WHICH_ANALSE   = "analyse";
+	public  static String WHICH_ITEM     = "item";
 		
 	public String from[] = {TABLE_CONTENT,TABLE_FEE,TABLE_DATE,TABLE_KIND};	
 	public int to[] = {R.id.tv_account_row_content,R.id.tv_account_row_fee,R.id.tv_account_row_date
@@ -208,9 +209,10 @@ public class Affair_Account_Amonth extends Activity {
 			int size = curEconomy.getCount();
 			for(int i=0;i<size;i++){
 				if(curEconomy.getString(1).equals("支出"))
-					curMonthOutcome++;
+					curMonthOutcome+=curEconomy.getFloat(3);
 				else
-					curMonthIncome++;
+					curMonthIncome+=curEconomy.getFloat(3);
+				curEconomy.moveToNext();
 			}	
 			try {
 				Thread.sleep(8000);
@@ -244,6 +246,7 @@ public class Affair_Account_Amonth extends Activity {
 				intent.putExtra(YEAR_PARAMS, curYear);															//传递年份和月份
 				intent.putExtra(MONTH_PARAMS, curMonth);
 				intent.putExtra(CONTENT_PARAMS, content);
+				intent.putExtra(WHICH_ITEM, arg2);
 				startActivity(intent);
 			}			
 		});		
