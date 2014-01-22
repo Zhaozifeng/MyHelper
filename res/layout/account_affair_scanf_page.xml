@@ -139,10 +139,10 @@
                     android:textSize="20sp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="15dp"
-                    
+                   
                     />
                 <EditText 
-                    android:layout_height="300dp"
+                    android:layout_height="180dp"
                     android:layout_width="match_parent"
                     android:id="@+id/content_show"
                     android:gravity="top"
