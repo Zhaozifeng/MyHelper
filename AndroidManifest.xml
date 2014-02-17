@@ -104,13 +104,23 @@
          <activity 
              android:name="com.demo.affair.Affair_Flashlight"
              ></activity>
+         
          <activity
             android:name="com.demo.health.HealthMain"            
             ></activity>
+         
+          <activity
+            android:name="com.demo.health.Health_Step"
+             ></activity>
         
          <activity
             android:name="com.demo.myhelper.MyHelper_Setting"
             ></activity>
+         <activity
+             android:name="com.demo.health.Health_Weather"
+             ></activity>
+         
+        
         
          <activity 
             android:name="com.demo.tools.Utools"

@@ -77,6 +77,22 @@
 	<string name="suggestion2">本月的收支比较平衡，合理的理财能为生活带来不少方便和收益，不错！！</string>
 	<string name="suggestion3">额，，本月好像透支了，不知不觉做了月光族了，人艰不拆啊！！</string>
 	<string name="suggestion4">啊，本月你严重透支了，看来你今晚的饭餐没有着落了。。。。</string>
+	
+	
+	<!-- 健康伴侣 -->
+	<string name="health_main_step">步伐计</string>
+	<string name="health_step_set">私人定制</string>
+	<string name="health_step_count">步数</string>
+	<string name="health_step_speed">步速</string>
+	<string name="health_step_speed2">速度</string>
+	<string name="health_step_consume">消耗</string>
+	<string name="health_step_start">开始</string>
+	<string name="health_step_stop">暂停</string>
+	<string name="health_step_cancel">停止</string>
+	<string name="health_step_renew">清零</string>
+	<string name="health_step_exit">退出</string>
+	
+	<string name="health_weather_icon">天气通</string>
 </resources>
 
 
