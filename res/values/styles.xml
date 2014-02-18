@@ -12,12 +12,23 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
     
-    <style name="CostomTitle" parent="android:Theme.Light">
-        <item name="android:windowTitleSize">50dp</item>
-        <item name="android:windowTitleColor">#FFFFFF</item>
-        
+    
+    <!-- 普通页面的主题风格 -->
+    <style name="CustomStyle" parent="android:Theme.Light">
+        <item name="android:windowTitleBackgroundStyle">@style/CustomTitleStyle</item>   
+        <item name="android:windowTitleSize">50dp</item>  
     </style>
     
+    <!-- 普通页面标题栏 -->
+    <style name="CustomTitleStyle">
+        <item name="android:background">@color/forestgreen</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    
+    
+    <!-- 弹出到时提示对话框风格 -->
     <style name="DeskDialog" parent="android:style/Theme.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="android:backgroundDimEnabled">true</item>

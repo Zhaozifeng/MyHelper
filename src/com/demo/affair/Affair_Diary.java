@@ -117,8 +117,7 @@ public class Affair_Diary extends Activity {
 		lsDiary    = (ListView)findViewById(R.id.ls_diary);
 		
 		tvTitle.setText(R.string.diary_title);
-		imgLeft.setBackgroundResource(R.drawable.btn_left);
-		imgAdd.setBackgroundResource(R.drawable.btn_add);
+
 		
 		imgLeft.setOnClickListener(new OnClickListener(){				//返回上一页按钮
 			@Override

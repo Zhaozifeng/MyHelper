@@ -70,7 +70,6 @@ public class Health_Step extends Activity implements SensorEventListener {
 		tvTitle = (TextView)findViewById(R.id.title_name);
 		tvTitle.setText(R.string.health_main_step);
 		imgBack	= (ImageView)findViewById(R.id.custom_title_rollback);
-		imgBack.setVisibility(View.INVISIBLE);
 		imgMenu = (ImageView)findViewById(R.id.custom_title_menu);
 		imgMenu.setVisibility(View.INVISIBLE);
 		tvStepCount  = (TextView)findViewById(R.id.tv_health_steps);
@@ -144,7 +143,16 @@ public class Health_Step extends Activity implements SensorEventListener {
 			}			
 		});
 		
+		//返回按钮
+		imgBack.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) {
+				finish();				
+			}			
+		});		
 	}
+	
+	
 	//启动传感器
 	public void startSensor(){
 		sensorManager.registerListener

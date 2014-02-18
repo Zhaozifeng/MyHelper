@@ -33,6 +33,7 @@ public class Affair_Diary_Add extends Activity{
 	private ImageView  imgLeft;
 	private Spinner    spEmotion;
 	private Button     btnCommit;
+	private ImageView  imgOK;
 	private Button 	   btnAddEmotion;
 	private Button     btnOtherTime;
 	private EditText   edtName;
@@ -55,7 +56,7 @@ public class Affair_Diary_Add extends Activity{
 		super.onCreate(savedInstanceState);							//设置标题每个Activity都需要
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);		
 		setContentView(R.layout.diary_add);
-		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title_layout2);
+		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title_layout);
 		initialUI();
 		getClickId();
 		showOldDiary();
@@ -85,9 +86,11 @@ public class Affair_Diary_Add extends Activity{
 	public void initialUI(){
 		Utools useforTime = new Utools();							//设置获取当前时间的工具类
 		useforTime.setDate();
-		imgLeft = (ImageView)findViewById(R.id.custom_title_rollback2);
-		tvTitle = (TextView)findViewById(R.id.title_name2);
-		btnCommit = (Button)findViewById(R.id.custom_title_menu_btn);
+		imgLeft = (ImageView)findViewById(R.id.custom_title_rollback);
+		tvTitle = (TextView)findViewById(R.id.title_name);
+		//btnCommit = (Button)findViewById(R.id.custom_title_menu_btn);
+		imgOK   = (ImageView)findViewById(R.id.custom_title_menu);
+		imgOK.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_ok));
 		btnOtherTime = (Button)findViewById(R.id.btn_time_edt);
 		spEmotion = (Spinner)findViewById(R.id.spinner_emotion);
 		edtName   = (EditText)findViewById(R.id.edt_diary_name);
@@ -139,7 +142,7 @@ public class Affair_Diary_Add extends Activity{
 			
 		});
 		
-		btnCommit.setOnClickListener(new OnClickListener(){
+		imgOK.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {									//获取编辑框内容以及存进数据库				
 				final SQLiteDatabase sql = MyHelper_MainActivity.HelperSQLite.getWritableDatabase();				
