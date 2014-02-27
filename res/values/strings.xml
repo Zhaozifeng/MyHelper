@@ -92,7 +92,9 @@
 	<string name="health_step_renew">清零</string>
 	<string name="health_step_exit">退出</string>
 	
+	<!-- 天气通 -->
 	<string name="health_weather_icon">天气通</string>
+	<string name="weather_forecast_three">未来三天</string>
 </resources>
 
 

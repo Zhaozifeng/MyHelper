@@ -39,6 +39,7 @@ public class Health_Weather extends Activity {
 	public TextView   curDescripe;
 	public TextView   Date;
 	public TextView   curWeather;
+	public TextView   UV;
 	public TextView   XiChe;
 	public TextView   LvYou;
 	public TextView   ShuShi;
@@ -112,6 +113,7 @@ public class Health_Weather extends Activity {
 		YunDong    = (TextView)findViewById(R.id.weather_cl_tv);
 		LiangShai  = (TextView)findViewById(R.id.weather_ls_tv);
 		GanMao     = (TextView)findViewById(R.id.weather_ag_tv);
+		UV		   = (TextView)findViewById(R.id.weather_uv_tv);
 	}
 	
 	
@@ -132,6 +134,7 @@ public class Health_Weather extends Activity {
 		String liangshai= null;
 		String ganmao 	= null;
 		String tips     = null;
+		String uv		= null;
 		try {
 			temp 	= WeatherJson.getString("temp1");
 			city 	= WeatherJson.getString("city");
@@ -145,6 +148,7 @@ public class Health_Weather extends Activity {
 			liangshai = "晾晒 ："+WeatherJson.getString("index_ls");
 			ganmao	= "感冒 ："+WeatherJson.getString("index_ag");
 			tips	= "温馨提示 ："+WeatherJson.getString("index_d");
+			uv		= "紫外线强度为 ："+WeatherJson.getString("index_uv");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -160,6 +164,7 @@ public class Health_Weather extends Activity {
 		LiangShai.setText(liangshai);
 		GanMao.setText(ganmao);
 		curTips.setText(tips);
+		UV.setText(uv);
 	}
 	
 	
