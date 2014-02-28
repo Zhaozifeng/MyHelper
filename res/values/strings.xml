@@ -80,7 +80,7 @@
 	
 	
 	<!-- 健康伴侣 -->
-	<string name="health_main_step">步伐计</string>
+	<string name="health_main_step">计步器</string>
 	<string name="health_step_set">私人定制</string>
 	<string name="health_step_count">步数</string>
 	<string name="health_step_speed">步速</string>
@@ -91,6 +91,9 @@
 	<string name="health_step_cancel">停止</string>
 	<string name="health_step_renew">清零</string>
 	<string name="health_step_exit">退出</string>
+	<string name="step_notification_tip">计步器已经在后台运行</string>
+	<string name="step_begin">计步器开始启动</string>
+	<string name="step_notification_title">让脂肪燃烧吧！！！</string>
 	
 	<!-- 天气通 -->
 	<string name="health_weather_icon">天气通</string>

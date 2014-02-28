@@ -167,17 +167,18 @@ public final class R {
         public static final int note_sound=0x7f020018;
         public static final int note_vibrate=0x7f020019;
         public static final int sceen_mode=0x7f02001a;
-        public static final int sucess=0x7f02001b;
-        public static final int title_menu=0x7f02001c;
-        public static final int weather=0x7f02001d;
-        public static final int weather_back=0x7f02001e;
-        public static final int weather_background=0x7f02001f;
-        public static final int weather_reflesh=0x7f020020;
-        public static final int weather_sample=0x7f020021;
-        public static final int welcome1=0x7f020022;
-        public static final int welcome2=0x7f020023;
-        public static final int welcome3=0x7f020024;
-        public static final int welcome4=0x7f020025;
+        public static final int step_middle=0x7f02001b;
+        public static final int sucess=0x7f02001c;
+        public static final int title_menu=0x7f02001d;
+        public static final int weather=0x7f02001e;
+        public static final int weather_back=0x7f02001f;
+        public static final int weather_background=0x7f020020;
+        public static final int weather_reflesh=0x7f020021;
+        public static final int weather_sample=0x7f020022;
+        public static final int welcome1=0x7f020023;
+        public static final int welcome2=0x7f020024;
+        public static final int welcome3=0x7f020025;
+        public static final int welcome4=0x7f020026;
     }
     public static final class id {
         public static final int account_add_radiogroup=0x7f0a0001;
@@ -412,7 +413,7 @@ public final class R {
         public static final int health_step_stop=0x7f070048;
         /**  天气通 
          */
-        public static final int health_weather_icon=0x7f07004c;
+        public static final int health_weather_icon=0x7f07004f;
         public static final int main_setting=0x7f07000d;
         public static final int mode=0x7f07000b;
         public static final int note=0x7f07000e;
@@ -428,13 +429,16 @@ public final class R {
         public static final int note_shake=0x7f070014;
         public static final int note_sound=0x7f070013;
         public static final int note_time=0x7f070012;
+        public static final int step_begin=0x7f07004d;
+        public static final int step_notification_tip=0x7f07004c;
+        public static final int step_notification_title=0x7f07004e;
         /**  经济建议 
          */
         public static final int suggestion1=0x7f07003d;
         public static final int suggestion2=0x7f07003e;
         public static final int suggestion3=0x7f07003f;
         public static final int suggestion4=0x7f070040;
-        public static final int weather_forecast_three=0x7f07004d;
+        public static final int weather_forecast_three=0x7f070050;
     }
     public static final class style {
         /** 

@@ -3,8 +3,13 @@ package com.demo.health;
 import java.util.Calendar;
 
 import com.demo.myhelper.R;
+
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -16,9 +21,11 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Health_Step extends Activity implements SensorEventListener {
 	
+	public static int STEP_NOTI_ID = 1;
 	private TextView  tvTitle;
 	private ImageView imgBack;
 	private ImageView imgMenu;
@@ -89,6 +96,27 @@ public class Health_Step extends Activity implements SensorEventListener {
 		mCalendar = Calendar.getInstance();
 	}
 	
+	
+	/*
+	 * 设置后台跑步计算器
+	 */
+	public void setNotification(){
+		NotificationManager mn = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+		Notification n = new Notification
+				(R.drawable.foot,getResources().getString(R.string.step_notification_tip),System.currentTimeMillis());
+		n.flags = Notification.FLAG_NO_CLEAR;
+		n.icon  = R.drawable.step_middle;
+		Intent intent = new Intent(this,Health_Step.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+		PendingIntent pt = PendingIntent.getActivity
+				(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+		n.setLatestEventInfo
+		(this, getResources().getString(R.string.step_notification_title),
+				"当前为步行模式", pt);
+		mn.notify(STEP_NOTI_ID,n);
+	}
+	
+	
 	/**
 	 * 按钮监听函数
 	 */
@@ -97,6 +125,9 @@ public class Health_Step extends Activity implements SensorEventListener {
 		btnStart.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {	
 				if(!isStart){
+					setNotification();
+					Toast.makeText(Health_Step.this, getResources().getString(R.string.step_begin), 
+							8000).show();
 					//计算时间间隔
 					timeStart = System.currentTimeMillis();
 					btnStart.setEnabled(false);
@@ -131,6 +162,9 @@ public class Health_Step extends Activity implements SensorEventListener {
 			@Override
 			public void onClick(View v) {
 				stopSensor();
+				//取消notification
+				NotificationManager mn = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+				mn.cancel(STEP_NOTI_ID);
 				finish();				
 			}			
 		});
