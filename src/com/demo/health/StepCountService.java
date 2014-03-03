@@ -44,6 +44,7 @@ public class StepCountService extends Service implements SensorEventListener {
 	@Override
 	public void onCreate(){
 		super.onCreate();
+		timeStart = System.currentTimeMillis();
 		sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
 	}
 	
@@ -51,6 +52,7 @@ public class StepCountService extends Service implements SensorEventListener {
 	@Override
 	public void onStart(Intent intent,int startId){
 		super.onStart(intent, startId);
+		
 	}
 	
 	
@@ -62,28 +64,46 @@ public class StepCountService extends Service implements SensorEventListener {
 
 	@Override
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
 		if(isStart&&isOneStep(event.values)){
-			stepCount++;
-			timeBetweenSteps++;
-			tvStepCount.setText(stepCount+"步");			
+			stepCount++;			
+			timeBetweenSteps++;		
+			Intent intent = new Intent();
+			intent.putExtra("isok", true);
+			intent.setAction("com.demo.health.StepCountService");
+			sendBroadcast(intent);
 			}
 		timeFinish = System.currentTimeMillis();
 		if(timeFinish-timeStart-TIME_BETWEEN>=0){
 			speedStep  = timeBetweenSteps/(TIME_BETWEEN/1000.0);
 			speedMeter = timeBetweenSteps*STEP_LENGTH/(TIME_BETWEEN/1000.0);
-			tvStepSpeedStep.setText(""+speedStep+"步/s");
-			tvStepSpeedMeter.setText(""+speedMeter+"m/s");
 			timeBetweenSteps = 0;
 			timeStart = timeFinish;	
+			
 		}
 		float consume = stepCount*STEP_CONSUME;
-		tvStepConsume.setText(consume+"卡路里");
+	}
+	
+	
+	//计算是否走了一步数学模型
+	public boolean isOneStep(float values[]){		
+		float x = values[0];
+		float y = values[1];
+		float z = values[2];
+		double temp = Math.pow((double)(x-firstX), 2)+Math.pow((double)(y-firstY), 2)+
+		Math.pow((double)(z-firstZ), 2);
+		double length = Math.sqrt(temp);		
+		firstX = x;
+		firstY = y;
+		firstZ = z;	
+		if((length-LENGTH)>0)
+			return true;
+		else
+			return false;
 	}
 
 }

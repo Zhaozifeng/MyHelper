@@ -11,6 +11,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -75,6 +76,11 @@ public class Health_Step extends Activity implements SensorEventListener {
 		setContentView(R.layout.activity_health_step);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title_layout);
 		initUI();
+		//注册广播接收器
+		StepReceiver receiver=new StepReceiver();
+        IntentFilter filter=new IntentFilter();
+        filter.addAction("com.demo.health.StepCountService");
+        Health_Step.this.registerReceiver(receiver,filter);	
 		setListened();
 	}
 	
@@ -129,7 +135,7 @@ public class Health_Step extends Activity implements SensorEventListener {
 		//启动传感器
 		btnStart.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {	
-				if(!isStart){
+				/*if(!isStart){
 					setNotification();
 					Toast.makeText(Health_Step.this, getResources().getString(R.string.step_begin), 
 							8000).show();
@@ -140,8 +146,14 @@ public class Health_Step extends Activity implements SensorEventListener {
 					btnCancel.setEnabled(true);
 					btnRenew.setEnabled(true);
 					isStart = true;
-					startSensor();
-				}			
+					startSensor();				
+				}	*/	
+				
+				Intent intent = new Intent(Health_Step.this, StepCountService.class);
+				intent.putExtra("isstop", true);
+				startService(intent);
+				
+							
 			}			
 		});
 		//停止传感器
@@ -264,12 +276,13 @@ public class Health_Step extends Activity implements SensorEventListener {
 		tvStepConsume.setText(consume+"卡路里");
 	}
 	
+	
 	public class StepReceiver extends BroadcastReceiver{
-
-		@Override
 		public void onReceive(Context arg0, Intent arg1) {
-			// TODO Auto-generated method stub
-			
+			boolean flag = arg1.getBooleanExtra("isok", false);
+			if(flag){
+				Toast.makeText(Health_Step.this, "receiver the broadcast", 8888).show();
+			}
 		}
 		
 	}
