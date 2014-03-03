@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -26,6 +27,10 @@ import android.widget.Toast;
 public class Health_Step extends Activity implements SensorEventListener {
 	
 	public static int STEP_NOTI_ID = 1;
+	public static String STEP_NUMBER = "step_number";
+	public static String STEP_SPEED1 = "speed1";
+	public static String STEP_SPEED2 = "speed2";
+	public static String CONSUME_KARO = "consume";
 	private TextView  tvTitle;
 	private ImageView imgBack;
 	private ImageView imgMenu;
@@ -258,6 +263,18 @@ public class Health_Step extends Activity implements SensorEventListener {
 		float consume = stepCount*STEP_CONSUME;
 		tvStepConsume.setText(consume+"卡路里");
 	}
+	
+	public class StepReceiver extends BroadcastReceiver{
+
+		@Override
+		public void onReceive(Context arg0, Intent arg1) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
+	
 }
 
 
