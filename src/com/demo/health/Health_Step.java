@@ -12,6 +12,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -32,6 +33,8 @@ public class Health_Step extends Activity implements SensorEventListener {
 	public static String STEP_SPEED1 = "speed1";
 	public static String STEP_SPEED2 = "speed2";
 	public static String CONSUME_KARO = "consume";
+	
+	public SharedPreferences sp;
 	private TextView  tvTitle;
 	private ImageView imgBack;
 	private ImageView imgMenu;
@@ -76,11 +79,8 @@ public class Health_Step extends Activity implements SensorEventListener {
 		setContentView(R.layout.activity_health_step);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title_layout);
 		initUI();
+		
 		//注册广播接收器
-		StepReceiver receiver=new StepReceiver();
-        IntentFilter filter=new IntentFilter();
-        filter.addAction("com.demo.health.StepCountService");
-        Health_Step.this.registerReceiver(receiver,filter);	
 		setListened();
 	}
 	
@@ -107,6 +107,12 @@ public class Health_Step extends Activity implements SensorEventListener {
 		mCalendar = Calendar.getInstance();
 	}
 	
+	/*
+	 * 获取保存数据
+	 */
+	public void getPreferences(){
+		
+	}
 	
 	/*
 	 * 设置后台跑步计算器
@@ -135,7 +141,7 @@ public class Health_Step extends Activity implements SensorEventListener {
 		//启动传感器
 		btnStart.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {	
-				/*if(!isStart){
+				if(!isStart){
 					setNotification();
 					Toast.makeText(Health_Step.this, getResources().getString(R.string.step_begin), 
 							8000).show();
@@ -147,13 +153,7 @@ public class Health_Step extends Activity implements SensorEventListener {
 					btnRenew.setEnabled(true);
 					isStart = true;
 					startSensor();				
-				}	*/	
-				
-				Intent intent = new Intent(Health_Step.this, StepCountService.class);
-				intent.putExtra("isstop", true);
-				startService(intent);
-				
-							
+				}								
 			}			
 		});
 		//停止传感器
@@ -164,6 +164,9 @@ public class Health_Step extends Activity implements SensorEventListener {
 					btnCancel.setEnabled(false);
 					isStart = false;
 					stopSensor();
+					//取消notification
+					NotificationManager mn = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+					mn.cancel(STEP_NOTI_ID);
 				}								
 			}			
 		});	
@@ -177,11 +180,7 @@ public class Health_Step extends Activity implements SensorEventListener {
 		//退出按钮
 		btnExit.setOnClickListener(new OnClickListener(){
 			@Override
-			public void onClick(View v) {
-				stopSensor();
-				//取消notification
-				NotificationManager mn = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-				mn.cancel(STEP_NOTI_ID);
+			public void onClick(View v) {				
 				finish();				
 			}			
 		});
@@ -276,16 +275,6 @@ public class Health_Step extends Activity implements SensorEventListener {
 		tvStepConsume.setText(consume+"卡路里");
 	}
 	
-	
-	public class StepReceiver extends BroadcastReceiver{
-		public void onReceive(Context arg0, Intent arg1) {
-			boolean flag = arg1.getBooleanExtra("isok", false);
-			if(flag){
-				Toast.makeText(Health_Step.this, "receiver the broadcast", 8888).show();
-			}
-		}
-		
-	}
 	
 	
 }
