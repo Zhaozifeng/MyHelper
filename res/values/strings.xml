@@ -82,6 +82,15 @@
 	<!-- 健康伴侣 -->
 	<string name="health_main_step">计步器</string>
 	<string name="health_step_set">私人定制</string>
+	<string name="health_set_type">运动类型</string>
+	<string name="health_set_sense">灵敏度</string>
+	<string name="health_set_steplenght">步长：</string>
+	<string name="health_set_weight">体重：</string>
+	<string name="health_set_maxvalue">临界值提醒</string>
+	<string name="health_set_karovalue">设定消耗：</string>
+	<string name="health_set_kenoledge_karoli">科学小学堂之卡路里</string>
+	<string name="health_set_run">跑步</string>
+	<string name="health_set_walk">散步</string>
 	<string name="health_step_count">步数</string>
 	<string name="health_step_speed">步速</string>
 	<string name="health_step_speed2">速度</string>
@@ -92,12 +101,17 @@
 	<string name="health_step_renew">清零</string>
 	<string name="health_step_exit">退出</string>
 	<string name="step_notification_tip">计步器已经在后台运行</string>
-	<string name="step_begin">计步器开始启动</string>
+	<string name="step_begin">计步器已启动，不要退出程序，按Home键返回桌面</string>
 	<string name="step_notification_title">让脂肪燃烧吧！！！</string>
 	
 	<!-- 天气通 -->
 	<string name="health_weather_icon">天气通</string>
 	<string name="weather_forecast_three">未来三天</string>
+	
+	<!-- 科普知识的介绍 -->
+	<string name="introduce_calorie">卡路里（简称卡，缩写为cal），由英文Calorie音译而来，其定义为将1克水在1大气压下提升1℃所需要的热量。
+	    卡路里（calorie）是能量单位，现在仍被广泛使用在营养计量和健身手册上，国际标准的能量单位是焦耳（joule）。
+	    作为食物热量的法定单位。</string>
 </resources>
 
 

@@ -129,6 +129,7 @@
            <Button 
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:id="@+id/btn_health_stop"
             android:text="@string/health_step_stop"
             android:textSize="18sp"
@@ -139,6 +140,7 @@
             <Button 
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:id="@+id/btn_health_cancel"
             android:text="@string/health_step_cancel"
             android:textSize="18sp"
@@ -149,6 +151,7 @@
             <Button 
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:id="@+id/btn_health_renew"
             android:text="@string/health_step_renew"
             android:textSize="18sp"

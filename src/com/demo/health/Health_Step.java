@@ -29,12 +29,15 @@ import android.widget.Toast;
 public class Health_Step extends Activity implements SensorEventListener {
 	
 	public static int STEP_NOTI_ID = 1;
-	public static String STEP_NUMBER = "step_number";
-	public static String STEP_SPEED1 = "speed1";
-	public static String STEP_SPEED2 = "speed2";
-	public static String CONSUME_KARO = "consume";
+	public static String STEP_NUMBER 	= "step_number";
+	public static String STEP_SPEED1 	= "speed1";
+	public static String STEP_SPEED2 	= "speed2";
+	public static String CONSUME_KARO 	= "consume";
+	public static String STEP_BETWEEN_STEP	= "step_between_step";
+	public static String IS_START	  	= "is_start";
 	
 	public SharedPreferences sp;
+	public SharedPreferences.Editor	editor;
 	private TextView  tvTitle;
 	private ImageView imgBack;
 	private ImageView imgMenu;
@@ -59,30 +62,39 @@ public class Health_Step extends Activity implements SensorEventListener {
 	public float   STEP_LENGTH  = 1.5f;							//步长
 	public int     CHECK_TIMES  = 100000000;					//检测长时间没有步行	
 	public float   STEP_CONSUME = 0.07f;						//每走一步消耗卡路里
-	
-	
-	public float  firstX = 0;
-	public float  firstY = 0;
-	public float  firstZ = 0;
+		
+	public float   firstX = 0;
+	public float   firstY = 0;
+	public float   firstZ = 0;
 	public int     stepCount = 0;
-	public boolean isStart  = false;
-	public long  timeStart;
-	public long  timeFinish;
-	public int   timeBetweenSteps=0;
-	public double speedStep;
-	public double speedMeter;
-	public int   checkTimes = 0;
+	public boolean isStart   = false;
+	public long    timeStart;
+	public long    timeFinish;
+	public int     timeBetweenSteps=0;
+	public float   consume = 0;
+	public double  speedStep;
+	public double  speedMeter;
+	public int     checkTimes = 0;
 	
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.activity_health_step);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title_layout);
-		initUI();
-		
-		//注册广播接收器
+		initUI();		
 		setListened();
 	}
+	
+	
+	/*
+	 * 销毁activity时关闭传感器
+	 */
+	public void onDestroy(){
+		NotificationManager mn = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+		mn.cancel(STEP_NOTI_ID);
+		stopSensor();
+		super.onDestroy();		
+	}	
 	
 	public void initUI(){
 		tvTitle = (TextView)findViewById(R.id.title_name);
@@ -97,21 +109,41 @@ public class Health_Step extends Activity implements SensorEventListener {
 		btnSet    = (Button)findViewById(R.id.btn_health_set);
 		btnStart  = (Button)findViewById(R.id.btn_health_start);
 		btnStop   = (Button)findViewById(R.id.btn_health_stop);
-		btnStop.setEnabled(false);
 		btnCancel = (Button)findViewById(R.id.btn_health_cancel);
-		btnCancel.setEnabled(false);
 		btnRenew  = (Button)findViewById(R.id.btn_health_renew);
-		btnRenew.setEnabled(false);
 		btnExit   = (Button)findViewById(R.id.btn_health_exit);
 		sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
-		mCalendar = Calendar.getInstance();
+		mCalendar = Calendar.getInstance();		
+		//获取保存的信息
+		sp 		= getSharedPreferences("stepRecord",MODE_PRIVATE);
+		editor	= sp.edit();
+		isStart = sp.getBoolean(IS_START, false);
+		if(isStart)
+			startFromNotification();		
 	}
 	
-	/*
-	 * 获取保存数据
+	
+	/**
+	 * notification启动，显示已经记录的数据
 	 */
-	public void getPreferences(){
-		
+	public void startFromNotification(){
+		stepCount = sp.getInt(STEP_NUMBER, -1);
+		speedStep = sp.getFloat(STEP_SPEED1, -1);
+		speedMeter= sp.getFloat(STEP_SPEED2, -1);
+		consume   = sp.getFloat(CONSUME_KARO, -1);
+		timeBetweenSteps = sp.getInt(STEP_BETWEEN_STEP,-1);		
+		speedStep = speedStep/1.00;
+		speedMeter= speedMeter/1.00;
+		tvStepCount.setText(stepCount+"步");		
+		tvStepSpeedStep.setText(speedStep+"");		
+		tvStepSpeedMeter.setText(speedMeter+"");
+		tvStepConsume.setText(consume+"卡路里");		
+		btnStart.setEnabled(false);
+		btnStop.setEnabled(true);
+		btnCancel.setEnabled(true);
+		btnRenew.setEnabled(true);
+		startSensor();	
+		setNotification();		
 	}
 	
 	/*
@@ -137,7 +169,15 @@ public class Health_Step extends Activity implements SensorEventListener {
 	/**
 	 * 按钮监听函数
 	 */
-	public void setListened(){		
+	public void setListened(){				
+		//设置activity
+		btnSet.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(Health_Step.this,Health_Step_Set.class);
+				startActivity(intent);
+			}			
+		});				
 		//启动传感器
 		btnStart.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {	
@@ -152,7 +192,9 @@ public class Health_Step extends Activity implements SensorEventListener {
 					btnCancel.setEnabled(true);
 					btnRenew.setEnabled(true);
 					isStart = true;
-					startSensor();				
+					startSensor();		
+					editor.putBoolean(IS_START, true);
+					editor.commit();
 				}								
 			}			
 		});
@@ -162,11 +204,15 @@ public class Health_Step extends Activity implements SensorEventListener {
 				if(isStart){				
 					btnStart.setEnabled(true);
 					btnCancel.setEnabled(false);
+					btnStop.setEnabled(false);					
+					btnRenew.setEnabled(false);
 					isStart = false;
 					stopSensor();
 					//取消notification
 					NotificationManager mn = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
 					mn.cancel(STEP_NOTI_ID);
+					editor.putBoolean(IS_START, false);
+					editor.commit();
 				}								
 			}			
 		});	
@@ -180,7 +226,11 @@ public class Health_Step extends Activity implements SensorEventListener {
 		//退出按钮
 		btnExit.setOnClickListener(new OnClickListener(){
 			@Override
-			public void onClick(View v) {				
+			public void onClick(View v) {
+				stopSensor();
+				//取消notification
+				NotificationManager mn = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+				mn.cancel(STEP_NOTI_ID);
 				finish();				
 			}			
 		});
@@ -188,8 +238,8 @@ public class Health_Step extends Activity implements SensorEventListener {
 		btnStop.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				btnStart.setEnabled(true);	
-				isStart = false;
+				isStart = false;	
+				btnStart.setEnabled(true);
 			}			
 		});
 		
@@ -202,13 +252,12 @@ public class Health_Step extends Activity implements SensorEventListener {
 		});		
 	}
 	
-	
 	//启动传感器
 	public void startSensor(){
 		sensorManager.registerListener
 		(this, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_GAME);
 	}
-
+	
 	//停止传感器
 	public void stopSensor(){
 		sensorManager.unregisterListener(this);
@@ -240,13 +289,7 @@ public class Health_Step extends Activity implements SensorEventListener {
 		else
 			return false;
 	}
-	
-	//计算时间差
-	public void computeSpeed(){
-		
-	}
-	
-	
+			
 	/**
 	 * 传感器继承函数
 	 */
@@ -271,12 +314,16 @@ public class Health_Step extends Activity implements SensorEventListener {
 			timeBetweenSteps = 0;
 			timeStart = timeFinish;	
 		}
-		float consume = stepCount*STEP_CONSUME;
+		consume = stepCount*STEP_CONSUME;
 		tvStepConsume.setText(consume+"卡路里");
+		//保存到本地数据上
+		editor.putInt(STEP_NUMBER, stepCount);
+		editor.putInt(STEP_BETWEEN_STEP,timeBetweenSteps);
+		editor.putFloat(STEP_SPEED1, (float) speedStep);
+		editor.putFloat(STEP_SPEED2, (float) speedMeter);
+		editor.putFloat(CONSUME_KARO, (float) consume);
+		editor.commit();		
 	}
-	
-	
-	
 }
 
 

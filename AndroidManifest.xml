@@ -119,11 +119,14 @@
          <activity
              android:name="com.demo.health.Health_Weather"
              ></activity>
+         <activity 
+             android:name="com.demo.health.Health_Step_Set"
+             ></activity>
                         
          <activity 
             android:name="com.demo.tools.Utools"
             ></activity>
-         
+                           
          <service 
              android:name="com.demo.health.StepCountService"
              ></service>

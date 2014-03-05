@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@drawable/commonback"
+    >
+
+	<ScrollView
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent" >
+	
+	    <LinearLayout 
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:orientation="vertical"
+	        android:layout_marginLeft="4dip"
+	        android:layout_marginRight="4dip"
+	        >
+	        <LinearLayout 
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:gravity="center_vertical"
+	            android:orientation="horizontal"
+	            >
+	            <TextView 
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:id="@+id/stepset_type"
+	                android:textSize="20sp"
+	                android:text="@string/health_set_type"
+	                />
+	            <RadioGroup 
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:orientation="horizontal"
+	                android:layout_marginLeft="4dip"
+	                >
+	                <RadioButton 
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:textSize="20sp"
+	                    android:text="@string/health_set_run"
+	                    android:id="@+id/health_set_walk_radio"
+	                    />
+	                <RadioButton 
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:textSize="20sp"
+	                    android:id="@+id/health_set_run_radio"
+	                    android:text="@string/health_set_walk"
+	                    />
+	            </RadioGroup>           
+	        </LinearLayout>
+	        
+	        <LinearLayout 
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:gravity="center_horizontal"
+	            android:layout_marginTop="5dip"
+	            android:orientation="vertical"
+	            >
+	            <TextView 
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:textSize="20sp"
+	                android:text="@string/health_set_sense"
+	                />
+	            <LinearLayout 
+	              	android:layout_width="fill_parent"
+		            android:layout_height="wrap_content"
+		            android:gravity="center"
+		            android:orientation="horizontal"
+	                >
+	                <TextView 
+	                    android:layout_width="wrap_content"
+	                	android:layout_height="wrap_content"
+	                	android:textSize="20sp"
+	                	android:text="低"
+	                    />
+	                <SeekBar 
+		                android:layout_width="fill_parent"
+		                android:layout_height="wrap_content"
+		                android:layout_marginLeft="4dip"
+		                android:layout_marginRight="4dip"
+		                android:id="@+id/health_set_seekbar"
+	                />
+	                <TextView 
+	                    android:layout_width="wrap_content"
+	                	android:layout_height="wrap_content"
+	                	android:textSize="20sp"
+	                	android:text="高"
+	                    />	                
+	            </LinearLayout> 
+	        </LinearLayout>
+	        
+	        <LinearLayout 
+	            android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="5dip"
+		        android:orientation="horizontal"
+	            >
+	            <TextView 
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:textSize="20sp"
+	                android:text="@string/health_set_steplenght"
+	                />
+	            <EditText 
+	                android:layout_width="100dip"
+		        	android:layout_height="wrap_content"
+		        	android:id="@+id/healthset_stepweight_edt"
+		       		android:numeric="decimal"
+	                />
+	            <TextView 
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:textSize="20sp"
+	                android:text="米"
+	                />
+	             </LinearLayout>
+	            
+	            
+	            <LinearLayout 
+		            android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:layout_marginTop="5dip"
+			        android:orientation="horizontal"
+	            >
+	            <TextView 
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:textSize="20sp"
+	                android:text="@string/health_set_weight"
+	                />
+	            <EditText 
+	                android:layout_width="100dip"
+		        	android:layout_height="wrap_content"
+		        	android:id="@+id/healthset_steplenght_edt"
+		       		android:numeric="decimal"
+	                />
+	            <TextView 
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:textSize="20sp"
+	                android:text="kg"
+	                />	            
+	        	</LinearLayout>
+	        	
+	            <RelativeLayout
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_marginTop="5dip"
+	                android:gravity= "center_vertical"
+	                >
+	            <TextView
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:textSize="20sp"
+	                android:layout_centerVertical="true"
+	                android:layout_alignParentLeft="true"
+	                android:text="@string/health_set_maxvalue"
+	                ></TextView>
+	            <CheckBox
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_centerVertical="true"
+	                android:id="@+id/healthset_check"
+	                android:layout_alignParentRight="true"	                
+	                ></CheckBox>
+	            </RelativeLayout>
+	            
+	            <LinearLayout 
+		            android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:layout_marginTop="5dip"
+			        android:enabled="false"
+			        android:orientation="horizontal"
+	            >
+	            <TextView 
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:textSize="20sp"
+	                android:text="@string/health_set_karovalue"
+	                />
+	            <EditText 
+	                android:layout_width="100dip"
+		        	android:layout_height="wrap_content"
+		        	android:enabled="false"
+		        	android:id="@+id/healthset_consume_edt"
+		       		android:numeric="decimal"
+	                />
+	            <TextView 
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:textSize="20sp"
+	                android:text="卡路里"
+	                />	            
+	        	</LinearLayout>
+	        	
+	            <LinearLayout 
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:orientation="vertical"
+	                android:background="@drawable/text_outline"
+	                >        	
+	            <LinearLayout 
+	                android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="center_vertical"
+			        android:layout_marginTop="5dip"
+			        android:orientation="horizontal"
+			        
+	                >
+	                <TextView 
+	                   android:layout_width="wrap_content"
+	                   android:layout_height="wrap_content"
+	                   android:textSize="20sp"
+	                   android:text="@string/health_set_kenoledge_karoli" 
+	                    />
+	                <ImageView 
+	                    android:layout_width="50dip"
+	                    android:layout_height="50dip"	
+	                    android:background="@drawable/caroli_food"                   
+	                    />	                
+	            </LinearLayout>            
+	            <TextView 
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_marginTop="5dip"
+	                android:textSize="20sp"
+	                android:gravity="left"
+	                android:text="@string/introduce_calorie"
+	                />
+	            </LinearLayout>
+	        
+	      </LinearLayout>        
+	</ScrollView>
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
