@@ -87,10 +87,12 @@
 	<string name="health_set_steplenght">步长：</string>
 	<string name="health_set_weight">体重：</string>
 	<string name="health_set_maxvalue">临界值提醒</string>
+	<string name="health_set_reset">默认值</string>
 	<string name="health_set_karovalue">设定消耗：</string>
 	<string name="health_set_kenoledge_karoli">科学小学堂之卡路里</string>
 	<string name="health_set_run">跑步</string>
 	<string name="health_set_walk">散步</string>
+	<string name="health_set_finish">保存成功</string>
 	<string name="health_step_count">步数</string>
 	<string name="health_step_speed">步速</string>
 	<string name="health_step_speed2">速度</string>

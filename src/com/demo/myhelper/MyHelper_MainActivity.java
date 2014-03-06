@@ -29,7 +29,7 @@ public class MyHelper_MainActivity extends TabActivity {
 		initialDataBase();
 		initialUI();	
 	}
-	
+		
 	
 	void initialDataBase(){
 		HelperSQLite = new MainDatabase(MyHelper_MainActivity.this,1); 

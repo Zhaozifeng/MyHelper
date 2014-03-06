@@ -202,7 +202,7 @@ public final class R {
         public static final int account_tv_in_out=0x7f0a0000;
         public static final int account_yearSpinner=0x7f0a0028;
         public static final int accout_add_sort=0x7f0a0005;
-        public static final int action_settings=0x7f0a007d;
+        public static final int action_settings=0x7f0a007e;
         public static final int affair_main=0x7f0a002c;
         public static final int analyse_layout=0x7f0a0010;
         public static final int btn_add_emotion=0x7f0a0068;
@@ -214,7 +214,7 @@ public final class R {
         public static final int btn_health_stop=0x7f0a0042;
         public static final int btn_note_date=0x7f0a0035;
         public static final int btn_note_time=0x7f0a0036;
-        public static final int btn_noterecall_ok=0x7f0a007b;
+        public static final int btn_noterecall_ok=0x7f0a007c;
         public static final int btn_time_edt=0x7f0a006a;
         public static final int checkbox_note_shake=0x7f0a0032;
         public static final int checkbox_note_sound=0x7f0a0031;
@@ -239,13 +239,14 @@ public final class R {
         public static final int fee_show=0x7f0a0017;
         public static final int gv_affair_main=0x7f0a002d;
         public static final int gv_health_main=0x7f0a003b;
+        public static final int health_reset_btn=0x7f0a0076;
         public static final int health_set_run_radio=0x7f0a0070;
         public static final int health_set_seekbar=0x7f0a0071;
         public static final int health_set_walk_radio=0x7f0a006f;
         public static final int healthset_check=0x7f0a0074;
         public static final int healthset_consume_edt=0x7f0a0075;
-        public static final int healthset_steplenght_edt=0x7f0a0073;
-        public static final int healthset_stepweight_edt=0x7f0a0072;
+        public static final int healthset_steplenght_edt=0x7f0a0072;
+        public static final int healthset_stepweight_edt=0x7f0a0073;
         public static final int img_note_can=0x7f0a003a;
         public static final int img_note_sound=0x7f0a005c;
         public static final int img_note_vibrate=0x7f0a005d;
@@ -255,22 +256,22 @@ public final class R {
         public static final int ls_account_amonth=0x7f0a0022;
         public static final int ls_affair_note=0x7f0a0038;
         public static final int ls_diary=0x7f0a002b;
-        public static final int menu_edit=0x7f0a007e;
+        public static final int menu_edit=0x7f0a007f;
         public static final int myBtn=0x7f0a0065;
         public static final int note_list_main=0x7f0a0037;
-        public static final int note_menu=0x7f0a007f;
+        public static final int note_menu=0x7f0a0080;
         public static final int radio_income=0x7f0a0002;
         public static final int radio_outcome=0x7f0a0003;
-        public static final int reacall_line1_container=0x7f0a0078;
-        public static final int recall_content_container=0x7f0a0079;
-        public static final int recall_main_conainer=0x7f0a0076;
-        public static final int recall_title_container=0x7f0a0077;
+        public static final int reacall_line1_container=0x7f0a0079;
+        public static final int recall_content_container=0x7f0a007a;
+        public static final int recall_main_conainer=0x7f0a0077;
+        public static final int recall_title_container=0x7f0a0078;
         public static final int rl_can_container=0x7f0a0039;
         public static final int sort_label=0x7f0a0018;
         public static final int sort_show=0x7f0a0019;
         public static final int spinner_emotion=0x7f0a0067;
         public static final int stepset_type=0x7f0a006e;
-        public static final int time_picker=0x7f0a007c;
+        public static final int time_picker=0x7f0a007d;
         public static final int timepicker_note=0x7f0a0030;
         public static final int title_name=0x7f0a0060;
         public static final int title_name2=0x7f0a0063;
@@ -292,7 +293,7 @@ public final class R {
         public static final int tv_note_item=0x7f0a0059;
         public static final int tv_note_status=0x7f0a005a;
         public static final int tv_note_time=0x7f0a0034;
-        public static final int tv_recall_content=0x7f0a007a;
+        public static final int tv_recall_content=0x7f0a007b;
         public static final int vp_myhelper_welcome=0x7f0a0058;
         public static final int weather_ag_tv=0x7f0a0056;
         public static final int weather_city_tv=0x7f0a0048;
@@ -413,31 +414,33 @@ public final class R {
         /**  健康伴侣 
          */
         public static final int health_main_step=0x7f070041;
-        public static final int health_set_karovalue=0x7f070048;
-        public static final int health_set_kenoledge_karoli=0x7f070049;
+        public static final int health_set_finish=0x7f07004d;
+        public static final int health_set_karovalue=0x7f070049;
+        public static final int health_set_kenoledge_karoli=0x7f07004a;
         public static final int health_set_maxvalue=0x7f070047;
-        public static final int health_set_run=0x7f07004a;
+        public static final int health_set_reset=0x7f070048;
+        public static final int health_set_run=0x7f07004b;
         public static final int health_set_sense=0x7f070044;
         public static final int health_set_steplenght=0x7f070045;
         public static final int health_set_type=0x7f070043;
-        public static final int health_set_walk=0x7f07004b;
+        public static final int health_set_walk=0x7f07004c;
         public static final int health_set_weight=0x7f070046;
-        public static final int health_step_cancel=0x7f070052;
-        public static final int health_step_consume=0x7f07004f;
-        public static final int health_step_count=0x7f07004c;
-        public static final int health_step_exit=0x7f070054;
-        public static final int health_step_renew=0x7f070053;
+        public static final int health_step_cancel=0x7f070054;
+        public static final int health_step_consume=0x7f070051;
+        public static final int health_step_count=0x7f07004e;
+        public static final int health_step_exit=0x7f070056;
+        public static final int health_step_renew=0x7f070055;
         public static final int health_step_set=0x7f070042;
-        public static final int health_step_speed=0x7f07004d;
-        public static final int health_step_speed2=0x7f07004e;
-        public static final int health_step_start=0x7f070050;
-        public static final int health_step_stop=0x7f070051;
+        public static final int health_step_speed=0x7f07004f;
+        public static final int health_step_speed2=0x7f070050;
+        public static final int health_step_start=0x7f070052;
+        public static final int health_step_stop=0x7f070053;
         /**  天气通 
          */
-        public static final int health_weather_icon=0x7f070058;
+        public static final int health_weather_icon=0x7f07005a;
         /**  科普知识的介绍 
          */
-        public static final int introduce_calorie=0x7f07005a;
+        public static final int introduce_calorie=0x7f07005c;
         public static final int main_setting=0x7f07000d;
         public static final int mode=0x7f07000b;
         public static final int note=0x7f07000e;
@@ -453,16 +456,16 @@ public final class R {
         public static final int note_shake=0x7f070014;
         public static final int note_sound=0x7f070013;
         public static final int note_time=0x7f070012;
-        public static final int step_begin=0x7f070056;
-        public static final int step_notification_tip=0x7f070055;
-        public static final int step_notification_title=0x7f070057;
+        public static final int step_begin=0x7f070058;
+        public static final int step_notification_tip=0x7f070057;
+        public static final int step_notification_title=0x7f070059;
         /**  经济建议 
          */
         public static final int suggestion1=0x7f07003d;
         public static final int suggestion2=0x7f07003e;
         public static final int suggestion3=0x7f07003f;
         public static final int suggestion4=0x7f070040;
-        public static final int weather_forecast_three=0x7f070059;
+        public static final int weather_forecast_three=0x7f07005b;
     }
     public static final class style {
         /** 

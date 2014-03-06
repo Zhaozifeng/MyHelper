@@ -110,7 +110,7 @@
 	            <EditText 
 	                android:layout_width="100dip"
 		        	android:layout_height="wrap_content"
-		        	android:id="@+id/healthset_stepweight_edt"
+		        	android:id="@+id/healthset_steplenght_edt"
 		       		android:numeric="decimal"
 	                />
 	            <TextView 
@@ -137,7 +137,7 @@
 	            <EditText 
 	                android:layout_width="100dip"
 		        	android:layout_height="wrap_content"
-		        	android:id="@+id/healthset_steplenght_edt"
+		        	android:id="@+id/healthset_stepweight_edt"
 		       		android:numeric="decimal"
 	                />
 	            <TextView 
@@ -234,7 +234,15 @@
 	                android:text="@string/introduce_calorie"
 	                />
 	            </LinearLayout>
-	        
+	            
+	            <Button 
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_marginTop="5dip"
+	                android:id="@+id/health_reset_btn"
+	                android:textSize="20sp"
+	                android:text="@string/health_set_reset"
+	                /> 
 	      </LinearLayout>        
 	</ScrollView>
 </LinearLayout>

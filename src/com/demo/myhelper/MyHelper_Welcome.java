@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -38,17 +39,24 @@ public class MyHelper_Welcome extends Activity{
 	}
 			
 	
-	void isEnter(){		
-		
+	void isEnter(){				
 		SharedPreferences setting = getPreferences(Activity.MODE_PRIVATE);		//获取登录信息
 		isLogin = setting.getBoolean(LOGIN, false);
+		
+		//设置全局变量，保存屏幕尺寸
+		DisplayMetrics dm     = new DisplayMetrics();
+        this.getWindowManager().getDefaultDisplay().getMetrics(dm);                                   
+		GlobalApp myapp = new GlobalApp();
+		myapp.setScreen(dm.widthPixels, dm.heightPixels);
+		GlobalApp.setGlobalInstance(myapp);
+				
 		if(isLogin == false){													//判定是否首次登陆
 			initialUI();														//初始化界面
 			mPager.setAdapter(new MyPagerAdapter(ViewsList));
 		}
 		else{
 			Intent intent = new Intent(MyHelper_Welcome.this,MyHelper_MainActivity.class);
-			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);			
 			startActivity(intent);		
 			finish();
 		}

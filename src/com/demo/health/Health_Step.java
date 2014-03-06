@@ -2,6 +2,7 @@ package com.demo.health;
 
 import java.util.Calendar;
 
+import com.demo.myhelper.GlobalApp;
 import com.demo.myhelper.R;
 
 import android.app.Activity;
@@ -62,6 +63,7 @@ public class Health_Step extends Activity implements SensorEventListener {
 	public float   STEP_LENGTH  = 1.5f;							//步长
 	public int     CHECK_TIMES  = 100000000;					//检测长时间没有步行	
 	public float   STEP_CONSUME = 0.07f;						//每走一步消耗卡路里
+	public float   MAX_CALORIE	= 1000;							//默认超出范围卡路里
 		
 	public float   firstX = 0;
 	public float   firstY = 0;
@@ -113,16 +115,29 @@ public class Health_Step extends Activity implements SensorEventListener {
 		btnRenew  = (Button)findViewById(R.id.btn_health_renew);
 		btnExit   = (Button)findViewById(R.id.btn_health_exit);
 		sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
-		mCalendar = Calendar.getInstance();		
+		mCalendar = Calendar.getInstance();	
+		getSettingParams();
 		//获取保存的信息
 		sp 		= getSharedPreferences("stepRecord",MODE_PRIVATE);
 		editor	= sp.edit();
 		isStart = sp.getBoolean(IS_START, false);
+		//获取设置信息
+		getSettingParams();
 		if(isStart)
 			startFromNotification();		
 	}
 	
-	
+	/*
+	 * 获取设置参数
+	 */
+	public void getSettingParams(){
+		boolean flag = this.getIntent().getBooleanExtra(Health_Step_Set.SELF_SET, false);
+		if(flag){
+			LENGTH 		= GlobalApp.getInstance().Sensitivity;
+			STEP_LENGTH	= GlobalApp.getInstance().steplenght;			
+		}			
+	}
+			
 	/**
 	 * notification启动，显示已经记录的数据
 	 */
