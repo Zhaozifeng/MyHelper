@@ -34,9 +34,6 @@ public class MyHelper_Welcome extends Activity{
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_my_helper_welcome);			
-		
-		//initialUI();															//初始化界面
-		//mPager.setAdapter(new MyPagerAdapter(ViewsList));
 		isEnter();
 	}
 			
@@ -79,6 +76,9 @@ public class MyHelper_Welcome extends Activity{
 		}		
 	}
 	
+	/*
+	 * 最后一页按钮监听
+	 */	
 	private class ButtonListener implements OnClickListener{
 		@Override
 		public void onClick(View v) {
@@ -91,11 +91,9 @@ public class MyHelper_Welcome extends Activity{
 			editor.commit();
 			startActivity(intent);		
 			finish();
-		}
-		
+		}		
 	}
 	
-
 	private class MyPagerAdapter extends PagerAdapter{
 		
 		private ArrayList<View> ViewsList;				
