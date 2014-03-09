@@ -92,6 +92,7 @@
 	<string name="health_set_kenoledge_karoli">科学小学堂之卡路里</string>
 	<string name="health_set_run">跑步</string>
 	<string name="health_set_walk">散步</string>
+	<string name="health_set_sure_make">亲，设置好数据了吗？</string>
 	<string name="health_set_finish">保存成功</string>
 	<string name="health_step_count">步数</string>
 	<string name="health_step_speed">步速</string>

@@ -4,6 +4,8 @@ import com.demo.myhelper.GlobalApp;
 import com.demo.myhelper.R;
 
 import android.app.Activity;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -112,21 +114,45 @@ public class Health_Step_Set extends Activity {
 		});
 		//保存按钮
 		imgSave.setOnClickListener(new OnClickListener(){
-			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(Health_Step_Set.this,Health_Step.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				intent.putExtra(SELF_SET, true);
-				intent.putExtra(IS_ALARM, isAlarm);
-				saveParams();
-				startActivity(intent);
-				Toast.makeText(Health_Step_Set.this, 
-						getResources().getString(R.string.health_set_finish), 10000).show();
-				finish();
+				sureDialog();
 			}			
-		});
-		
+		});		
 	}
+	
+	/*
+	 * 提交数据确定按钮
+	 */
+	public void sureDialog(){
+		Builder mybuilder = new Builder(Health_Step_Set.this);
+		mybuilder
+		.setTitle(this.getResources().getString(R.string.note_dialog_title))
+		.setMessage(this.getResources().getString(R.string.health_set_sure_make))
+		.setNegativeButton("取消", null)
+		.setPositiveButton("恩，好的", new DialogInterface.OnClickListener() {			
+			public void onClick(DialogInterface dialog, int which) {
+				commitData();				
+			}
+		});	
+		mybuilder.show();
+	}
+	
+	
+	/*
+	 * 提交数据
+	 */
+	public void commitData(){
+		Intent intent = new Intent(Health_Step_Set.this,Health_Step.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		intent.putExtra(SELF_SET, true);
+		intent.putExtra(IS_ALARM, isAlarm);
+		saveParams();
+		startActivity(intent);
+		Toast.makeText(Health_Step_Set.this, 
+				getResources().getString(R.string.health_set_finish), 10000).show();
+		finish();
+	}
+	
 	
 	/*
 	 * 保存参数到全局变量中

@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Calendar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,6 +50,13 @@ public class Health_Weather extends Activity {
 	
 	public ProgressDialog loadDialog;	
 	public JSONObject WeatherJson;
+	
+	//时间日期
+	public Calendar calendar;
+	public int year;
+	public int month;
+	public int day;
+	public int weekday;
 	
 	
 	
@@ -114,6 +122,45 @@ public class Health_Weather extends Activity {
 		LiangShai  = (TextView)findViewById(R.id.weather_ls_tv);
 		GanMao     = (TextView)findViewById(R.id.weather_ag_tv);
 		UV		   = (TextView)findViewById(R.id.weather_uv_tv);
+		
+		//获取当天的日期
+		calendar = Calendar.getInstance();
+		year 	= calendar.get(Calendar.YEAR);
+		month	= calendar.get(Calendar.MONTH)+1;
+		day		= calendar.get(Calendar.DAY_OF_MONTH);
+		weekday	= calendar.get(Calendar.DAY_OF_WEEK);				
+	}
+	
+	
+	/*
+	 * 返回中文字星期
+	 */
+	public String weekdayCH(int wday){
+		String str=null;
+		switch(wday){
+		case 1:
+			str = "星期日";
+			break;
+		case 2:
+			str = "星期一";
+			break;
+		case 3:
+			str = "星期二";
+			break;
+		case 4:
+			str = "星期三";
+			break;
+		case 5:
+			str = "星期四";
+			break;
+		case 6:
+			str = "星期五";
+			break;
+		case 7:
+			str = "星期六";
+			break;
+		}
+		return str;		
 	}
 	
 	
@@ -139,7 +186,7 @@ public class Health_Weather extends Activity {
 			temp 	= WeatherJson.getString("temp1");
 			city 	= WeatherJson.getString("city");
 			weather = WeatherJson.getString("weather1");
-			date 	= WeatherJson.getString("date_y")+WeatherJson.getString("week");
+			//date 	= WeatherJson.getString("date_y")+WeatherJson.getString("week");
 			wind 	= WeatherJson.getString("wind1")+"，"+WeatherJson.getString("fl1");
 			xiche	= "洗车 ："+WeatherJson.getString("index_xc");
 			lvyou	= "旅游 ："+WeatherJson.getString("index_tr");
@@ -155,7 +202,8 @@ public class Health_Weather extends Activity {
 		curTemp.setText(temp);
 		curCity.setText(city);
 		curDescripe.setText(weather);
-		Date.setText(date);
+		//Date.setText(date);
+		Date.setText(year+"年"+month+"月"+day+"日"+weekdayCH(weekday));
 		curWind.setText(wind);
 		XiChe.setText(xiche);
 		LvYou.setText(lvyou);
@@ -165,6 +213,7 @@ public class Health_Weather extends Activity {
 		GanMao.setText(ganmao);
 		curTips.setText(tips);
 		UV.setText(uv);
+		
 	}
 	
 	

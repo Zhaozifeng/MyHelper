@@ -414,7 +414,7 @@ public final class R {
         /**  健康伴侣 
          */
         public static final int health_main_step=0x7f070041;
-        public static final int health_set_finish=0x7f07004d;
+        public static final int health_set_finish=0x7f07004e;
         public static final int health_set_karovalue=0x7f070049;
         public static final int health_set_kenoledge_karoli=0x7f07004a;
         public static final int health_set_maxvalue=0x7f070047;
@@ -422,25 +422,26 @@ public final class R {
         public static final int health_set_run=0x7f07004b;
         public static final int health_set_sense=0x7f070044;
         public static final int health_set_steplenght=0x7f070045;
+        public static final int health_set_sure_make=0x7f07004d;
         public static final int health_set_type=0x7f070043;
         public static final int health_set_walk=0x7f07004c;
         public static final int health_set_weight=0x7f070046;
-        public static final int health_step_cancel=0x7f070054;
-        public static final int health_step_consume=0x7f070051;
-        public static final int health_step_count=0x7f07004e;
-        public static final int health_step_exit=0x7f070056;
-        public static final int health_step_renew=0x7f070055;
+        public static final int health_step_cancel=0x7f070055;
+        public static final int health_step_consume=0x7f070052;
+        public static final int health_step_count=0x7f07004f;
+        public static final int health_step_exit=0x7f070057;
+        public static final int health_step_renew=0x7f070056;
         public static final int health_step_set=0x7f070042;
-        public static final int health_step_speed=0x7f07004f;
-        public static final int health_step_speed2=0x7f070050;
-        public static final int health_step_start=0x7f070052;
-        public static final int health_step_stop=0x7f070053;
+        public static final int health_step_speed=0x7f070050;
+        public static final int health_step_speed2=0x7f070051;
+        public static final int health_step_start=0x7f070053;
+        public static final int health_step_stop=0x7f070054;
         /**  天气通 
          */
-        public static final int health_weather_icon=0x7f07005a;
+        public static final int health_weather_icon=0x7f07005b;
         /**  科普知识的介绍 
          */
-        public static final int introduce_calorie=0x7f07005c;
+        public static final int introduce_calorie=0x7f07005d;
         public static final int main_setting=0x7f07000d;
         public static final int mode=0x7f07000b;
         public static final int note=0x7f07000e;
@@ -456,16 +457,16 @@ public final class R {
         public static final int note_shake=0x7f070014;
         public static final int note_sound=0x7f070013;
         public static final int note_time=0x7f070012;
-        public static final int step_begin=0x7f070058;
-        public static final int step_notification_tip=0x7f070057;
-        public static final int step_notification_title=0x7f070059;
+        public static final int step_begin=0x7f070059;
+        public static final int step_notification_tip=0x7f070058;
+        public static final int step_notification_title=0x7f07005a;
         /**  经济建议 
          */
         public static final int suggestion1=0x7f07003d;
         public static final int suggestion2=0x7f07003e;
         public static final int suggestion3=0x7f07003f;
         public static final int suggestion4=0x7f070040;
-        public static final int weather_forecast_three=0x7f07005b;
+        public static final int weather_forecast_three=0x7f07005c;
     }
     public static final class style {
         /** 

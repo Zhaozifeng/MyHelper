@@ -86,7 +86,7 @@
 		    android:layout_gravity="center_horizontal"
 		    android:text="嗯，我知道了 !"
 		    android:textSize="20sp"
-		    android:textColor="#FFFFFF"
+		    android:textColor="@color/orange"
 		    android:layout_marginBottom="10dp"
 	        />               
     </LinearLayout>

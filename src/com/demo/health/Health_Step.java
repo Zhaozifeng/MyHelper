@@ -4,13 +4,16 @@ import java.util.Calendar;
 
 import com.demo.myhelper.GlobalApp;
 import com.demo.myhelper.R;
+import com.demo.tools.Utools;
 
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.AlertDialog.Builder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -19,6 +22,8 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -70,6 +75,8 @@ public class Health_Step extends Activity implements SensorEventListener {
 	public float   firstZ = 0;
 	public int     stepCount = 0;
 	public boolean isStart   = false;
+	public boolean isAlarm	 = false;
+	public boolean isStopSending = false;
 	public long    timeStart;
 	public long    timeFinish;
 	public int     timeBetweenSteps=0;
@@ -99,6 +106,11 @@ public class Health_Step extends Activity implements SensorEventListener {
 	}	
 	
 	public void initUI(){
+		
+		//停止震动和铃声
+		Utools.setVibrator(this, 8000, 0);
+		Utools.setMedia(this, 0);
+		
 		tvTitle = (TextView)findViewById(R.id.title_name);
 		tvTitle.setText(R.string.health_main_step);
 		imgBack	= (ImageView)findViewById(R.id.custom_title_rollback);
@@ -116,8 +128,8 @@ public class Health_Step extends Activity implements SensorEventListener {
 		btnExit   = (Button)findViewById(R.id.btn_health_exit);
 		sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
 		mCalendar = Calendar.getInstance();	
-		getSettingParams();
-		//获取保存的信息
+		
+		//获取保存的信息，以便Home键退出桌面
 		sp 		= getSharedPreferences("stepRecord",MODE_PRIVATE);
 		editor	= sp.edit();
 		isStart = sp.getBoolean(IS_START, false);
@@ -131,10 +143,15 @@ public class Health_Step extends Activity implements SensorEventListener {
 	 * 获取设置参数
 	 */
 	public void getSettingParams(){
-		boolean flag = this.getIntent().getBooleanExtra(Health_Step_Set.SELF_SET, false);
-		if(flag){
+		Intent intent = this.getIntent();
+		boolean flag = intent.getBooleanExtra(Health_Step_Set.SELF_SET, false);
+		if(flag){			
 			LENGTH 		= GlobalApp.getInstance().Sensitivity;
-			STEP_LENGTH	= GlobalApp.getInstance().steplenght;			
+			STEP_LENGTH	= GlobalApp.getInstance().steplenght;	
+			
+			isAlarm		= intent.getBooleanExtra(Health_Step_Set.IS_ALARM, false);
+			if(isAlarm)
+				MAX_CALORIE = GlobalApp.getInstance().settingCalorie;				
 		}			
 	}
 			
@@ -331,6 +348,18 @@ public class Health_Step extends Activity implements SensorEventListener {
 		}
 		consume = stepCount*STEP_CONSUME;
 		tvStepConsume.setText(consume+"卡路里");
+		
+		
+		//handler处理被多次调用问题		
+		if(isAlarm&&(consume-MAX_CALORIE)>0){
+			if(!isStopSending){
+				isStopSending = true;
+				synchronized(this){
+					mhandler.sendEmptyMessage(0);
+				}		
+			}											
+		}
+		
 		//保存到本地数据上
 		editor.putInt(STEP_NUMBER, stepCount);
 		editor.putInt(STEP_BETWEEN_STEP,timeBetweenSteps);
@@ -338,6 +367,23 @@ public class Health_Step extends Activity implements SensorEventListener {
 		editor.putFloat(STEP_SPEED2, (float) speedMeter);
 		editor.putFloat(CONSUME_KARO, (float) consume);
 		editor.commit();		
+	}
+		
+	/*
+	 * 设置mhandler接收消息
+	 */
+	public Handler mhandler = new Handler(){
+		public void handleMessage(Message msg){
+			if(msg.what==0)
+				showAlarmDialog();
+		}
+	};
+		
+	public void showAlarmDialog(){
+		//震动和音乐提醒
+		Utools.setMedia(this, 1);
+		Utools.setVibrator(this, 8000, 1);
+		Toast.makeText(this, "设置预警值达到了", 20000).show();	
 	}
 }
 
