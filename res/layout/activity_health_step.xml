@@ -16,9 +16,13 @@
         <Button 
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_style"
+            android:textStyle="bold"
+            android:paddingTop="6dip"
+            android:paddingBottom="6dip"
             android:id="@+id/btn_health_set"
             android:text="@string/health_step_set"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             />
@@ -119,54 +123,74 @@
           <Button 
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:background="@drawable/btn_style"
+            android:paddingTop="6dip"
+            android:paddingBottom="6dip"
             android:id="@+id/btn_health_start"
             android:text="@string/health_step_start"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dip"
             />
           
            <Button 
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:background="@drawable/btn_style"
+            android:paddingTop="6dip"
+            android:paddingBottom="6dip"
             android:enabled="false"
             android:id="@+id/btn_health_stop"
             android:text="@string/health_step_stop"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dip"
             />
            
             <Button 
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:background="@drawable/btn_style"
+            android:paddingTop="6dip"
+            android:paddingBottom="6dip"
             android:enabled="false"
             android:id="@+id/btn_health_cancel"
             android:text="@string/health_step_cancel"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dip"
             />
             
             <Button 
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:background="@drawable/btn_style"
+            android:paddingTop="6dip"
+            android:paddingBottom="6dip"
             android:enabled="false"
             android:id="@+id/btn_health_renew"
             android:text="@string/health_step_renew"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dip"
             />
             
             <Button 
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:background="@drawable/btn_style"
+            android:paddingTop="6dip"
+            android:paddingBottom="6dip"
             android:id="@+id/btn_health_exit"
             android:text="@string/health_step_exit"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dip"
             />
         
         

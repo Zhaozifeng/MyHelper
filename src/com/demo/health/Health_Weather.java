@@ -281,6 +281,7 @@ public class Health_Weather extends Activity {
 	 * @param info
 	 */
 	public void loadSharedPreferences(){
+		Date.setText(year+"年"+month+"月"+day+"日"+weekdayCH(weekday));
 		SharedPreferences sp = this.getSharedPreferences(WEATHER_SAVE, MODE_PRIVATE);
 		SharedPreferences.Editor	editor = sp.edit();
 		if(sp!=null&&!sp.getString("temp", "").equals("")){
@@ -297,7 +298,10 @@ public class Health_Weather extends Activity {
 			LiangShai.setText(sp.getString("dry", ""));
 			GanMao.setText(sp.getString("coach", ""));
 			UV.setText(sp.getString("uv", ""));
-			//WeatherIcon	=(ImageView)findViewById(R.id.weather_img);
+			//设置图片
+			String pic_addr = "b"+sp.getInt("pic_id", 99);
+			int resId = getResources().getIdentifier(pic_addr, "drawable" ,this.getPackageName());
+			WeatherIcon.setBackgroundResource(resId);
 		}
 		else
 			alarmDialog();
