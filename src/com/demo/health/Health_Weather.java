@@ -17,13 +17,18 @@ import android.app.Activity;
 import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -47,6 +52,8 @@ public class Health_Weather extends Activity {
 	public TextView   YunDong;
 	public TextView   LiangShai;
 	public TextView   GanMao;
+	public ImageView  WeatherIcon;
+	public GridView	  weatherGrid;
 	
 	public ProgressDialog loadDialog;	
 	public JSONObject WeatherJson;
@@ -58,6 +65,13 @@ public class Health_Weather extends Activity {
 	public int day;
 	public int weekday;
 	
+	public static int FORCAST_DAYS = 3;
+	public Integer		picIDS[];
+	public String		weatherStrs[];
+	public String		weekdays[];
+	
+	public static String WEATHER_SAVE	= "weather_save";
+	
 	
 	
 	protected void onCreate(Bundle savedInstanceState){
@@ -66,7 +80,8 @@ public class Health_Weather extends Activity {
 		setContentView(R.layout.activity_health_weather);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title_layout);
 		initTitle();
-		alarmDialog();
+		loadSharedPreferences();
+		//alarmDialog();
 	}
 		
 	
@@ -94,6 +109,10 @@ public class Health_Weather extends Activity {
 	 * 初始化标题栏
 	 */	
 	public void initTitle(){
+		picIDS 		= new Integer[FORCAST_DAYS];
+		weatherStrs = new String[FORCAST_DAYS];
+		weekdays	= new String[FORCAST_DAYS];
+		
 		imgBack	   = (ImageView)findViewById(R.id.custom_title_rollback);
 		imgReflesh = (ImageView)findViewById(R.id.custom_title_menu);
 		tvTitle    = (TextView)findViewById(R.id.title_name);
@@ -122,16 +141,17 @@ public class Health_Weather extends Activity {
 		LiangShai  = (TextView)findViewById(R.id.weather_ls_tv);
 		GanMao     = (TextView)findViewById(R.id.weather_ag_tv);
 		UV		   = (TextView)findViewById(R.id.weather_uv_tv);
+		WeatherIcon	=(ImageView)findViewById(R.id.weather_img);
 		
 		//获取当天的日期
 		calendar = Calendar.getInstance();
 		year 	= calendar.get(Calendar.YEAR);
 		month	= calendar.get(Calendar.MONTH)+1;
 		day		= calendar.get(Calendar.DAY_OF_MONTH);
-		weekday	= calendar.get(Calendar.DAY_OF_WEEK);				
+		weekday	= calendar.get(Calendar.DAY_OF_WEEK);			
+		weatherGrid = (GridView)findViewById(R.id.weather_forecast_gv);				
 	}
-	
-	
+		
 	/*
 	 * 返回中文字星期
 	 */
@@ -162,8 +182,7 @@ public class Health_Weather extends Activity {
 		}
 		return str;		
 	}
-	
-	
+		
 	/**
 	 * 展示天气数据信息
 	 * @throws JSONException 
@@ -182,6 +201,7 @@ public class Health_Weather extends Activity {
 		String ganmao 	= null;
 		String tips     = null;
 		String uv		= null;
+		int imgID		= 99;
 		try {
 			temp 	= WeatherJson.getString("temp1");
 			city 	= WeatherJson.getString("city");
@@ -196,6 +216,19 @@ public class Health_Weather extends Activity {
 			ganmao	= "感冒 ："+WeatherJson.getString("index_ag");
 			tips	= "温馨提示 ："+WeatherJson.getString("index_d");
 			uv		= "紫外线强度为 ："+WeatherJson.getString("index_uv");
+			//设置图片信息
+			imgID = WeatherJson.getInt("img1");
+			
+			int j = 2;
+			int k = weekday+1;
+			int n = 3;
+			//未来三天状况
+			for(int i=0;i<FORCAST_DAYS;i++){
+				picIDS[i] 		= WeatherJson.getInt("img"+n);
+				weatherStrs[i]	= WeatherJson.getString("weather"+j);
+				weekdays[i]		= weekdayCH(k);
+				j++;	k++;	n+=2;
+			}						
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -214,11 +247,65 @@ public class Health_Weather extends Activity {
 		curTips.setText(tips);
 		UV.setText(uv);
 		
+		//设置图片
+		String pic_addr = "b"+imgID;
+		int resId = getResources().getIdentifier(pic_addr, "drawable" ,this.getPackageName());
+		WeatherIcon.setBackgroundResource(resId);	
+		//未来三天天气情况
+		weatherGrid.setAdapter(new WeatherAdapter());
+		
+		//每次更新完数据保存到本地
+		SharedPreferences sp = this.getSharedPreferences(WEATHER_SAVE, MODE_PRIVATE);
+		SharedPreferences.Editor	editor = sp.edit();
+		editor.putString("city", city);
+		editor.putString("temp", temp);
+		editor.putString("weather", weather);
+		editor.putInt("pic_id", imgID);
+		editor.putString("wind", wind);
+		editor.putString("uv", uv);
+		editor.putString("car", xiche);
+		
+		editor.putString("travel", lvyou);
+		editor.putString("comfort",shushi);
+		editor.putString("sport", yundong);
+		editor.putString("dry", liangshai);
+		editor.putString("coach", ganmao);
+		editor.putString("tips", tips);
+		
+		editor.commit();
+	}
+	
+	
+	/**
+	 * 获取本地数据
+	 * @param info
+	 */
+	public void loadSharedPreferences(){
+		SharedPreferences sp = this.getSharedPreferences(WEATHER_SAVE, MODE_PRIVATE);
+		SharedPreferences.Editor	editor = sp.edit();
+		if(sp!=null&&!sp.getString("temp", "").equals("")){
+			curTemp.setText(sp.getString("temp", ""));
+			curCity.setText(sp.getString("city", ""));
+			curWind.setText(sp.getString("wind", ""));
+			curTips.setText(sp.getString("tips", ""));
+			//Date.setText(sp.getString("city", ""));
+			curDescripe.setText(sp.getString("weather", ""));
+			XiChe.setText(sp.getString("car", ""));
+			LvYou.setText(sp.getString("travel", ""));
+			ShuShi.setText(sp.getString("comfort", ""));
+			YunDong.setText(sp.getString("sport", ""));
+			LiangShai.setText(sp.getString("dry", ""));
+			GanMao.setText(sp.getString("coach", ""));
+			UV.setText(sp.getString("uv", ""));
+			//WeatherIcon	=(ImageView)findViewById(R.id.weather_img);
+		}
+		else
+			alarmDialog();
 	}
 	
 	
 	
-
+	
 	/*
 	 * 显示等待对话框
 	 */	
@@ -303,7 +390,56 @@ public class Health_Weather extends Activity {
         }  
         inStream.close();  
         return outStream.toByteArray();  
-    }  
+    } 
+	
+	
+	private class WeatherAdapter extends BaseAdapter{
+
+		@Override
+		public int getCount() {
+			return FORCAST_DAYS;
+		}
+
+		@Override
+		public Object getItem(int arg0) {
+			return weatherStrs[arg0];
+		}
+
+		@Override
+		public long getItemId(int arg0) {
+			return arg0;
+		}
+
+		@Override
+		public View getView(int arg0, View arg1, ViewGroup arg2) {
+			LayoutInflater inflater = LayoutInflater.from(Health_Weather.this);
+			View view 	= inflater.inflate(R.layout.weather_item,null);
+			TextView weekday = (TextView)view.findViewById(R.id.weather_item_week);
+			TextView weather = (TextView)view.findViewById(R.id.weather_item_weather);
+			ImageView weathericon = (ImageView)view.findViewById(R.id.weather_item_icon);
+			weekday.setText(weekdays[arg0]);
+			weather.setText(weatherStrs[arg0]);
+			//设置图片
+			if(picIDS[arg0]>=32){
+				weathericon.setBackgroundDrawable
+				(Health_Weather.this.getResources().getDrawable(R.drawable.weather_sample));
+			}
+			else{
+				String pic_addr = "b"+picIDS[arg0];
+				int resId = getResources().getIdentifier(pic_addr, "drawable" ,Health_Weather.this.getPackageName());
+				weathericon.setBackgroundResource(resId);
+			}		
+			return view;
+		}		
+	}
+	
+	
+	/**
+	 * 保存天气数据
+	 */
+	public void saveWeatherData(){
+		
+	}
 
 }
 
