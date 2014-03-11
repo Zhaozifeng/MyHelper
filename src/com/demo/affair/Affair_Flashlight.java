@@ -5,19 +5,32 @@ import com.demo.myhelper.R;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 //此类用于电筒
 public class Affair_Flashlight extends Activity {
 	
+	//选项内容
+	public static String[] LIST = {"闪光灯","正屏幕","炫彩屏","信号灯"}; 
+	
 	public LinearLayout		mainLinearLayout;
 	public Dialog			listDialog;
+	
+	
 	
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -45,12 +58,54 @@ public class Affair_Flashlight extends Activity {
 		WindowManager.LayoutParams lp = dialogWindow.getAttributes();
 		lp.alpha = 0.9f;
 		lp.width = (int)(GlobalApp.getInstance().ScreenWidth*0.9);
-		lp.height= (int)(GlobalApp.getInstance().ScreenHeight*0.6);
-		dialogWindow.setAttributes(lp);	
+		lp.height= (int)(GlobalApp.getInstance().ScreenHeight*0.55);
 		
+		dialogWindow.setAttributes(lp);	
+		ListView listview = (ListView)listDialog.findViewById(R.id.flash_list);
+		listview.setAdapter(new MyAdapter());		
 		listDialog.show();
+		
+		listview.setOnItemClickListener(new OnItemClickListener(){
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				switch(arg2){
+				case 0:
+					startActivity(new Intent(Affair_Flashlight.this,FlashlightOn.class));
+					break;
+				}
+			}			
+		});
 	}
 	
+	
+	private class MyAdapter extends BaseAdapter{
+
+		@Override
+		public int getCount() {
+			return LIST.length;
+		}
+
+		@Override
+		public Object getItem(int arg0) {
+			return LIST[arg0];
+		}
+
+		@Override
+		public long getItemId(int arg0) {
+			return arg0;
+		}
+
+		@Override
+		public View getView(int arg0, View arg1, ViewGroup arg2) {
+			LayoutInflater inflater = LayoutInflater.from(Affair_Flashlight.this);
+			View view = inflater.inflate(R.layout.list_item, null);
+			TextView tv = (TextView)view.findViewById(R.id.flash_list_tv);
+			tv.setText(LIST[arg0]);
+			return view;
+		}
+		
+	}
 	
 
 }

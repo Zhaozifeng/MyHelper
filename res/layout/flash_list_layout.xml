@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<RelativeLayout 
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#5500008B"
+    android:background="#55000000"
+    >
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#55000000"
     android:orientation="vertical"
     android:gravity="center_horizontal"
     >
@@ -13,43 +19,41 @@
         android:layout_marginTop="10dip"
         android:layout_marginBottom="10dip"
         android:text="@string/flash_list_title"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:textColor="@color/white"
         android:textStyle="bold"
         />
     <LinearLayout 
         android:layout_width="fill_parent"
-        android:layout_height="2dip"
+        android:layout_height="1dip"
         android:background="@color/white"
         ></LinearLayout>
     <ListView 
         android:layout_width="fill_parent"
-        android:layout_height="100dip"
+        android:layout_height="wrap_content"
         android:id="@+id/flash_list"
         ></ListView>
-    <LinearLayout 
-        android:layout_width="fill_parent"
-        android:layout_height="2dip"
-        android:background="@color/white"
-        ></LinearLayout>
-    <Button 
+
+    
+</LinearLayout>
+	<Button 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_style_white"
         android:layout_marginLeft="20dip"
         android:layout_marginRight="20dip"
         android:layout_marginTop="10dip"
-        android:paddingTop="5dip"
-        android:paddingBottom="5dip"
+        android:layout_marginBottom="10dip"
+        android:paddingTop="10dip"
+        android:paddingBottom="10dip"
         android:text="设置"
         android:id="@+id/flash_set_btn"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:textColor="@color/white"
         android:textStyle="bold"
-        />
-
-    
-    
-</LinearLayout>
+        />  
+</RelativeLayout>
 
 
 
