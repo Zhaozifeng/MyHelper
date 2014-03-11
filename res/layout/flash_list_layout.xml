@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#88000000"
+    android:background="#5500008B"
     android:orientation="vertical"
     android:gravity="center_horizontal"
     >
@@ -19,7 +19,7 @@
         />
     <LinearLayout 
         android:layout_width="fill_parent"
-        android:layout_height="3dip"
+        android:layout_height="2dip"
         android:background="@color/white"
         ></LinearLayout>
     <ListView 
@@ -29,7 +29,7 @@
         ></ListView>
     <LinearLayout 
         android:layout_width="fill_parent"
-        android:layout_height="3dip"
+        android:layout_height="2dip"
         android:background="@color/white"
         ></LinearLayout>
     <Button 

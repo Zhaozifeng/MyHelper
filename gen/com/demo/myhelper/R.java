@@ -13,125 +13,128 @@ public final class R {
     public static final class color {
         /** 浅玫瑰色 
          */
-        public static final int bisque=0x7f050012;
+        public static final int bisque=0x7f050013;
         /** 番木色 
          */
-        public static final int blanchedalmond=0x7f050010;
+        public static final int blanchedalmond=0x7f050011;
         /** 暗灰色 
          */
-        public static final int brown=0x7f050020;
+        public static final int brown=0x7f050021;
         /** 柠檬绸色 
          */
-        public static final int cornsilk=0x7f05000c;
-        /** 亮蓝色 
-         */
-        public static final int darkgray=0x7f05001f;
-        /** 重褐色 
-         */
-        public static final int darkmagenta=0x7f050029;
-        /** 赭色 
-         */
-        public static final int darkorchid=0x7f050022;
-        /** 暗洋红 
-         */
-        public static final int darkred=0x7f05002a;
-        /** 亮绿色 
-         */
-        public static final int darkseagreen=0x7f050027;
-        /** 苍绿色 
-         */
-        public static final int darkviolet=0x7f050024;
-        /** 雪白色 
-         */
-        public static final int floralwhite=0x7f05000a;
+        public static final int cornsilk=0x7f05000d;
         /** 中暗蓝色
          */
-        public static final int forestgreen=0x7f050005;
+        public static final int darkblue=0x7f050005;
+        /** 亮蓝色 
+         */
+        public static final int darkgray=0x7f050020;
+        /** 重褐色 
+         */
+        public static final int darkmagenta=0x7f05002a;
+        /** 赭色 
+         */
+        public static final int darkorchid=0x7f050023;
+        /** 暗洋红 
+         */
+        public static final int darkred=0x7f05002b;
+        /** 亮绿色 
+         */
+        public static final int darkseagreen=0x7f050028;
+        /** 苍绿色 
+         */
+        public static final int darkviolet=0x7f050025;
+        /** 雪白色 
+         */
+        public static final int floralwhite=0x7f05000b;
+        /** 暗蓝色 
+         */
+        public static final int forestgreen=0x7f050006;
         /** 桃色 
          */
-        public static final int gold=0x7f050016;
+        public static final int gold=0x7f050017;
         /** 苍宝石绿 
          */
-        public static final int greenyellow=0x7f05001d;
+        public static final int greenyellow=0x7f05001e;
         /** 森林绿 
          */
-        public static final int ivory=0x7f050006;
+        public static final int ivory=0x7f050007;
         /** 海贝色 
          */
-        public static final int lavenderblush=0x7f05000e;
+        public static final int lavenderblush=0x7f05000f;
         /** 花白色 
          */
-        public static final int lemonchiffon=0x7f05000b;
+        public static final int lemonchiffon=0x7f05000c;
         /** 黄绿色 
          */
-        public static final int lightblue=0x7f05001e;
+        public static final int lightblue=0x7f05001f;
         /** 中紫色 
          */
-        public static final int lightgreen=0x7f050026;
+        public static final int lightgreen=0x7f050027;
         /** 粉红色 
          */
-        public static final int lightpink=0x7f050018;
+        public static final int lightpink=0x7f050019;
         /** 粉蓝色 
          */
-        public static final int lightsteelblue=0x7f05001b;
+        public static final int lightsteelblue=0x7f05001c;
         /** 象牙色 
          */
-        public static final int lightyellow=0x7f050007;
+        public static final int lightyellow=0x7f050008;
         /** 暗紫罗兰色 
          */
-        public static final int mediumpurple=0x7f050025;
+        public static final int mediumpurple=0x7f050026;
         /** 红色 
          */
         public static final int mediumslateblue=0x7f050004;
         /** 白杏色 
          */
-        public static final int mistyrose=0x7f050011;
+        public static final int mistyrose=0x7f050012;
         /** 桔黄色 
          */
-        public static final int moccasin=0x7f050013;
+        public static final int moccasin=0x7f050014;
         /** 鹿皮色 
          */
-        public static final int navajowhite=0x7f050014;
+        public static final int navajowhite=0x7f050015;
         /** 亮粉红色 
          */
-        public static final int orange=0x7f050019;
+        public static final int orange=0x7f05001a;
         /** 暗紫色 
          */
-        public static final int palegreen=0x7f050023;
+        public static final int palegreen=0x7f050024;
         /** 亮钢兰色
          */
-        public static final int paleturquoise=0x7f05001c;
+        public static final int paleturquoise=0x7f05001d;
         /** 淡紫红 
          */
-        public static final int papayawhip=0x7f05000f;
+        public static final int papayawhip=0x7f050010;
         /** 纳瓦白 
          */
-        public static final int peachpuff=0x7f050015;
+        public static final int peachpuff=0x7f050016;
         /** 金色 
          */
-        public static final int pink=0x7f050017;
+        public static final int pink=0x7f050018;
         /** 橙色 
          */
-        public static final int powderblue=0x7f05001a;
+        public static final int powderblue=0x7f05001b;
         public static final int red=0x7f050003;
         /** 暗海兰色 
          */
-        public static final int saddlebrown=0x7f050028;
+        public static final int saddlebrown=0x7f050029;
         /** 米绸色 
          */
-        public static final int seashell=0x7f05000d;
+        public static final int seashell=0x7f05000e;
         /** 褐色 
          */
-        public static final int sienna=0x7f050021;
+        public static final int sienna=0x7f050022;
         /** 黄色 
          */
-        public static final int snow=0x7f050009;
+        public static final int snow=0x7f05000a;
         public static final int trs_black=0x7f050001;
         public static final int trs_grey=0x7f050000;
         public static final int white=0x7f050002;
         /** 亮黄色 
          */
-        public static final int yellow=0x7f050008;
+        public static final int yellow=0x7f050009;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 

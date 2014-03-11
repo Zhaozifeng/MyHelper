@@ -44,8 +44,8 @@ public class Affair_Flashlight extends Activity {
 		Window dialogWindow = listDialog.getWindow();
 		WindowManager.LayoutParams lp = dialogWindow.getAttributes();
 		lp.alpha = 0.9f;
-		lp.width = (int)(GlobalApp.getInstance().ScreenWidth*0.8);
-		lp.height= (int)(GlobalApp.getInstance().ScreenHeight*0.5);
+		lp.width = (int)(GlobalApp.getInstance().ScreenWidth*0.9);
+		lp.height= (int)(GlobalApp.getInstance().ScreenHeight*0.6);
 		dialogWindow.setAttributes(lp);	
 		
 		listDialog.show();
