@@ -3,7 +3,9 @@
     
     <color name="trs_grey">#55333333</color>
     <color name="trs_black">#22000000</color>
+    <color name="white">#FFFFFF</color>
     <color name="red">#FF0000</color>   <!--红色 -->
+    <color name="mediumslateblue">#7B68EE</color> <!--中暗蓝色-->
     <color name="forestgreen">#228B22</color> <!--森林绿 -->
     <color name="ivory">#FFFFF0</color><!--象牙色 -->
 	<color name="lightyellow">#FFFFE0</color><!--亮黄色 -->

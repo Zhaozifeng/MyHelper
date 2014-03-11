@@ -111,6 +111,15 @@
 	<string name="health_weather_icon">天气通</string>
 	<string name="weather_forecast_three">未来三天</string>
 	
+	<!-- 电筒君 -->
+	<string name="flash_list_title">选择类型</string>
+	<string name="flash_list_camera">后置闪光灯</string>
+	<string name="flash_list_screen">屏幕电筒</string>
+	<string name="flssh_list_shine">炫彩变换</string>
+	<string name="flash_sign_white">信号灯</string>
+	
+	
+	
 	<!-- 科普知识的介绍 -->
 	<string name="introduce_calorie">卡路里（简称卡，缩写为cal），由英文Calorie音译而来，其定义为将1克水在1大气压下提升1℃所需要的热量。
 	    卡路里（calorie）是能量单位，现在仍被广泛使用在营养计量和健身手册上，国际标准的能量单位是焦耳（joule）。
