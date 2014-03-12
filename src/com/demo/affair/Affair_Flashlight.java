@@ -73,6 +73,9 @@ public class Affair_Flashlight extends Activity {
 				case 0:
 					startActivity(new Intent(Affair_Flashlight.this,FlashlightOn.class));
 					break;
+				case 1:
+					startActivity(new Intent(Affair_Flashlight.this,FlashScreen.class));
+					break;
 				}
 			}			
 		});

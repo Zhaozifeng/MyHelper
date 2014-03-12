@@ -107,6 +107,9 @@
          <activity 
              android:name="com.demo.affair.FlashlightOn"
              ></activity>
+         <activity 
+             android:name="com.demo.affair.FlashScreen"
+             ></activity>
          
          <activity
             android:name="com.demo.health.HealthMain"            
