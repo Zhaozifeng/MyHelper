@@ -474,6 +474,7 @@ public final class R {
         /**  电筒君 
          */
         public static final int flash_list_title=0x7f07005d;
+        public static final int flash_scroll_tips=0x7f070062;
         public static final int flash_sign_white=0x7f070061;
         public static final int flssh_list_shine=0x7f070060;
         public static final int health_helper=0x7f070008;
@@ -507,7 +508,7 @@ public final class R {
         public static final int health_weather_icon=0x7f07005b;
         /**  科普知识的介绍 
          */
-        public static final int introduce_calorie=0x7f070062;
+        public static final int introduce_calorie=0x7f070063;
         public static final int main_setting=0x7f07000d;
         public static final int mode=0x7f07000b;
         public static final int note=0x7f07000e;

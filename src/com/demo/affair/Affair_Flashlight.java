@@ -24,6 +24,9 @@ import android.widget.Toast;
 //此类用于电筒
 public class Affair_Flashlight extends Activity {
 	
+	public static String FLASH_GLITTER 		= "flash_glitter";
+	public static String CAMERA_GLITTER		= "camera_glitter";
+	
 	//选项内容
 	public static String[] LIST = {"闪光灯","正屏幕","炫彩屏","信号灯"}; 
 	
@@ -75,6 +78,16 @@ public class Affair_Flashlight extends Activity {
 					break;
 				case 1:
 					startActivity(new Intent(Affair_Flashlight.this,FlashScreen.class));
+					break;
+				case 2:
+					Intent intent = new Intent(Affair_Flashlight.this,FlashScreen.class);
+					intent.putExtra(Affair_Flashlight.FLASH_GLITTER, true);
+					startActivity(intent);
+					break;
+				case 3:
+					Intent intent2 = new Intent(Affair_Flashlight.this,FlashlightOn.class);
+					intent2.putExtra(Affair_Flashlight.CAMERA_GLITTER, true);
+					startActivity(intent2);
 					break;
 				}
 			}			

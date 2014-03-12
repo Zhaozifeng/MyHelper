@@ -1,6 +1,8 @@
 package com.demo.affair;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.demo.myhelper.R;
 
@@ -8,6 +10,8 @@ import android.app.Activity;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -21,6 +25,7 @@ public class FlashlightOn extends Activity {
 	public Parameters	parameters;	
 	public List<String> flashModes;
 	public boolean 		isLighting	=	false;
+	public boolean 		isGlitter	=	false;
 	
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -33,21 +38,48 @@ public class FlashlightOn extends Activity {
 		initCamera();
 		
 		//点击屏幕开关闪光灯
-		mainLinearlayout = (LinearLayout)findViewById(R.id.flashlight_on_layout);
-		mainLinearlayout.setOnClickListener(new OnClickListener(){
-			public void onClick(View arg0) {
-				if(isLighting){
-					mainLinearlayout.setBackgroundResource(R.drawable.flash_off_background);
-					closeFlashlight();
-					isLighting = false;
-				}
-				else{
-					mainLinearlayout.setBackgroundResource(R.drawable.flash_on_background);
-					openLight();
-					isLighting = true;
-				}				
-			}			
-		});		
+		mainLinearlayout = (LinearLayout)findViewById(R.id.flashlight_on_layout);		
+		isGlitter = this.getIntent().getBooleanExtra(Affair_Flashlight.CAMERA_GLITTER, false);
+		
+		if(isGlitter){
+			
+		}
+		else{
+			mainLinearlayout.setOnClickListener(new OnClickListener(){
+				public void onClick(View arg0) {
+					if(isLighting){
+						mainLinearlayout.setBackgroundResource(R.drawable.flash_off_background);
+						closeFlashlight();
+						isLighting = false;
+					}
+					else{
+						mainLinearlayout.setBackgroundResource(R.drawable.flash_on_background);
+						openLight();
+						isLighting = true;
+					}				
+				}			
+			});
+		}	
+	}
+	
+	//闪烁闪光灯
+	public Handler handler = new Handler(){
+		public void handleMessage(Message msg){
+			
+		}
+	};
+	//重复任务
+	TimerTask timetask = new TimerTask(){
+		public void run() {
+			handler.sendEmptyMessage(0);			
+		}		
+	};			
+	/*
+	 * 计时器
+	 */
+	Timer timer = new Timer(true);	
+	public void startGlitter(){
+		timer.schedule(timetask, 0,500);
 	}
 	
 	
