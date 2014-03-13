@@ -17,6 +17,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class FlashlightOn extends Activity {
 	
@@ -26,6 +27,7 @@ public class FlashlightOn extends Activity {
 	public List<String> flashModes;
 	public boolean 		isLighting	=	false;
 	public boolean 		isGlitter	=	false;
+	public boolean 		Glittering	= 	false;
 	
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -42,7 +44,7 @@ public class FlashlightOn extends Activity {
 		isGlitter = this.getIntent().getBooleanExtra(Affair_Flashlight.CAMERA_GLITTER, false);
 		
 		if(isGlitter){
-			
+			startGlitter();
 		}
 		else{
 			mainLinearlayout.setOnClickListener(new OnClickListener(){
@@ -64,8 +66,21 @@ public class FlashlightOn extends Activity {
 	
 	//闪烁闪光灯
 	public Handler handler = new Handler(){
-		public void handleMessage(Message msg){
+		public void handleMessage(Message msg){			
+			switch(msg.what){
 			
+			case 0:
+				if(Glittering)
+					openLight();
+				else
+					closeFlashlight();
+				Glittering=!Glittering;
+				break;
+			case 1:
+				Toast.makeText(FlashlightOn.this, 
+						FlashlightOn.this.getResources().getString(R.string.flash_no_light), Toast.LENGTH_LONG);
+				break;
+			}						
 		}
 	};
 	//重复任务
@@ -99,6 +114,7 @@ public class FlashlightOn extends Activity {
 	public void onDestroy(){
 		closeFlashlight();
 		camera.release();
+		timer.cancel();
 		super.onDestroy();
 	}
 	
@@ -110,6 +126,10 @@ public class FlashlightOn extends Activity {
 				parameters.setFlashMode(Parameters.FLASH_MODE_TORCH);
 				camera.setParameters(parameters);
 				isLighting = true;
+			}
+			else{
+				//没有检测到闪光灯返回错误
+				handler.sendEmptyMessage(1);
 			}
 		}
 	}

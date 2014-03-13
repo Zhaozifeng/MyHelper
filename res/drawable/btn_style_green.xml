@@ -35,7 +35,7 @@
                 android:radius="10dip"
                 ></corners>
             <solid 
-                android:color="#88FFFFFF"
+                android:color="#55FFFFFF"
                 />
         </shape>
     </item>

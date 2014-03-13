@@ -15,11 +15,13 @@ import android.view.Window;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
@@ -32,7 +34,6 @@ public class Affair_Account extends Activity {
 	private TextView   title;
 	private ImageView  back;
 	private Spinner    yearSpinner;
-	private Spinner    classSpinner;
 	private GridView   monthsGrid;
 	
 	
@@ -60,7 +61,6 @@ public class Affair_Account extends Activity {
 		title = (TextView)findViewById(R.id.title_name);
 		menu = (ImageView)findViewById(R.id.custom_title_menu);
 		yearSpinner = (Spinner)findViewById(R.id.account_yearSpinner);
-		classSpinner= (Spinner)findViewById(R.id.account_classSpinner);
 		monthsGrid  = (GridView)findViewById(R.id.account_grid);		
 		menu.setVisibility(View.INVISIBLE);		
 		back.setOnClickListener(new OnClickListener(){
@@ -69,7 +69,7 @@ public class Affair_Account extends Activity {
 				finish();				
 			}			
 		});		
-		title.setText(getResources().getString(R.string.economy_title));
+		title.setText("2014年"+getResources().getString(R.string.economy_title));
 		monthLists = new ArrayList<String>();
 		for(int i=1;i<=12;i++){												//输入月份
 			monthLists.add(i+"月");
@@ -80,7 +80,6 @@ public class Affair_Account extends Activity {
 		classAdapter = new ArrayAdapter<String>(Affair_Account.this,
 				android.R.layout.simple_spinner_item,CLASS_SORT);
 		((ArrayAdapter<String>)classAdapter).setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		classSpinner.setAdapter((SpinnerAdapter)classAdapter);
 		yearAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,YEARS);
 		yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		yearSpinner.setAdapter(yearAdapter);
@@ -99,7 +98,18 @@ public class Affair_Account extends Activity {
 			}			
 		});
 		
-		
+		//年份下拉表
+		yearSpinner.setOnItemSelectedListener(new OnItemSelectedListener(){
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				title.setText(YEARS[arg2]+"年月份");				
+			}
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub				
+			}			
+		});	
 	}
 	
 	private class GridAdapter extends BaseAdapter{
@@ -137,7 +147,10 @@ public class Affair_Account extends Activity {
 			tv.setGravity(Gravity.CENTER);
 			tv.setText(list.get(position));
 			tv.setTextSize(30);
-			return tv;
+			tv.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,150));
+			l.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.btn_style_green));
+			l.addView(tv);
+			return l;
 		}
 		
 	}

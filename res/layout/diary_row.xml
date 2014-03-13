@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"   
     android:layout_height="fill_parent"
@@ -19,11 +20,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="10dip"
+        android:paddingBottom="10dip"
         android:layout_below="@id/tv_diary_title"
         android:layout_alignParentRight="true"
         android:layout_marginRight="5dp"
-        android:textSize="10sp"
+        android:textSize="15sp"
         android:text="2013-11-5"
         android:id="@+id/tv_diary_time"
         />

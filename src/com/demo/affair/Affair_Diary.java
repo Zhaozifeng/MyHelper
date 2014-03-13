@@ -115,7 +115,7 @@ public class Affair_Diary extends Activity {
 		imgLeft    = (ImageView)findViewById(R.id.custom_title_rollback);
 		imgAdd 	   = (ImageView)findViewById(R.id.custom_title_menu);
 		lsDiary    = (ListView)findViewById(R.id.ls_diary);
-		
+		imgAdd.setBackgroundResource(R.drawable.btn_add);
 		tvTitle.setText(R.string.diary_title);
 
 		

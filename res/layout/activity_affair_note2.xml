@@ -3,11 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"    
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/commonback"
     >
 <LinearLayout
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"    
+    android:layout_marginLeft="5dip"
+    android:layout_marginRight="5dip"
     >    
     <TextView 
         android:layout_marginTop="10dp"
@@ -59,6 +62,9 @@
     <Button 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/btn_style_green"
+        android:paddingTop="10dip"
+        android:paddingBottom="10dip"
         android:id="@+id/btn_note_date"
         android:gravity="center"
         android:text="设置年月日"
@@ -70,6 +76,9 @@
     <Button 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+         android:background="@drawable/btn_style_green"
+        android:paddingTop="10dip"
+        android:paddingBottom="10dip"
         android:id="@+id/btn_note_time"
         android:gravity="center"
         android:text="设置时分秒"

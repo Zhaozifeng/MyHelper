@@ -114,7 +114,7 @@ public class Affair_Note_Add extends Activity {
 		});
 		
 		//提交按钮
-		image_commit.setBackgroundResource(R.drawable.btn_commit);
+		image_commit.setBackgroundResource(R.drawable.btn_ok2);
 		image_commit.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {

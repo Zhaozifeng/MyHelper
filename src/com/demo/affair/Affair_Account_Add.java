@@ -83,7 +83,7 @@ public class Affair_Account_Add extends Activity {
 			}			
 		});
 		tvTitle.setText(R.string.economy_add_title);
-		titleCommit.setBackgroundResource(R.drawable.btn_commit);				
+		titleCommit.setBackgroundResource(R.drawable.btn_ok2);				
 		//设置收入下拉表的Adapter
 		inAdapter = new ArrayAdapter<String>(Affair_Account_Add.this,android.R.layout.simple_spinner_item,INCOME_SORT);
 		((ArrayAdapter<String>)inAdapter).setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

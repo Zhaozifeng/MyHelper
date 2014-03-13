@@ -89,8 +89,12 @@ public class Affair_Note_List extends Activity {
 					startActivity(intent);
 					break;
 				case 1:	
+					Intent intent2 = new Intent(Affair_Note_List.this,Affair_Birthday.class);
+					startActivity(intent2);
 					break;
 				case 2:
+					Intent intent3 = new Intent(Affair_Note_List.this,Affair_Festival.class);
+					startActivity(intent3);
 					break;
 				}
 			}			
@@ -104,7 +108,7 @@ public class Affair_Note_List extends Activity {
 				//调用震动函数
 				//由于是倒着展示，所以下标有所改变
 				final int position = cursor.getCount()-arg2-1;
-				Utools.setVibrator(Affair_Note_List.this, 100,0);
+				Utools.setVibrator(Affair_Note_List.this, 100,1);
 				Builder builder = new Builder(Affair_Note_List.this);
 				builder
 				.setIcon(R.drawable.delete)
@@ -113,7 +117,7 @@ public class Affair_Note_List extends Activity {
 				.setPositiveButton("保留", null)
 				.setNegativeButton("删除", new DialogInterface.OnClickListener() {					
 					public void onClick(DialogInterface dialog, int which) {
-						Utools.setVibrator(Affair_Note_List.this, 100, 1);
+						//Utools.setVibrator(Affair_Note_List.this, 100, 1);
 						deleteItem(position);							
 					}
 				});			
@@ -209,6 +213,8 @@ public class Affair_Note_List extends Activity {
 			l.setGravity(Gravity.CENTER);
 			TextView tv = new TextView(mcontext);
 			tv.setTextSize(20);
+			tv.setTextColor
+			(Affair_Note_List.this.getResources().getColor(R.color.white));
 			tv.setGravity(Gravity.CENTER_VERTICAL);
 			tv.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, 100));
 			tv.setText(menus[arg0]);

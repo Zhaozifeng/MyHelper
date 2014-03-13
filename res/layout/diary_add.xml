@@ -2,12 +2,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"  
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/commonback"   
     android:orientation="vertical"   
     >
     
     <ScrollView 
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:layout_marginTop="10dip"
+        android:layout_marginLeft="5dip"
+    	android:layout_marginRight="5dip">
         
     <LinearLayout 
         android:layout_width="fill_parent"
@@ -16,6 +20,7 @@
         <LinearLayout 	
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             >
@@ -36,6 +41,7 @@
         <LinearLayout 
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             >
@@ -47,23 +53,17 @@
                 android:textSize="20sp"            
                 />
             <Spinner 
-                android:layout_width="150dp"
+                android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:prompt="@string/diary_choose_emotion"
                 android:id="@+id/spinner_emotion" 
-                />            
-            <Button 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btn_add_emotion"
-                android:text="@string/diary_emotion_add"
-                android:textSize="20sp"
-                />
+                />                      
         </LinearLayout>
         
         <LinearLayout 
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             >
@@ -81,8 +81,13 @@
                 android:editable="false"
                 />
             <Button 
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="10dip"
+                android:paddingBottom="10dip"
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"
+                android:background="@drawable/btn_style_green"
                 android:id="@+id/btn_time_edt"
                 android:text="@string/diary_time_edt"
                 android:textSize="20sp"
@@ -92,6 +97,7 @@
         <LinearLayout 
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
             android:orientation="vertical"
             >
             <TextView 
@@ -106,7 +112,7 @@
             <EditText 
                 android:id="@+id/edt_diary_content"
                 android:layout_width="fill_parent"
-                android:layout_height="500dp"
+                android:layout_height="300dip"
                 android:gravity="top"
                 
                 />

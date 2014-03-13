@@ -39,7 +39,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginLeft="21dp"
             android:text="显示内容"
-            android:textSize="30sp" />
+            android:textSize="20sp" />
        
     </RelativeLayout>
 
@@ -52,8 +52,8 @@
 
         <ImageView
             android:id="@+id/img_note_sound"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="23dp"
@@ -61,8 +61,8 @@
 
         <ImageView
             android:id="@+id/img_note_vibrate"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="22dp"
             android:layout_toRightOf="@+id/img_note_sound"

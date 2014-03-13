@@ -90,7 +90,7 @@ public class Affair_Diary_Add extends Activity{
 		tvTitle = (TextView)findViewById(R.id.title_name);
 		//btnCommit = (Button)findViewById(R.id.custom_title_menu_btn);
 		imgOK   = (ImageView)findViewById(R.id.custom_title_menu);
-		imgOK.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_ok));
+		imgOK.setBackgroundDrawable(getResources().getDrawable(R.drawable.btn_ok2));
 		btnOtherTime = (Button)findViewById(R.id.btn_time_edt);
 		spEmotion = (Spinner)findViewById(R.id.spinner_emotion);
 		edtName   = (EditText)findViewById(R.id.edt_diary_name);

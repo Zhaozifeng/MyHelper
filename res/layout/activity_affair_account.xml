@@ -6,7 +6,7 @@
     android:background="@drawable/commonback"
     >
     
-     <LinearLayout 
+    <LinearLayout 
         android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -14,30 +14,20 @@
         android:id="@+id/account_container"
         >
         <TextView 
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="3.0"
+            android:gravity="center"
             android:text="年份："
-            android:textSize="15sp"
+            android:textSize="20sp"
+            android:textStyle="bold"
             />
         <Spinner 
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1.0"
             android:id="@+id/account_yearSpinner"
-            />
-        
-        <TextView
-            android:layout_marginLeft="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="查看方式："  
-            android:textSize="15sp"                     
-            ></TextView>
-        
-        <Spinner 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/account_classSpinner"
-            />          
+            />    
      </LinearLayout>
 
     

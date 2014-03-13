@@ -10,9 +10,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/account_menu_title_list"
-        android:dividerHeight="3dp"
-        android:divider="#333333"
-        android:background="#CCCCCC"
+        android:dividerHeight="2dip"
+        android:divider="#FFFFFF"
+        android:background="@drawable/popup_list_layout"
         ></ListView>
     
     

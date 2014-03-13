@@ -51,7 +51,7 @@
 	<string name="diary_emotion_add">添加心情</string>
 	
 	<!-- 经济账本页面中文信息 -->
-	<string name="economy_title">经济月份示意图</string>
+	<string name="economy_title">月份</string>
 	<string name="economy_in_out">记账类型</string>
 	<string name="economy_add_sort">添加</string>
 	<string name="economy_add_title">添加收支记录</string>
@@ -118,6 +118,7 @@
 	<string name="flssh_list_shine">炫彩变换</string>
 	<string name="flash_sign_white">信号灯</string>
 	<string name="flash_scroll_tips">亲，可左右滑动切换其他颜色</string>
+	<string name="flash_no_light">亲，很抱歉，你的设备没有闪光灯喔</string>
 	
 	
 	

@@ -330,6 +330,8 @@ public class Affair_Account_Amonth extends Activity {
 			l.setGravity(Gravity.CENTER);
 			TextView tv = new TextView(mContext);
 			tv.setTextSize(20);
+			tv.setTextColor
+			(Affair_Account_Amonth.this.getResources().getColor(R.color.white));
 			tv.setGravity(Gravity.CENTER_VERTICAL);
 			tv.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, 100));
 			tv.setText(menus[position]);
