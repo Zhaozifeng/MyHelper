@@ -9,10 +9,13 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.app.TimePickerDialog.OnTimeSetListener;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -67,6 +70,10 @@ public class Affair_Note_Add extends Activity {
 	//返回列表刷新参数
 	public  static String   RELESH_LIST = "reflesh_list";
 	
+	//NotificationManager
+	public NotificationManager	notificationManager;
+	
+	
 	//主函数
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);			
@@ -92,6 +99,9 @@ public class Affair_Note_Add extends Activity {
 		mSoundCheck.setChecked(true);
 		mVibrateCheck.setChecked(true);				
 		tv_title.setText(R.string.note);	
+		//获取nitification
+		notificationManager	= (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+		
 				
 		//设置当前时间
 		calendar = Calendar.getInstance();
@@ -107,8 +117,7 @@ public class Affair_Note_Add extends Activity {
 		//返回按钮
 		image_left.setOnClickListener(new OnClickListener(){
 			@Override
-			public void onClick(View v) {
-				
+			public void onClick(View v) {				
 				finish();				
 			}			
 		});
@@ -139,7 +148,9 @@ public class Affair_Note_Add extends Activity {
 				PendingIntent pi = PendingIntent.getBroadcast(Affair_Note_Add.this, 0, intent, 0);
 				AlarmManager  am = (AlarmManager)getSystemService(ALARM_SERVICE);
 				am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pi);
-								
+				
+				
+				
 				final SQLiteDatabase sql = MyHelper_MainActivity.HelperSQLite.getWritableDatabase();
 				final ContentValues cv = new ContentValues();								
 								
@@ -167,14 +178,30 @@ public class Affair_Note_Add extends Activity {
 						Intent intent = new Intent(Affair_Note_Add.this,Affair_Note_List.class);
 						intent.putExtra(RELESH_LIST, true);
 						intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						//新建一个notification
+						Intent notiIntent;
+						notiIntent = new Intent(Affair_Note_Add.this,
+								MyHelper_MainActivity.class);
+						//notiIntent.putExtra(RELESH_LIST, true);
+						notiIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						Notification n = new Notification(R.drawable.noti_label,
+								Affair_Note_Add.this.getString(R.string.note_noti_tips),System.currentTimeMillis());
+						n.flags = Notification.FLAG_AUTO_CANCEL;
+						PendingIntent notiPending = PendingIntent.getActivity
+								(Affair_Note_Add.this, 0, notiIntent, 0);		
+						
+						n.setLatestEventInfo(Affair_Note_Add.this, 
+								Affair_Note_Add.this.getString(R.string.note_noti_title), 
+								Affair_Note_Add.this.getString(R.string.noti_message), 
+								notiPending);
+						notificationManager.notify(0,n);						
 						startActivity(intent);
 						finish();						
 					}
 				});
 				builder.create().show();
 			}			
-		});
-			
+		});		
 	}
 	
 	//设置监听

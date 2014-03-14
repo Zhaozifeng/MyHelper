@@ -30,6 +30,9 @@
 	<string name="note_dialog_cancel">取消</string>
     <string name="note_dialog_timeup_title">时间到提醒</string>
     <string name="note_dialog_known">我知道了</string>
+    <string name="note_noti_tips">你添加最新备忘录提醒</string>
+    <string name="note_noti_title">备忘录提醒</string>
+    <string name="noti_message">点击这里查看</string>
     
     
     <!-- 日记页面中文信息 -->
