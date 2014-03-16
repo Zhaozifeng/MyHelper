@@ -87,6 +87,7 @@ public class FlashScreen extends Activity  {
 		timer.schedule(timetask, 0,500);
 	}
 	
+	
 	//viewpager
 	private class MyPageAdapter extends PagerAdapter{
 		

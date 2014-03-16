@@ -15,6 +15,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
 import android.os.Vibrator;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -85,7 +90,19 @@ public class Utools extends Activity{
 			return;
 		}		
 	}
-
+	
+	//普通定义标题栏
+	public static void customTitle(final Activity activity,String title){
+		activity.getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,R.layout.custom_title_layout);
+		ImageView 	back = (ImageView)activity.findViewById(R.id.custom_title_rollback);
+		back.setOnClickListener(new OnClickListener(){
+			public void onClick(View v) {
+				activity.finish();				
+			}			
+		});
+		TextView	customTitle = (TextView)activity.findViewById(R.id.title_name);
+		customTitle.setText(title);		
+	}
 }
 
 
