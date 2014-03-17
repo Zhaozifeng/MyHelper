@@ -3,55 +3,267 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_marginLeft="5dip"
-    android:layout_marginRight="5dip"
+    android:background="@drawable/birth_add_back"
     android:orientation="vertical"
     >
+    <ScrollView 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
     <LinearLayout 
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"   
-        android:layout_marginTop="10dip" 
-        android:orientation="horizontal"  
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dip"
+    	android:layout_marginRight="5dip"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
         >
         <LinearLayout 
-            android:layout_width="fill_parent"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical"
+	        android:gravity="center_horizontal"
+        >
+        <ImageView 
+            android:layout_width="140dip"
+            android:layout_height="160dip"
+            android:id="@+id/birth_img_mark"
+            android:background="@drawable/male_mark"
+            />
+        <TextView 
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1.5"
-            >
-            
-            <LinearLayout 
-                android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"    
-		        android:gravity="center_vertical"
-		        android:orientation="horizontal"
-                >
-                <TextView 
-                android:layout_width="fill_parent"
+            android:textSize="10sp"
+            android:text="@string/birthday_click_pic"
+            />    
+     	</LinearLayout> 
+     	
+        
+        <LinearLayout 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"	        
+	        android:layout_marginTop="15dip"
+	        android:gravity="center_vertical"	        
+	        android:orientation="horizontal"
+        	>        	
+            <TextView 
+                android:layout_width="100dip"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_weight="2.0"
                 android:text="@string/birthday_relation"
                 />
-                <Spinner 
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/birth_relation_sp"
+                ></Spinner>                   
+        </LinearLayout>
+        
+        <LinearLayout 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"	        
+	        android:layout_marginTop="15dip"
+	        android:gravity="center_vertical"	        
+	        android:orientation="horizontal"
+        	>        	
+            <TextView 
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="@string/birthday_nickname"
+                />
+           <EditText 
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/birthday_nickname_edt"              
+               />                   
+        </LinearLayout>
+        
+        <LinearLayout 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"	        
+	        android:layout_marginTop="15dip"
+	        android:gravity="center_vertical"	        
+	        android:orientation="horizontal"
+        	>        	
+            <TextView 
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="@string/birthday_sex"
+                />
+           <ImageView 
+               android:layout_width="50dip"
+               android:layout_height="50dip"
+               android:id="@+id/birth_sex_img"
+               android:background="@drawable/male"
+               />                  
+        </LinearLayout>
+        
+        <LinearLayout 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"	        
+	        android:layout_marginTop="15dip"
+	        android:gravity="center_vertical"	        
+	        android:orientation="horizontal"
+        	>        	
+            <TextView 
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="@string/birthday_birth"
+                />
+            <LinearLayout 
+                android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"	        
+		        android:gravity="center_vertical"	        
+		        android:orientation="horizontal"
+                >
+                <EditText 
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:id="@+id/birth_time_edt"
                     android:layout_weight="1.0"
-                    />               
-            </LinearLayout>
-            
-            
+                    />
+                <Button 
+	               android:layout_width="fill_parent"
+	               android:layout_height="wrap_content"
+	               android:id="@+id/birth_time_btn"
+	               android:paddingTop="10dip"
+	               android:paddingBottom="10dip"
+	               android:textSize="20sp"
+	               android:text="@string/diary_time_edt"
+	               android:background="@drawable/btn_style_green"
+	               android:layout_weight="1.0"
+               		/>                  		               
+            </LinearLayout>                                       
         </LinearLayout>
-        <ImageView 
+        
+        
+        <LinearLayout 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"	        
+	        android:layout_marginTop="15dip"
+	        android:gravity="center_vertical"	        
+	        android:orientation="horizontal"
+        	>        	
+            <TextView 
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="@string/birthday_constellation"
+                />
+            <LinearLayout 
+                android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"	        
+		        android:gravity="center_vertical"	        
+		        android:orientation="horizontal"
+                >
+                <Spinner 
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"                    
+                    android:id="@+id/birth_constellation_edt"
+                    android:layout_weight="1.0"
+                    />
+                <Button 
+	               android:layout_width="fill_parent"
+	               android:layout_height="wrap_content"
+	               android:id="@+id/birth_constellation_btn"
+	               android:paddingTop="10dip"
+	               android:paddingBottom="10dip"
+	               android:textSize="20sp"
+	               android:text="@string/birthday_constellation_check"
+	               android:background="@drawable/btn_style_green"
+	               android:layout_weight="1.0"
+               		/>                  		               
+            </LinearLayout>                                       
+        </LinearLayout>
+     
+        <LinearLayout 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"	        
+	        android:layout_marginTop="15dip"        
+	        android:orientation="vertical"
+        	>
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="@string/birthday_favourite"
+            />
+        <EditText 
             android:layout_width="fill_parent"
-            android:layout_height="200dip"
-            android:background="@drawable/male_mark"
-            android:layout_weight="1.0"
-            />         
+            android:layout_height="150dip"
+            android:id="@+id/birth_favourite_edt"           
+            />
+        </LinearLayout>
+        
+        <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            >
+            <TextView 
+                android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:layout_alignParentLeft="true"
+            	android:layout_centerVertical="true"
+            	android:gravity="center"
+            	android:textSize="20sp"
+            	android:textStyle="bold"
+            	android:text="@string/birthday_remind"
+                />
+            <CheckBox 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:id="@+id/birth_iswish_ck"
+                android:layout_alignParentRight="true"
+                />           
+        </RelativeLayout>
+        
+        <EditText 
+            android:layout_width="fill_parent"
+            android:layout_height="150dip"
+            android:gravity="top"
+            android:hint="@string/birthday_wish"
+            android:id="@+id/birth_wish_edt"
+            android:enabled="false"
+            />
+     
+        
+        
     </LinearLayout>
-    
+    </ScrollView>
 </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
