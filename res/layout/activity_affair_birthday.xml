@@ -3,13 +3,43 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/commonback3"
     android:orientation="vertical"
     >
     
     <TextView 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="here is in Birthday"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="10dip"
+        android:layout_marginBottom="10dip"
+        android:text="@string/birthday_recently"
         />
+    
+    
+    <ListView 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"       
+        android:divider="#00FFFFFF"
+        android:dividerHeight="50dip"
+        android:id="@+id/birth_lv"
+        ></ListView >
 
 </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

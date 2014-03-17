@@ -89,9 +89,14 @@
              android:name="com.demo.affair.Affair_Account_Amonth"
              ></activity>
          
+         <!-- 生日类页面 -->
          <activity 
              android:name="com.demo.affair.Affair_Birthday"
              ></activity>
+         <activity
+             android:name="com.helper.birthday.BirthAdd"
+             ></activity>
+         
          
          <activity 
              android:name="com.demo.affair.Affair_Festival"

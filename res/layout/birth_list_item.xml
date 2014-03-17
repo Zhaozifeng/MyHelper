@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"   
+    >
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:id="@+id/birth_info_contain"
+        android:orientation="vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="10dip"
+        android:layout_marginBottom="10dip"
+        >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/birth_name_tv"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="张三"
+            />
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="1991-3-29"
+            android:id="@+id/birth_time_tv"
+            />
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="离生日还有10天"
+            android:id="@+id/birth_timeup_tv"
+            />   
+    </LinearLayout>
+    
+    <ImageView 
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:layout_marginLeft="10dip"
+        android:id="@+id/birth_sex_img"
+        android:layout_toRightOf="@+id/birth_info_contain"
+        android:layout_centerVertical="true"
+        android:background="@drawable/male"
+        />
+    
+    
+    <ImageView 
+        android:layout_width="100dip"
+        android:layout_height="100dip"
+        android:layout_marginRight="10dip"
+        android:id="@+id/birth_sex_img"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/male_mark"
+        />
+    
+    
+</RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

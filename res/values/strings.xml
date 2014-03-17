@@ -124,7 +124,17 @@
 	<string name="flash_no_light">亲，很抱歉，你的设备没有闪光灯喔</string>
 	
 	<!-- 生日界面中文信息 -->
-	
+	<string name="birthday_recently">最近生日的亲们:</string>
+	<string name="birthday_indiviual">人物资料</string>
+	<string name="birthday_relation">关系:</string>
+	<string name="birthday_family">家人</string>
+	<string name="birthday_classmate">同事</string>
+	<string name="birthday_friend">朋友</string>
+	<string name="birthday_other">其他</string>
+	<string name="birthday_name">姓名</string>
+	<string name="birthday_sex">性别</string>
+	<string name="birthday_birth">出生年月</string>
+	<string name="birthday_constellation">星座</string>
 	
 	
 	<!-- 科普知识的介绍 -->
