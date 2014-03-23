@@ -96,6 +96,9 @@
          <activity
              android:name="com.helper.birthday.BirthAdd"
              ></activity>
+         <activity 
+             android:name="com.helper.birthday.Constellation"
+             ></activity>
          
          
          <activity 

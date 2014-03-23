@@ -103,6 +103,41 @@ public class Utools extends Activity{
 		TextView	customTitle = (TextView)activity.findViewById(R.id.title_name);
 		customTitle.setText(title);		
 	}
+	
+	
+	
+	//计算星座
+	public static int getConstellationId(int m,int d){
+		if((m==3&&d>=21)||(m==4&&d<=20))
+			return 1;		//白羊
+		else if((m==4&&d>=21)||(m==5&&d<=20))
+			return 2;		//金牛
+		else if((m==5&&d>=21)||(m==6&&d<=21))
+			return 3;		//双子
+		else if((m==6&&d>=22)||(m==7&&d<=22))
+			return 4;		//巨蟹
+		else if((m==7&&d>=23)||(m==8&&d<=22))
+			return 5;		//狮子
+		else if((m==8&&d>=23)||(m==9&&d<=22))
+			return 6;		//处女
+		else if((m==9&&d>=23)||(m==10&&d<=23))
+			return 7;		//天秤
+		else if((m==10&&d>=23)||(m==11&&d<=22))
+			return 8;		//天蝎
+		else if((m==11&&d>=23)||(m==12&&d<=21))
+			return 9;		//人马
+		else if((m==12&&d>=22)||(m==1&&d<=19))
+			return 10;		//摩羯
+		else if((m==1&&d>=20)||(m==2&&d<=18))
+			return 11;		//水瓶
+		else if((m==3&&d>=19)||(m==4&&d<=30))
+			return 0;		//双鱼
+		
+		else return -1;
+		
+		
+	}
+
 }
 
 
