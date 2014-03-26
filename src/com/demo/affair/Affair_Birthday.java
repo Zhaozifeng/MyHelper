@@ -41,7 +41,7 @@ public class Affair_Birthday extends Activity {
 	public SQLiteDatabase 	mainDB;
 	public Cursor			cursor;
 	
-	public String[]	menus	={"添加","查询","设置"};
+	public String[]	menus	={"添加","查看","设置"};
 	
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);

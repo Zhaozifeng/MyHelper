@@ -133,9 +133,21 @@ public class Utools extends Activity{
 		else if((m==3&&d>=19)||(m==4&&d<=30))
 			return 0;		//双鱼
 		
-		else return -1;
-		
-		
+		else return -1;	
+	}
+	
+	//计算里生日还有多少天
+	public static int computeBirtday(int y,int m,int d){
+		Calendar c  = Calendar.getInstance();
+		int curdays = c.get(Calendar.DAY_OF_YEAR);
+		c.set(Calendar.YEAR, y);
+		c.set(Calendar.MONTH, m);
+		c.set(Calendar.DAY_OF_MONTH, d);
+		int offsetdays = c.get(Calendar.DAY_OF_YEAR)-curdays;
+		if(offsetdays<0)
+			return (offsetdays+365);
+		else
+			return offsetdays;		
 	}
 
 }

@@ -1,5 +1,12 @@
 package com.demo.myhelper;
 
+import java.security.acl.Group;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.helper.adapter.*;
+import com.helper.adapter.BirthListAdapter.BirthdayPersonModel;
+
 import android.app.Application;
 
 public class GlobalApp extends Application {
@@ -20,6 +27,10 @@ public class GlobalApp extends Application {
 	public int		weight;
 	public int 		Sensitivity;
 	public float	settingCalorie;
+	
+	//储存生日联系人
+	public ArrayList <BirthdayPersonModel>	BirhPeopleList;
+	
 	
 	
 	//设置屏幕长宽

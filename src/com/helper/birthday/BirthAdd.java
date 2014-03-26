@@ -1,12 +1,16 @@
 package com.helper.birthday;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import com.demo.affair.Affair_Birthday;
+import com.demo.myhelper.GlobalApp;
 import com.demo.myhelper.MyHelper_MainActivity;
 import com.demo.myhelper.R;
 import com.demo.object.MainDatabase;
 import com.demo.tools.Utools;
+import com.helper.adapter.BirthListAdapter;
+import com.helper.adapter.BirthListAdapter.BirthdayPersonModel;
 
 import android.app.Activity;
 import android.app.AlertDialog.Builder;
@@ -64,6 +68,8 @@ public class BirthAdd extends Activity {
 	public int			curYear;
 	public int 			curMonth;
 	public int 			curDay;
+	
+	public BirthdayPersonModel	curPerson;
 	
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -196,6 +202,9 @@ public class BirthAdd extends Activity {
 				.setPositiveButton("确定", new DialogInterface.OnClickListener() {					
 					public void onClick(DialogInterface dialog, int which) {
 						saveData();	
+						Intent intent = new Intent(BirthAdd.this,Affair_Birthday.class);
+						intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						startActivity(intent);
 						finish();
 					}
 				})
@@ -219,10 +228,16 @@ public class BirthAdd extends Activity {
 		final ContentValues cv = new ContentValues();
 		
 		//头像
-		if(MaleMark)
-			cv.put("mark_id", 0);
-		else
+		int markid;
+		if(MaleMark){
+			markid = 0;
+			cv.put("mark_id", markid);
+		}			
+		else{
+			markid = 1;
 			cv.put("mark_id", 1);
+		}
+			
 		
 		//关系
 		cv.put("relation", relationSpinner.getSelectedItemPosition());
@@ -231,10 +246,16 @@ public class BirthAdd extends Activity {
 		cv.put("nick_name", nickEdt.getText().toString());
 		
 		//性别
-		if(isMale)
-			cv.put("sex_id", 0);
-		else
-			cv.put("sex_id", 1);
+		int sexid;
+		if(isMale){
+			sexid = 0;
+			cv.put("sex_id", sexid);
+		}			
+		else{
+			sexid = 1;
+			cv.put("sex_id", sexid);
+		}
+			
 		
 		//年月日
 		cv.put("year", curYear);
@@ -248,13 +269,30 @@ public class BirthAdd extends Activity {
 		cv.put("favourite", faouriteEdt.getText().toString());
 		
 		//短信开启
+		int s;
+		String w = null;
 		if(textCheck.isChecked()){
 			cv.put("is_send", 0);
+			s = 0;
 			cv.put("wish_text", textEdt.getText().toString());
+			w = textEdt.getText().toString();
 		}
 		else{
 			cv.put("is_send", 1);
+			s = 1;
 		}	
+		int offsetdays = Utools.computeBirtday(curYear, curMonth, curDay);
+		curPerson = new BirthListAdapter.BirthdayPersonModel(curYear,curMonth,curDay,nickEdt.getText().toString());
+		curPerson.setDetail(sexid, markid, offsetdays);
+		int r = relationSpinner.getSelectedItemPosition();
+		int c = starSpinner.getSelectedItemPosition();
+		String f = faouriteEdt.getText().toString();		
+		curPerson.setDetail2(r, c, f, s, w);
+		if(GlobalApp.getInstance().BirhPeopleList==null){
+			GlobalApp.getInstance().BirhPeopleList = new ArrayList<BirthdayPersonModel>();
+			
+		}	
+		GlobalApp.getInstance().BirhPeopleList.add(curPerson);
 		sql.insert(MainDatabase.BIRTHDAY_TABLE_NAME, null, cv);
 		Toast.makeText(BirthAdd.this, "提交成功", Toast.LENGTH_LONG).show();
 		
