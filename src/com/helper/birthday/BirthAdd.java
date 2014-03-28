@@ -38,7 +38,9 @@ import android.widget.Spinner;
 
 public class BirthAdd extends Activity {
 	
+	public static String BIRTH_PARAMS = "birth_params";
 	public static String CONSTELLATION = "constellation";
+	public boolean isChange;
 	
 	public static String[] RELATION 	= {"家人","朋友","同学","同事","其他"};
 	public static String[] STARS		= {"双鱼座","白羊座","金牛座","双子座","巨蟹座","狮子座",
@@ -101,7 +103,7 @@ public class BirthAdd extends Activity {
 		adapterStars.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		relationSpinner.setAdapter(adapterRealtion);
 		starSpinner.setAdapter(adapterStars);
-		
+	
 		//设置当前时间
 		calendar	=	Calendar.getInstance();
 		curYear		=	calendar.get(Calendar.YEAR);
@@ -113,9 +115,47 @@ public class BirthAdd extends Activity {
 		//设置当前月份属于的星座
 		starSpinner.setSelection(Utools.getConstellationId((curMonth+1), curDay));
 		
+		Intent intent = getIntent();
+		isChange = intent.getBooleanExtra( BIRTH_PARAMS, false);
+		if(isChange){
+			curPerson = GlobalApp.getInstance().selectBirthItem;
+			showPerson(curPerson);
+		}
+		
 	}
 	
 	
+	
+	/*
+	 * 展示当前数据
+	 */
+	public void showPerson(BirthdayPersonModel person){
+		if(person.markid==0)
+			imgMark.setBackgroundResource(R.drawable.male_mark);
+		else
+			imgMark.setBackgroundResource(R.drawable.female_mark);
+		
+		nickEdt.setText(person.name);
+		
+		if(person.sexid==0)
+			imgSex.setBackgroundResource(R.drawable.male);
+		else
+			imgSex.setBackgroundResource(R.drawable.female);
+		relationSpinner.setSelection(person.relation);
+		starSpinner.setSelection(person.constellation);
+		faouriteEdt.setText(person.favourite);
+		if(person.sending==0){
+			textCheck.setChecked(true);
+			textEdt.setText(person.wishtext);
+			textEdt.setEnabled(true);
+		}
+		else
+			textCheck.setChecked(false);
+			
+		timeEdt.setText(person.year+"-"+(person.month+1)+"-"+person.day);
+		
+		
+	}
 	
 	/*
 	 * 监听函数
@@ -195,13 +235,23 @@ public class BirthAdd extends Activity {
 		//保存数据
 		imgCommit.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
+				
+				String message = null;
+				if(isChange)
+					message = "亲，确认修改数据吗?";
+				else
+					message = "亲，是否提交数据";
+				
 				Builder builder = new Builder(BirthAdd.this);
 				builder
 				.setTitle("提示")
-				.setMessage("亲，是否提交数据")
+				.setMessage(message)
 				.setPositiveButton("确定", new DialogInterface.OnClickListener() {					
 					public void onClick(DialogInterface dialog, int which) {
-						saveData();	
+						if(isChange)
+							changeData();
+						else
+							saveData();
 						Intent intent = new Intent(BirthAdd.this,Affair_Birthday.class);
 						intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 						startActivity(intent);
@@ -214,6 +264,16 @@ public class BirthAdd extends Activity {
 		});			
 	}
 	
+	/*
+	 * 改变数据
+	 */
+	public void changeData(){
+		SQLiteDatabase db = MyHelper_MainActivity.HelperSQLite.getWritableDatabase(); 	
+		String 		condition = "year=? and month=? and day=? and nick_name=?";
+		String[]	params = {curPerson.year+"",curPerson.month+"",curPerson.day+"",curPerson.name+""};		
+		db.delete(MainDatabase.BIRTHDAY_TABLE_NAME,condition, params);
+		saveData();
+	}
 	
 	/*
 	 * 保存数据

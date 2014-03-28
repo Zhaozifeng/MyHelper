@@ -30,6 +30,7 @@ public class GlobalApp extends Application {
 	
 	//储存生日联系人
 	public ArrayList <BirthdayPersonModel>	BirhPeopleList;
+	public BirthdayPersonModel				selectBirthItem;
 	
 	
 	

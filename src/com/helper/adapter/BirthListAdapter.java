@@ -79,12 +79,13 @@ public class BirthListAdapter extends BaseAdapter {
 		BirthdayPersonModel item = list.get(position);				
 		name.setText(item.name);
 		
-		if(item.offsetdays!=0){
+		if(item.getOffsetdays()!=0){
 			offset.setText("离生日还有"+item.offsetdays+"");			
 		}
 			
 		else{
-			offset.setText("今天生日啦，快点去帮Ta庆祝吧");
+			int year_old = year - item.year;
+			offset.setText("今天"+year_old+"周岁生日啦，快点去帮Ta庆祝吧");
 			view.setBackgroundColor(context.getResources().getColor(R.color.tran_red));
 		}
 			
@@ -161,18 +162,18 @@ public class BirthListAdapter extends BaseAdapter {
 	//人类对象	
 	public static class BirthdayPersonModel{
 		
-		private String 	name;
-		private int	   	sexid;
-		private int    	markid;
-		private int		year;
-		private int		month;
-		private int 	day;
-		private int		offsetdays;
-		private int		relation;
-		private int		constellation;
-		private String  favourite;
-		private int		sending;
-		private String	wishtext;
+		public String 	name;
+		public int	   	sexid;
+		public int    	markid;
+		public int		year;
+		public int		month;
+		public int 		day;
+		public int		offsetdays;
+		public int		relation;
+		public int		constellation;
+		public String  favourite;
+		public int		sending;
+		public String	wishtext;
 				
 		public BirthdayPersonModel(int y,int m,int d,String name){
 			this.year  	= y;
@@ -194,6 +195,20 @@ public class BirthListAdapter extends BaseAdapter {
 			this.sending = s;
 			this.wishtext = w;
 		}
+		
+		//计算还剩几天生日
+		public int getOffsetdays(){
+			Calendar c = Calendar.getInstance();
+			int todayoff = c.get(Calendar.DAY_OF_YEAR);
+			c.set(Calendar.MONTH, month);
+			c.set(Calendar.DAY_OF_MONTH, day);
+			int birthoff = c.get(Calendar.DAY_OF_YEAR);
+			if(todayoff<=birthoff)
+				return birthoff-todayoff;
+			else
+				return (365-(todayoff-birthoff));
+		}
+		
 	}
 
 }

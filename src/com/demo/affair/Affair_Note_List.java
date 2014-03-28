@@ -91,6 +91,7 @@ public class Affair_Note_List extends Activity {
 				case 1:	
 					Intent intent2 = new Intent(Affair_Note_List.this,Affair_Birthday.class);
 					startActivity(intent2);
+					finish();
 					break;
 				case 2:
 					Intent intent3 = new Intent(Affair_Note_List.this,Affair_Festival.class);

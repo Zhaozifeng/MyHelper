@@ -5,11 +5,14 @@ import com.demo.myhelper.R;
 import com.demo.object.MainDatabase;
 import com.demo.tools.Utools;
 import com.helper.adapter.BirthListAdapter;
+import com.helper.adapter.BirthListAdapter.BirthdayPersonModel;
 import com.helper.adapter.CommonAdapter;
 import com.helper.birthday.BirthAdd;
 
 import android.app.Activity;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -22,6 +25,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -71,7 +75,6 @@ public class Affair_Birthday extends Activity {
 	//列表
 	public void makeList(){
 		birthList	= (ListView)findViewById(R.id.birth_lv);
-		//birthList.setAdapter(new BirthListAdapter(Affair_Birthday.this));
 		mainDB = MyHelper_MainActivity.HelperSQLite.getReadableDatabase();
 		cursor = mainDB.query(MainDatabase.BIRTHDAY_TABLE_NAME, null, null, null, null, null, null);
 		cursor.moveToFirst();
@@ -79,10 +82,71 @@ public class Affair_Birthday extends Activity {
 			topTv.setText("您还没有添加生日记录喔.....");
 		}
 		else
-			birthList.setAdapter(new BirthListAdapter(Affair_Birthday.this,cursor));		
+			birthList.setAdapter(new BirthListAdapter(Affair_Birthday.this,cursor));
+		
+		//点击查看
+		birthList.setOnItemClickListener(new OnItemClickListener(){
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				GlobalApp.getInstance().selectBirthItem = (BirthdayPersonModel)arg1.getTag();	
+				Intent intent = new Intent(Affair_Birthday.this,BirthAdd.class);
+				intent.putExtra(BirthAdd.BIRTH_PARAMS, true);
+				startActivity(intent);
+			}			
+		});
+		//长按删除
+		birthList.setOnItemLongClickListener(new OnItemLongClickListener(){
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				Utools.setVibrator(Affair_Birthday.this, 100, 1);
+				BirthdayPersonModel person = (BirthdayPersonModel)arg1.getTag();
+				showDeleteDialog(person);
+				return false;
+			}			
+		});
 	}
 	
 	
+	
+	
+	/*
+	 * 删除对话框
+	 */
+	public void showDeleteDialog(final BirthdayPersonModel person){
+		Builder builder = new Builder(Affair_Birthday.this);
+		builder
+		.setTitle("删除")
+		.setMessage("是否要删除当前的联系人")
+		.setPositiveButton("确定", new DialogInterface.OnClickListener() {			
+			public void onClick(DialogInterface dialog, int which) {	
+				deletePerson(person);
+				if(deletePerson(person)==0){
+					Toast.makeText(Affair_Birthday.this, "删除成功", Toast.LENGTH_SHORT).show();
+					GlobalApp.getInstance().BirhPeopleList = null;
+					cursor = mainDB.query(MainDatabase.BIRTHDAY_TABLE_NAME, null, null, null, null, null, null);
+					cursor.moveToFirst();
+					birthList.setAdapter(new BirthListAdapter(Affair_Birthday.this,cursor));
+					if(cursor.getCount()==0){
+						topTv.setText("您还没有添加生日记录喔.....");
+					}
+				}
+				else{
+					Toast.makeText(Affair_Birthday.this, "删除失败", Toast.LENGTH_SHORT).show();
+				}
+			}
+		})
+		.setNegativeButton("取消", null);
+		builder.create().show();		
+	}
+	/*
+	 * 删除联系人数据库函数
+	 */
+	public int deletePerson(BirthdayPersonModel person){
+		String condition = "year=? and month=? and day=? and nick_name=?";
+		String[] params  = {person.year+"",person.month+"",person.day+"",person.name};
+		SQLiteDatabase db = MyHelper_MainActivity.HelperSQLite.getWritableDatabase(); 
+		return db.delete(MainDatabase.BIRTHDAY_TABLE_NAME, condition, params);
+	}
 	
 	//下拉列表
 	public void makePopWindow(){
