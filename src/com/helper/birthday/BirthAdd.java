@@ -23,6 +23,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -84,6 +85,9 @@ public class BirthAdd extends Activity {
 	
 	
 	public void initUI(){		
+		//隐藏键盘
+		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+		
 		imgCommit = (ImageView)findViewById(R.id.custom_title_menu);
 		imgCommit.setBackgroundResource(R.drawable.btn_ok2);		
 		imgMark = (ImageView)findViewById(R.id.birth_img_mark);
@@ -120,6 +124,7 @@ public class BirthAdd extends Activity {
 		if(isChange){
 			curPerson = GlobalApp.getInstance().selectBirthItem;
 			showPerson(curPerson);
+			imgCommit.setVisibility(View.INVISIBLE);
 		}
 		
 	}

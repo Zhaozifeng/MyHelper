@@ -80,6 +80,9 @@ public final class R {
         /** 象牙色 
          */
         public static final int lightyellow=0x7f050009;
+        /** 暗红色 
+         */
+        public static final int ligth_green=0x7f05002d;
         /** 暗紫罗兰色 
          */
         public static final int mediumpurple=0x7f050027;
@@ -238,18 +241,19 @@ public final class R {
         public static final int shuiping=0x7f020055;
         public static final int step_middle=0x7f020056;
         public static final int sucess=0x7f020057;
-        public static final int text_outline=0x7f020058;
-        public static final int tiancheng=0x7f020059;
-        public static final int tianxie=0x7f02005a;
-        public static final int title_menu=0x7f02005b;
-        public static final int weather=0x7f02005c;
-        public static final int weather_back=0x7f02005d;
-        public static final int weather_reflesh=0x7f02005e;
-        public static final int weather_sample=0x7f02005f;
-        public static final int welcome1=0x7f020060;
-        public static final int welcome2=0x7f020061;
-        public static final int welcome3=0x7f020062;
-        public static final int welcome4=0x7f020063;
+        public static final int tab_selector=0x7f020058;
+        public static final int text_outline=0x7f020059;
+        public static final int tiancheng=0x7f02005a;
+        public static final int tianxie=0x7f02005b;
+        public static final int title_menu=0x7f02005c;
+        public static final int weather=0x7f02005d;
+        public static final int weather_back=0x7f02005e;
+        public static final int weather_reflesh=0x7f02005f;
+        public static final int weather_sample=0x7f020060;
+        public static final int welcome1=0x7f020061;
+        public static final int welcome2=0x7f020062;
+        public static final int welcome3=0x7f020063;
+        public static final int welcome4=0x7f020064;
     }
     public static final class id {
         public static final int account_add_radiogroup=0x7f0a0001;
@@ -268,7 +272,7 @@ public final class R {
         public static final int account_tv_in_out=0x7f0a0000;
         public static final int account_yearSpinner=0x7f0a0027;
         public static final int accout_add_sort=0x7f0a0005;
-        public static final int action_settings=0x7f0a0099;
+        public static final int action_settings=0x7f0a009a;
         public static final int affair_main=0x7f0a002d;
         public static final int analyse_layout=0x7f0a000f;
         public static final int birth_constellation_btn=0x7f0a0066;
@@ -348,10 +352,10 @@ public final class R {
         public static final int ls_account_amonth=0x7f0a0021;
         public static final int ls_affair_note=0x7f0a0039;
         public static final int ls_diary=0x7f0a002b;
-        public static final int menu_edit=0x7f0a009a;
+        public static final int menu_edit=0x7f0a009b;
         public static final int myBtn=0x7f0a0078;
         public static final int note_list_main=0x7f0a0038;
-        public static final int note_menu=0x7f0a009b;
+        public static final int note_menu=0x7f0a009c;
         public static final int radio_income=0x7f0a0002;
         public static final int radio_outcome=0x7f0a0003;
         public static final int reacall_line1_container=0x7f0a0091;
@@ -363,7 +367,8 @@ public final class R {
         public static final int sort_show=0x7f0a0018;
         public static final int spinner_emotion=0x7f0a007a;
         public static final int stepset_type=0x7f0a0085;
-        public static final int time_picker=0x7f0a0095;
+        public static final int tab_tv=0x7f0a0095;
+        public static final int time_picker=0x7f0a0096;
         public static final int timepicker_note=0x7f0a0031;
         public static final int title_name=0x7f0a0073;
         public static final int title_name2=0x7f0a0076;
@@ -398,9 +403,9 @@ public final class R {
         public static final int weather_img=0x7f0a004c;
         public static final int weather_index_left=0x7f0a004f;
         public static final int weather_index_right=0x7f0a0054;
-        public static final int weather_item_icon=0x7f0a0097;
-        public static final int weather_item_weather=0x7f0a0098;
-        public static final int weather_item_week=0x7f0a0096;
+        public static final int weather_item_icon=0x7f0a0098;
+        public static final int weather_item_weather=0x7f0a0099;
+        public static final int weather_item_week=0x7f0a0097;
         public static final int weather_ls_tv=0x7f0a0052;
         public static final int weather_temperture_tv=0x7f0a004a;
         public static final int weather_tips_tv=0x7f0a0053;
@@ -449,8 +454,9 @@ public final class R {
         public static final int health_step_set_layout=0x7f030024;
         public static final int list_item=0x7f030025;
         public static final int note_alarm=0x7f030026;
-        public static final int time_picker=0x7f030027;
-        public static final int weather_item=0x7f030028;
+        public static final int tab_menu_layout=0x7f030027;
+        public static final int time_picker=0x7f030028;
+        public static final int weather_item=0x7f030029;
     }
     public static final class menu {
         public static final int my_helper_main=0x7f090000;

@@ -47,6 +47,8 @@
 	<color name="darkmagenta">#8B008B</color><!--暗洋红 -->
 	<color name="darkred">#8B0000</color><!--暗红色 -->
 	
+	<color name="ligth_green">#5FBA43</color><!-- 浅绿色 -->
+	
     
 </resources>
 

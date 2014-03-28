@@ -11,18 +11,22 @@ import com.helper.birthday.BirthAdd;
 
 import android.app.Activity;
 import android.app.AlertDialog.Builder;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
@@ -57,6 +61,7 @@ public class Affair_Birthday extends Activity {
 	
 	
 	public void initUI(){
+		
 		imgMenu		= (ImageView)findViewById(R.id.custom_title_menu);
 		imgMenu.setOnClickListener(new OnClickListener(){
 			public void onClick(View v) {
@@ -88,10 +93,35 @@ public class Affair_Birthday extends Activity {
 		birthList.setOnItemClickListener(new OnItemClickListener(){
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
+				final BirthdayPersonModel person = (BirthdayPersonModel)arg1.getTag();
 				GlobalApp.getInstance().selectBirthItem = (BirthdayPersonModel)arg1.getTag();	
-				Intent intent = new Intent(Affair_Birthday.this,BirthAdd.class);
-				intent.putExtra(BirthAdd.BIRTH_PARAMS, true);
-				startActivity(intent);
+				
+				//当前生日提示框
+				if(person.getOffsetdays()==0){
+					Builder builder = new Builder(Affair_Birthday.this);
+					builder
+					.setTitle("生日提醒")
+					.setMessage(person.name+"生日啦，发个短信祝福Ta一下吗？")
+					.setPositiveButton("嗯，好的", new DialogInterface.OnClickListener() {						
+						public void onClick(DialogInterface dialog, int which) {
+							showSystemSms(person.wishtext);						
+						}
+					})
+					.setNegativeButton("暂不发送", new DialogInterface.OnClickListener() {						
+						public void onClick(DialogInterface dialog, int which) {
+							Intent intent = new Intent(Affair_Birthday.this,BirthAdd.class);
+							intent.putExtra(BirthAdd.BIRTH_PARAMS, true);
+							startActivity(intent);							
+						}
+					});		
+					builder.create().show();
+				}
+				
+				else{
+					Intent intent = new Intent(Affair_Birthday.this,BirthAdd.class);
+					intent.putExtra(BirthAdd.BIRTH_PARAMS, true);
+					startActivity(intent);
+				}	
 			}			
 		});
 		//长按删除
@@ -106,6 +136,16 @@ public class Affair_Birthday extends Activity {
 		});
 	}
 	
+	/*
+	 * 跳转到系统短信界面
+	 */
+	public void showSystemSms(String content){
+		Uri smsTo = Uri.parse("smsto:");
+		Intent intent = new Intent(Intent.ACTION_SENDTO,smsTo);
+		if(!content.equals("")&&content!=null)
+			intent.putExtra("sms_body", content);		
+		startActivity(intent);
+	}
 	
 	
 	

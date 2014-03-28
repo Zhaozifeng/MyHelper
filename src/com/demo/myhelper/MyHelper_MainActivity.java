@@ -13,8 +13,11 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.View;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 public class MyHelper_MainActivity extends TabActivity {
 	
@@ -44,27 +47,30 @@ public class MyHelper_MainActivity extends TabActivity {
 		mTabhost = getTabHost();	
 		Intent intentToAffair = new Intent(MyHelper_MainActivity.this,AffairMain.class);
 		mTabhost.addTab(mTabhost.newTabSpec("affair_helper")
-						.setIndicator(getResources().getString(R.string.affair_helper))
+						.setIndicator(makeTabView("事务达人"))
 						.setContent(intentToAffair));	
 		
 		Intent intentToHealth = new Intent(MyHelper_MainActivity.this,HealthMain.class);
 		mTabhost.addTab(mTabhost.newTabSpec("health_helper")
-						.setIndicator(getResources().getString(R.string.health_helper))
+						.setIndicator(makeTabView("健康管家"))
 						.setContent(intentToHealth));	
 		
 		Intent intentToSetting = new Intent(MyHelper_MainActivity.this,MyHelper_Setting.class);
 		mTabhost.addTab(mTabhost.newTabSpec("main_setting")
-						.setIndicator(getResources().getString(R.string.main_setting))
+						.setIndicator(makeTabView("设置"))
 						.setContent(intentToSetting));	
 		mTabhost.setCurrentTab(0);										//设置当前停留的标签
 	}
+	
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.my_helper_main, menu);
-		return true;
+	public View makeTabView(String title){
+		LayoutInflater inflater = LayoutInflater.from(MyHelper_MainActivity.this);
+		View view = inflater.inflate(R.layout.tab_menu_layout, null);
+		TextView titleTv = (TextView)view.findViewById(R.id.tab_tv);
+		titleTv.setText(title);
+		return view;
 	}
+
 	
 	
 	public boolean dispatchKeyEvent(KeyEvent event){												 //退出对话框			
