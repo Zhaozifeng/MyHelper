@@ -26,6 +26,7 @@ import android.os.Message;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
@@ -85,7 +86,9 @@ public class Affair_Note_Add extends Activity {
 	}
 		
 	//初始化标题栏
-	public void initialTitle(){															
+	public void initialTitle(){	
+		//隐藏键盘
+		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 		tv_title    	= (TextView)findViewById(R.id.title_name);
 		tv_curTime		= (TextView)findViewById(R.id.tv_note_time);
 		tv_curDate		= (TextView)findViewById(R.id.tv_note_date);

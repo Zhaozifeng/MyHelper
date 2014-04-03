@@ -8,7 +8,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/custom_title_rollback"
-        android:background="@drawable/btn_back_off"   
+        android:background="@drawable/back_selector"   
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="0dp"
         android:layout_centerVertical="true"     
@@ -29,7 +29,7 @@
         android:layout_width="42dp"
         android:layout_height="42dp"
         android:id="@+id/custom_title_menu"
-        android:background="@drawable/menu_set"   
+        android:background="@drawable/menu_seletor"  
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"     
         />

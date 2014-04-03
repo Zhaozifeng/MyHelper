@@ -78,6 +78,11 @@
 	   <Button 
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
+		    android:paddingTop="5dip"
+		    android:paddingBottom="5dip"
+		    android:paddingLeft="5dip"
+		    android:paddingRight="5dip"
+		    android:background="@drawable/btn_style_white"
 		    android:layout_below="@+id/recall_content_container"
 		    android:layout_alignParentBottom="true"
 		    android:layout_centerHorizontal="true"
@@ -85,8 +90,8 @@
 		    android:id="@+id/btn_noterecall_ok"
 		    android:layout_gravity="center_horizontal"
 		    android:text="嗯，我知道了 !"
-		    android:textSize="20sp"
-		    android:textColor="@color/orange"
+		    android:textSize="18sp"
+		    android:textColor="@color/forestgreen"
 		    android:layout_marginBottom="10dp"
 	        />               
     </LinearLayout>

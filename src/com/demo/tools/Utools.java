@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Vibrator;
 import android.view.View;
@@ -67,6 +68,9 @@ public class Utools extends Activity{
 
 	//播放音频flag 1为播放，0为取消
 	public static void setMedia(Context context,int flag){	
+		AudioManager am = (AudioManager)context.getSystemService(context.AUDIO_SERVICE);		
+		int maxVolumn   = am.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+		am.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolumn, 0);
 		mediaplayer = MediaPlayer.create(context, R.raw.silent_cry);
 		if(flag==1){			
 			try {
@@ -80,14 +84,16 @@ public class Utools extends Activity{
 			}	
 			mediaplayer.start();
 		}
-		try{
-			if(flag==0)
-			{
-				mediaplayer.stop();
-				mediaplayer.release();
-			}
-		}catch(Exception e){
-			return;
+		else{
+			try{
+				if(flag==0)
+				{
+					mediaplayer.stop();
+					mediaplayer.release();
+				}
+			}catch(Exception e){
+				return;
+			}		
 		}		
 	}
 	

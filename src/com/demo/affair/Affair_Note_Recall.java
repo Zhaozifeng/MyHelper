@@ -48,7 +48,6 @@ public class Affair_Note_Recall extends Activity {
 		setContentView(R.layout.note_alarm);
 		initialInstance();		
 		showAlarm();
-		Toast.makeText(Affair_Note_Recall.this, "time up", 3000).show();
 	}
 	
 	public void test(){
@@ -117,7 +116,7 @@ public class Affair_Note_Recall extends Activity {
 		//设置窗口的大小及透明度
 		layoutParams.width  = (int) ((int)ScreenWidth*1);
 		layoutParams.height = (int) ((int)ScreenHeight*0.5);
-		layoutParams.alpha  = 0.7f;
+		layoutParams.alpha  = 0.9f;
 		window.setAttributes(layoutParams);		
 		if(cursor.getInt(8)==1){
 			Utools.setMedia(Affair_Note_Recall.this, 1);

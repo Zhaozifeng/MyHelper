@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.helper.adapter.*;
 import com.helper.adapter.BirthListAdapter.BirthdayPersonModel;
+import com.helper.adapter.SituationAdapter.SituationModel;
 
 import android.app.Application;
 
@@ -31,6 +32,10 @@ public class GlobalApp extends Application {
 	//储存生日联系人
 	public ArrayList <BirthdayPersonModel>	BirhPeopleList;
 	public BirthdayPersonModel				selectBirthItem;
+	
+	//储存情景模式联系人
+	public SituationModel		selectSituItem;
+	public ArrayList <SituationModel>	SituationList;
 	
 	
 	

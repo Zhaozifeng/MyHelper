@@ -1,4 +1,6 @@
 package com.demo.affair;
+import java.util.Calendar;
+
 import com.demo.myhelper.GlobalApp;
 import com.demo.myhelper.MyHelper_MainActivity;
 import com.demo.myhelper.R;
@@ -31,9 +33,11 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -203,6 +207,9 @@ public class Affair_Birthday extends Activity {
 					Intent intent1 = new Intent(Affair_Birthday.this,BirthAdd.class);
 					startActivity(intent1);
 					break;
+				//case 1:
+					//showSearchDialog();
+					//break;
 				}
 			}			
 		});		
@@ -212,7 +219,72 @@ public class Affair_Birthday extends Activity {
 		menuWindow = new PopupWindow(view, popWid, popHeight,true);
 		menuWindow.setBackgroundDrawable(new BitmapDrawable());
 	}
+	
+	/*
+	 * 搜索对话框
+	 */
+	public void showSearchDialog(){
+		LayoutInflater inflater = LayoutInflater.from(Affair_Birthday.this);
+		final View v = inflater.inflate(R.layout.birth_search_layout, null);
+		Builder builder = new Builder(Affair_Birthday.this);
+		builder
+		.setTitle("搜索")
+		.setView(v)
+		.setPositiveButton("确定", new DialogInterface.OnClickListener() {			
+			public void onClick(DialogInterface dialog, int which) {
+				//dialogSave(v);			
+			}
+		});
+		builder.create().show();
+		
+	}
+	
+	
+	/*
+	 * 搜索对话框没有完善
+	
+	public Cursor dialogSave(View v){
+		EditText name = (EditText)v.findViewById(R.id.dialog_name_edt);
+		String namestr = name.getText().toString();
+		
+		int sexid=-1;
+		RadioButton male = (RadioButton)v.findViewById(R.id.dialog_male_radio);
+		RadioButton female = (RadioButton)v.findViewById(R.id.dialog_female_radio);
+		if(male.isChecked())
+			sexid = 0;
+		if(female.isChecked())
+			sexid = 1;
+		String sexstr="";
+		if(sexid!=-1)
+			sexstr = ""+sexid;
+		
+		//求出生年
+		Calendar c = Calendar.getInstance();
+		int curYear = c.get(Calendar.YEAR);		
+		EditText year = (EditText)v.findViewById(R.id.dialog_year_edt);
+		String yearstr = year.getText().toString();
+		int bornyear;
+		if(yearstr!=""){
+			bornyear = Integer.parseInt(yearstr);
+			bornyear = curYear - bornyear;
+			yearstr = ""+bornyear;
+		}
+		else{
+			yearstr = "";
+		}
+		
+		//月份
+		String monthstr;
+		EditText monthaEdt = (EditText)v.findViewById(R.id.dialog_month_edt);
+		monthstr = monthaEdt.getText().toString();
+		
+		String condition = "nick_name=? and year"
+		SQLiteDatabase db = MyHelper_MainActivity.HelperSQLite.getWritableDatabase();
+		
 
+		
+	} */
+	
 	
 }
 

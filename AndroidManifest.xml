@@ -15,10 +15,18 @@
         android:label="@string/app_name"
         android:theme="@style/CustomStyle">
         
+        <!-- 备忘录提醒 -->
         <receiver
             android:name="com.demo.affair.Affair_Note_Alarm"
             android:process=":remote"
             ></receiver>
+        
+        <!-- 情景模式提醒 -->
+        <receiver 
+            android:name="com.helper.situation.SituationRecieve"
+            android:process=":remote"
+            ></receiver>
+        
         <receiver 
             android:name="com.demo.affair.DemoCall"
             android:process=":remote"
@@ -105,9 +113,18 @@
              android:name="com.demo.affair.Affair_Festival"
              ></activity>
          
+         
+         
+         <!-- 情景模式类 -->
          <activity 
              android:name="com.demo.affair.Affair_Mode"
              ></activity>
+         
+         <activity
+             android:name="com.demo.affair.SituationAdd"
+             ></activity>
+         
+         
         
          <activity 
              android:name="com.demo.affair.Affair_Flashlight"
