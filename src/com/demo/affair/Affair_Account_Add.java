@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Adapter;
@@ -58,6 +59,8 @@ public class Affair_Account_Add extends Activity {
 	}
 	
 	public void initialCommonTitle(){												//初始化标题栏
+		//隐藏键盘
+		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 		titleBack = (ImageView)findViewById(R.id.custom_title_rollback);
 		titleCommit = (ImageView)findViewById(R.id.custom_title_menu);
 		tvTitle   = (TextView)findViewById(R.id.title_name);

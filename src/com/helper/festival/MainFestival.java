@@ -2,6 +2,13 @@ package com.helper.festival;
 
 import java.util.ArrayList;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import com.demo.myhelper.GlobalApp;
+import com.demo.myhelper.MyHelper_MainActivity;
+import com.demo.object.MainDatabase;
 import com.helper.adapter.FestivalAdapter.FestivalModel;
 
 public class MainFestival {
@@ -9,7 +16,7 @@ public class MainFestival {
 	public static ArrayList<FestivalModel> festivalList = new  ArrayList<FestivalModel>();
 	
 	//仅限于2014年	
-	public void  setList(){
+	public static void  setList(){
 		
 		//1月份
 		FestivalModel f1 = new FestivalModel("元旦",1,1,"f1","元旦，中国节日，即世界多数国家通称的“新年”，是公历新" +
@@ -94,7 +101,7 @@ public class MainFestival {
 		festivalList.add(f12);
 		
 		//4月份
-		FestivalModel f13 = new FestivalModel("国际消费者权益日",4,1,"f13","愚人节也称万愚节，是西方社会民间传统节日，" +
+		FestivalModel f13 = new FestivalModel("愚人节",4,1,"f13","愚人节也称万愚节，是西方社会民间传统节日，" +
 				"节期在每年4月1日。愚人节与古罗马的嬉乐节和印度的欢悦节有相似之处。从时间的选择上看与“春分”（3月22日）有关，因为这期间" +
 				"天气常常突然变化，恰似是大自然在愚弄人类。这一天，人们以多种方式开周围的人的玩笑。");
 		festivalList.add(f13);
@@ -297,8 +304,28 @@ public class MainFestival {
 				"马来西亚和新加坡。圣经实际上并无记载耶稣诞生日期，圣诞节是后人公定的。");
 		festivalList.add(f47);
 		
+		//存放到全局变量
+		GlobalApp.getInstance().festivalList = festivalList;
+		saveInDb();
 	}
 	
+	
+	//保存到数据库
+	public static void saveInDb(){
+		final SQLiteDatabase sql = MyHelper_MainActivity.HelperSQLite.getWritableDatabase();
+		Cursor c = sql.query(MainDatabase.FESTIVAL_TABLE_NAME, null, null, null, null, null, null);
+		c.moveToFirst();
+		if(c.getCount()==0){
+			for(int i=0;i<festivalList.size();i++){
+				ContentValues cv = new ContentValues();
+				cv.put("name", festivalList.get(i).name);
+				cv.put("month", festivalList.get(i).month);
+				cv.put("day", festivalList.get(i).day);
+				cv.put("alarm", 0);
+				sql.insertOrThrow(MainDatabase.FESTIVAL_TABLE_NAME, null, cv);
+			}			
+		}
+	}	
 }
 
 

@@ -27,6 +27,12 @@
             android:process=":remote"
             ></receiver>
         
+        <!-- 节日模式提醒 -->
+        <receiver 
+            android:name="com.helper.festival.FestivalRecieve"
+            android:process=":remote"
+            ></receiver>
+        
         <receiver 
             android:name="com.demo.affair.DemoCall"
             android:process=":remote"
@@ -48,9 +54,9 @@
             ></activity>
         
         <activity
-            android:theme="@style/AppTheme"
-            android:name="com.demo.myhelper.MyHelper_MainActivity"           
-            ></activity>
+            android:name="com.demo.myhelper.MyHelper_MainActivity"            
+            ></activity>        
+         <!--  android:theme="@style/AppTheme"-->
         
         <activity
             android:name="com.demo.affair.AffairMain"
@@ -108,11 +114,13 @@
              android:name="com.helper.birthday.Constellation"
              ></activity>
          
-         
+         <!-- 节日类页面 -->
          <activity 
              android:name="com.demo.affair.Affair_Festival"
              ></activity>
-         
+         <activity 
+             android:name="com.helper.festival.FestivalIntroduction"
+             ></activity>
          
          
          <!-- 情景模式类 -->

@@ -33,9 +33,15 @@ public class SituationAdapter extends BaseAdapter {
 	private int			nums;
 	private ArrayList<SituationModel>	list;
 	
+	public PendingIntent pi;
+	public AlarmManager  am;
+	public Calendar calendar;
+	
 	public static String NAME_PARAMS   = "name";
 	public static String HOUR_PARAMS   = "hour";
 	public static String MINUTE_PARAMS = "minute";
+	
+	public static int EveryDayTimeoffset = 1000*60*60*24;
 	
 	public SituationAdapter(Context context,Cursor cursor){
 		list = new ArrayList<SituationModel>();
@@ -83,8 +89,10 @@ public class SituationAdapter extends BaseAdapter {
 			vibrate.setText("没有震动效果");
 		else
 			vibrate.setText("有震动效果");
-		light.setText("预设亮度"+item.light);
 		
+		//light.setText("预设亮度"+item.light);
+		
+		setServer(item);
 		if(item.iopen==0)
 			openCheck.setChecked(false);
 		else
@@ -92,6 +100,7 @@ public class SituationAdapter extends BaseAdapter {
 		openCheck.setOnCheckedChangeListener(new OnCheckedChangeListener(){
 			String messageOpen = item.hour+":"+item.minute+"自动为您开启"+item.name+"模式";
 			String messageClose = "您关闭了"+item.name+"模式";
+			
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
 				if(isChecked){			
@@ -103,11 +112,24 @@ public class SituationAdapter extends BaseAdapter {
 					item.iopen = 0;
 				}		
 				saveIsOpen(item);
-				startService(item);
 			}			
 		});				
 		view.setTag(item);		
 		return view;
+	}
+	
+	//设置服务
+	public void setServer(SituationModel item){
+		Intent intent = new Intent(mcontext,SituationRecieve.class);
+		intent.putExtra(NAME_PARAMS, item.name);
+		intent.putExtra(HOUR_PARAMS, item.hour);
+		intent.putExtra(MINUTE_PARAMS, item.minute);
+		pi = PendingIntent.getBroadcast(mcontext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+		am = (AlarmManager)mcontext.getSystemService(Context.ALARM_SERVICE);
+		calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(System.currentTimeMillis());
+		calendar.set(Calendar.HOUR_OF_DAY, item.hour);
+		calendar.set(Calendar.MINUTE, item.minute);	
 	}
 	
 	
@@ -115,27 +137,24 @@ public class SituationAdapter extends BaseAdapter {
 	 * 开启后台服务
 	 */
 	public void startService(SituationModel item){
-		if(item.iopen==1/*&&isToday(item)*/){
-			Intent intent = new Intent(mcontext,SituationRecieve.class);
-			intent.putExtra(NAME_PARAMS, item.name);
-			intent.putExtra(HOUR_PARAMS, item.hour);
-			intent.putExtra(MINUTE_PARAMS, item.minute);
-			PendingIntent pi = PendingIntent.getBroadcast(mcontext, 0, intent, 0);
-			AlarmManager am = (AlarmManager)mcontext.getSystemService(Context.ALARM_SERVICE);
-			Calendar calendar = Calendar.getInstance();
-			calendar.setTimeInMillis(System.currentTimeMillis());
-			calendar.set(Calendar.HOUR_OF_DAY, item.hour);
-			calendar.set(Calendar.MINUTE, item.minute);
-			am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pi);
-			
-		}
+		if(item.iopen==1)
+			am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 
+					EveryDayTimeoffset, pi);
+		else
+			cancelReserve();
+	}
+	
+	
+	//取消服务
+	public void cancelReserve(){
+		am.cancel(pi);
 	}
 	
 	public boolean isToday(SituationModel item){
 		Calendar c = Calendar.getInstance();
-		int hour = c.get(Calendar.HOUR_OF_DAY);
-		int minute = c.get(Calendar.MINUTE);
 		c.setTimeInMillis(System.currentTimeMillis());
+		int hour = c.get(Calendar.HOUR_OF_DAY);
+		int minute = c.get(Calendar.MINUTE);		
 		if(item.hour==hour&&item.minute==minute)
 			return true;
 		else
@@ -147,14 +166,22 @@ public class SituationAdapter extends BaseAdapter {
 	 * 保存是否开启状态
 	 */
 	public void saveIsOpen(SituationModel item){
+		String messageOpen = item.hour+":"+item.minute+"自动为您开启"+item.name+"模式";
+		String messageClose = "您关闭了"+item.name+"模式";
 		SQLiteDatabase sql = MyHelper_MainActivity.HelperSQLite.getWritableDatabase();
 		String condition = "hour=? and minute=? and name=?";
 		String[] values = {item.hour+"",item.minute+"",item.name};
 		ContentValues cv = new ContentValues();
 		cv.put("isopen", item.iopen);
 		int rec = sql.update(MainDatabase.MODE_TABLE_NAME, cv, condition, values);
-		if(rec==0)
-			Toast.makeText(mcontext, "保存失败", Toast.LENGTH_SHORT).show();
+		if(rec==0){
+			Toast.makeText(mcontext, messageClose, Toast.LENGTH_SHORT).show();
+		}
+		else{
+			Toast.makeText(mcontext, item.name+"模式修改成功", Toast.LENGTH_SHORT).show();
+			startService(item);
+		}
+			
 	}
 	
 

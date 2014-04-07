@@ -146,8 +146,10 @@ public class Affair_Birthday extends Activity {
 	public void showSystemSms(String content){
 		Uri smsTo = Uri.parse("smsto:");
 		Intent intent = new Intent(Intent.ACTION_SENDTO,smsTo);
-		if(!content.equals("")&&content!=null)
-			intent.putExtra("sms_body", content);		
+		if(content!=null&&!"".equals(content))
+			intent.putExtra("sms_body", content);	
+		else
+			intent.putExtra("sms_body", "");
 		startActivity(intent);
 	}
 	

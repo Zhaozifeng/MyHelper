@@ -3,6 +3,7 @@ package com.demo.myhelper;
 import com.demo.affair.AffairMain;
 import com.demo.health.HealthMain;
 import com.demo.object.MainDatabase;
+import com.demo.tools.Utools;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -16,19 +17,26 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
 public class MyHelper_MainActivity extends TabActivity {
 	
-	private TabHost mTabhost;
+	private TabHost 	mTabhost;
+	public ImageView	imgMenu;
+	public ImageView	imgBack;
+	public TextView		title;
 	
 	public static MainDatabase HelperSQLite; 
 			
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);		
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.activity_my_helper_main);	
+		Utools.customTitle(this, "Android事务管理专家");
 		initialDataBase();
 		initialUI();	
 	}
@@ -44,6 +52,11 @@ public class MyHelper_MainActivity extends TabActivity {
 	
 	
 	void initialUI(){												     //初始化主界面
+		imgMenu = (ImageView)findViewById(R.id.custom_title_rollback);
+		imgMenu.setVisibility(View.INVISIBLE);
+		imgBack = (ImageView)findViewById(R.id.custom_title_menu);
+		imgBack.setVisibility(View.INVISIBLE);
+		
 		mTabhost = getTabHost();	
 		Intent intentToAffair = new Intent(MyHelper_MainActivity.this,AffairMain.class);
 		mTabhost.addTab(mTabhost.newTabSpec("affair_helper")
@@ -55,10 +68,10 @@ public class MyHelper_MainActivity extends TabActivity {
 						.setIndicator(makeTabView("健康管家"))
 						.setContent(intentToHealth));	
 		
-		Intent intentToSetting = new Intent(MyHelper_MainActivity.this,MyHelper_Setting.class);
+		/*Intent intentToSetting = new Intent(MyHelper_MainActivity.this,MyHelper_Setting.class);
 		mTabhost.addTab(mTabhost.newTabSpec("main_setting")
 						.setIndicator(makeTabView("设置"))
-						.setContent(intentToSetting));	
+						.setContent(intentToSetting));	*/
 		mTabhost.setCurrentTab(0);										//设置当前停留的标签
 	}
 	

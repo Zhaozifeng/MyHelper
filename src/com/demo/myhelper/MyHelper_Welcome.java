@@ -26,8 +26,8 @@ public class MyHelper_Welcome extends Activity{
 	private ArrayList<View>       		ViewsList;  
 	
 	private int ViewCounts		= 0;
-	private int ImageIds[]      = {R.drawable.welcome1,R.drawable.welcome2,		//预存图片
-								   R.drawable.welcome3,R.drawable.welcome4};
+	private int ImageIds[]      = {R.drawable.p1,R.drawable.p2,		//预存图片
+								   R.drawable.p3,R.drawable.p4};
 	
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -73,6 +73,7 @@ public class MyHelper_Welcome extends Activity{
 			if(i==ViewCounts-1){												//最后一页添加进入程序按钮
 				Button button = new Button(this);
 				button.setText(R.string.app_enter);
+				
 				button.setOnClickListener(new ButtonListener());                //设置按钮监听，点击进入程序
 				RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams
 						(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);		

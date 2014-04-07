@@ -97,7 +97,7 @@ public class Utools extends Activity{
 		}		
 	}
 	
-	//普通定义标题栏
+	//普通定义标题栏,图片类标题
 	public static void customTitle(final Activity activity,String title){
 		activity.getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,R.layout.custom_title_layout);
 		ImageView 	back = (ImageView)activity.findViewById(R.id.custom_title_rollback);
@@ -109,6 +109,21 @@ public class Utools extends Activity{
 		TextView	customTitle = (TextView)activity.findViewById(R.id.title_name);
 		customTitle.setText(title);		
 	}
+	
+	//按钮类标题栏
+	public static void customTitle2(final Activity activity,String title){
+		activity.getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,R.layout.custom_title_layout3);
+		ImageView 	back = (ImageView)activity.findViewById(R.id.custom_title_rollback3);
+		back.setOnClickListener(new OnClickListener(){
+			public void onClick(View v) {
+				activity.finish();				
+			}			
+		});
+		TextView	customTitle = (TextView)activity.findViewById(R.id.title_name3);
+		customTitle.setText(title);		
+	}
+	
+	
 	
 	
 	

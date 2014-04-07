@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ArrayAdapter;
@@ -84,6 +85,8 @@ public class Affair_Diary_Add extends Activity{
 	}
 
 	public void initialUI(){
+		//隐藏键盘
+		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 		Utools useforTime = new Utools();							//设置获取当前时间的工具类
 		useforTime.setDate();
 		imgLeft = (ImageView)findViewById(R.id.custom_title_rollback);

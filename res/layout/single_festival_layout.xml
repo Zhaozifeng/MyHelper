@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back5"
+    android:padding="@dimen/custom_pading"
+    android:orientation="vertical"
+    >
+	<ImageView 
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_weight="1.0"
+	    android:id="@+id/single_festival_img"
+	    />
+	<ScrollView 
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_weight="1.0"	
+	    android:layout_marginTop="10dip"
+	    android:background="@drawable/btn_style_green"    
+	    >
+	    <LinearLayout 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical"
+	        >
+	        <TextView 
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:gravity="left|top"
+	            android:padding="@dimen/custom_pading"
+	            android:id="@+id/festival_ind_tv"
+	            android:textSize="18sp"
+	            />
+	    </LinearLayout>	    
+	</ScrollView>
+    
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

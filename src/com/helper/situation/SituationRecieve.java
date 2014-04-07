@@ -31,9 +31,9 @@ public class SituationRecieve extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context arg0, Intent arg1) {
-		this.mcontext = arg0;			
-		searchDb(arg0,arg1);		
-		//Utools.setVibrator(arg0, 1000, 1);
+		this.mcontext = arg0;	
+		if(isReceive(arg1))
+			searchDb(arg0,arg1);		
 	}
 	
 	
@@ -63,6 +63,7 @@ public class SituationRecieve extends BroadcastReceiver {
 		NotificationManager mn = (NotificationManager)arg0.getSystemService(Context.NOTIFICATION_SERVICE);
 		Notification n  = new Notification(R.drawable.modeset,modetitle,System.currentTimeMillis());
 		n.defaults = Notification.DEFAULT_ALL;
+		n.flags = Notification.FLAG_AUTO_CANCEL;
 		Intent it = new Intent(arg0,MyHelper_MainActivity.class);
 		it.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
 		PendingIntent pi = PendingIntent.getActivity(arg0, 0, it, 0);		
@@ -80,11 +81,17 @@ public class SituationRecieve extends BroadcastReceiver {
 			AudioManager am = (AudioManager)mcontext.getSystemService(Context.AUDIO_SERVICE);
 			int volumn      = cursor.getInt(5);
 			int isvibrate   = cursor.getInt(4);
-			am.setStreamVolume(AudioManager.STREAM_RING, volumn, 0);
-			am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, volumn, 0);
-			am.setStreamVolume(AudioManager.STREAM_SYSTEM, volumn, 0);
-			am.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-			if(isvibrate==1)				
+			if(volumn!=0){
+				am.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+				am.setStreamVolume(AudioManager.STREAM_RING, volumn, 0);
+				am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, volumn, 0);
+				am.setStreamVolume(AudioManager.STREAM_SYSTEM, volumn, 0);	
+				am.setStreamVolume(AudioManager.STREAM_MUSIC, volumn, 0);
+			}			
+			else{
+				am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+			}
+			 if(isvibrate==1)				
 				am.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER, AudioManager.VIBRATE_SETTING_ON);
 			else
 				am.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER, AudioManager.VIBRATE_SETTING_OFF);						
@@ -102,10 +109,9 @@ public class SituationRecieve extends BroadcastReceiver {
 			Toast.makeText(arg0, "切换失败", Toast.LENGTH_SHORT).show();
 		}
 		else{
-			Toast.makeText(arg0, "切换成功", Toast.LENGTH_SHORT).show();
 			//这里需要重新初始化数据库
 			MainDatabase HelperSQLite = new MainDatabase(arg0,1);
-			SQLiteDatabase db         = HelperSQLite.getReadableDatabase();
+			SQLiteDatabase db         = HelperSQLite.getWritableDatabase();
 			String condition = "name=? and hour=? and minute=?";
 			String values[]  = {name,hour+"",minute+""};
 			cursor = db.query
@@ -113,11 +119,9 @@ public class SituationRecieve extends BroadcastReceiver {
 			cursor.moveToFirst();
 			if(cursor.getCount()!=0){
 				int isopen = cursor.getInt(7);
-				if(isopen!=0)
+				if(isopen==1)
 					alarmNotification(arg0,intent);
-			}
-			else
-				Toast.makeText(arg0, "切换成功", Toast.LENGTH_SHORT).show();			
+			}			
 		}
 	}
 	

@@ -292,8 +292,7 @@ public class Affair_Mode extends Activity {
 		if(result+1!=0)
 			Toast.makeText(Affair_Mode.this, "添加成功", Toast.LENGTH_SHORT).show();
 		else
-			Toast.makeText(Affair_Mode.this, "添加失败", Toast.LENGTH_SHORT).show();
-		
+			Toast.makeText(Affair_Mode.this, "添加失败", Toast.LENGTH_SHORT).show();	
 		showList();
 	}
 
