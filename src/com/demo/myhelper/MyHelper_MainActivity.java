@@ -36,7 +36,7 @@ public class MyHelper_MainActivity extends TabActivity {
 		super.onCreate(savedInstanceState);		
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.activity_my_helper_main);	
-		Utools.customTitle(this, "Android事务管理专家");
+		Utools.customTitle(this, "我的生活小管家");
 		initialDataBase();
 		initialUI();	
 	}

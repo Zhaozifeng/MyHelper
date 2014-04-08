@@ -8,6 +8,7 @@ import com.helper.adapter.*;
 import com.helper.adapter.BirthListAdapter.BirthdayPersonModel;
 import com.helper.adapter.FestivalAdapter.FestivalModel;
 import com.helper.adapter.SituationAdapter.SituationModel;
+import com.helper.adapter.SportItemAdapter.SportItemModel;
 
 import android.app.Application;
 
@@ -41,6 +42,10 @@ public class GlobalApp extends Application {
 	//存储节日数据
 	public ArrayList<FestivalModel>		festivalList;
 	public FestivalModel				selectFestival;
+	
+	//存储运动数据
+	public ArrayList<SportItemModel>	SportItemList;
+	public SportItemModel				selectSport;
 	
 	
 	

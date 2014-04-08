@@ -17,8 +17,9 @@ public class MainDatabase extends SQLiteOpenHelper {
 	public static String ECONOMY_TABLE_NAME = "Economy";
 	public static String NOTE_TABLE_NAME    = "Note";
 	public static String BIRTHDAY_TABLE_NAME = "Birthday";
-	public static String MODE_TABLE_NAME	= "Mode";
+	public static String MODE_TABLE_NAME	 = "Mode";
 	public static String FESTIVAL_TABLE_NAME = "Festival";
+	public static String SPORT_TABLE_NAME	 = "Sport";
 	
 	//建立备忘录表sql语句
 	public static String CREATE_NOTE_TABLE = "create table "+NOTE_TABLE_NAME+					
@@ -48,7 +49,9 @@ public class MainDatabase extends SQLiteOpenHelper {
 	public static String CREATE_FESTIVAL_TABLE = "create table "+FESTIVAL_TABLE_NAME+"(_id integer primary key autoincrement," +
 			"name text, month integer, day integer, alarm integer)";
 	
-	
+	//运动数据表
+	public static String CREATE_SPORT_TABLE = "create table "+SPORT_TABLE_NAME+"(_id integer primary key autoincrement," +
+			"name text,year integer, month integer, day integer, minute integer, itemkalo float, total float)";
 	
 	public static List<Obejct_Diary> listofDiary = new ArrayList<Obejct_Diary>();
 	
@@ -68,6 +71,7 @@ public class MainDatabase extends SQLiteOpenHelper {
 		db.execSQL(CREATE_BIRTHDAY_TABLE);					   //创建生日表
 		db.execSQL(CREATE_MODE_TABLE);						   //创建情景模式表
 		db.execSQL(CREATE_FESTIVAL_TABLE);					   //创建节日模式列表
+		db.execSQL(CREATE_SPORT_TABLE);						   //创建运动列表
 		MainSQLite = db;
 	}
 
