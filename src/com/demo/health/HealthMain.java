@@ -27,8 +27,11 @@ public class HealthMain extends Activity {
 	
 	
 	//健康伴侣图片ID
-	public int 	  imgIDs [] 	= {R.drawable.foot,R.drawable.weather}; 
-	public int 	  nameIDs[] 	= {R.string.health_main_step,R.string.health_weather_icon};
+	public int 	  imgIDs [] 	= {R.drawable.foot,R.drawable.weather,
+									R.drawable.addsport,R.drawable.histroy,
+									R.drawable.bmi}; 
+	public int 	  nameIDs[] 	= {R.string.health_main_step,R.string.health_weather_icon,
+									R.string.sport_add,R.string.sport_histroy,R.string.sport_bmi};
 	
 	
 	protected void onCreate(Bundle savedInstanceState){
@@ -69,7 +72,10 @@ public class HealthMain extends Activity {
 	public void setListened(){
 		final Intent intents[] = {
 				new Intent(HealthMain.this,Health_Step.class),
-				new Intent(HealthMain.this,Health_Weather.class)
+				new Intent(HealthMain.this,Health_Weather.class),
+				new Intent(HealthMain.this,SportAdd.class),
+				new Intent(HealthMain.this,SportHistroy.class),
+				new Intent(HealthMain.this,SportBMI.class)
 				};		
 		mGridView.setOnItemClickListener(new OnItemClickListener(){
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,

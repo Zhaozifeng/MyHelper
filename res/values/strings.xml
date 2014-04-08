@@ -142,7 +142,12 @@
 	<string name="birthday_remind">开启短信祝福</string>
 	<string name="birthday_wish">在这里请写下你的祝福问候喔....</string>
 	<string name="birthday_auto_constellation">系统自动匹配好星座</string>
+
+	<string name="sport_add">添加运动</string>
+	<string name="sport_histroy">历史记录</string>
+	<string name="sport_bmi">BMI值</string>
 	
+		
 	<!-- 科普知识的介绍 -->
 	<string name="introduce_calorie">卡路里（简称卡，缩写为cal），由英文Calorie音译而来，其定义为将1克水在1大气压下提升1℃所需要的热量。
 	    卡路里（calorie）是能量单位，现在仍被广泛使用在营养计量和健身手册上，国际标准的能量单位是焦耳（joule）。

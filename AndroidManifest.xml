@@ -132,6 +132,20 @@
              android:name="com.demo.affair.SituationAdd"
              ></activity>
          
+         <!-- 添加运动 -->
+         <activity
+             android:name="com.demo.health.SportAdd"
+             ></activity>
+         
+         <!-- 运动记录 -->
+         <activity 
+             android:name="com.demo.health.SportHistroy"
+             ></activity>
+         
+         <!--  运动bim-->
+         <activity 
+             android:name="com.demo.health.SportBMI"
+             ></activity>
          
         
          <activity 
