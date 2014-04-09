@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:padding="@dimen/custom_pading"
     android:orientation="vertical"   
     android:background="@drawable/commonback2"
     >
@@ -14,25 +15,13 @@
     <ListView 
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:divider="@color/forestgreen"
+        android:dividerHeight="1dip"
+        android:padding="@dimen/custom_pading"
+        android:background="@drawable/lv_style_green"
         android:layout_centerHorizontal="true"
         android:id="@+id/ls_affair_note"
         ></ListView>
-    </RelativeLayout>
-    <RelativeLayout 
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rl_can_container"
-        android:visibility="gone"
-        android:background="#EEEEEE"
-        android:gravity="center"
-        android:layout_alignParentBottom="true"
-        >
-        <ImageView 
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/img_note_can"
-            android:background="@drawable/can"
-            /> 
     </RelativeLayout>
     
 </RelativeLayout>

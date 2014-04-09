@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<!-- activity_my_helper_main中文信息 -->	
-    <string name="app_name">Android事务管理专家</string>
+    <string name="app_name">生活小管家</string>
     <string name="app_enter">欢迎进入</string>
     <string name="action_settings">设置</string>
     <string name="app_exit_title">退出提示</string>

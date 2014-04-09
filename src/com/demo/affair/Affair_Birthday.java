@@ -67,15 +67,17 @@ public class Affair_Birthday extends Activity {
 	public void initUI(){
 		
 		imgMenu		= (ImageView)findViewById(R.id.custom_title_menu);
+		imgMenu.setBackgroundResource(R.drawable.add_selector);
 		imgMenu.setOnClickListener(new OnClickListener(){
 			public void onClick(View v) {
-				menuWindow.showAsDropDown(v);			
+				//menuWindow.showAsDropDown(v);	
+				Intent intent = new Intent(Affair_Birthday.this,BirthAdd.class);
+				startActivity(intent);				
 			}		
 		});		
 		topTv = (TextView)findViewById(R.id.birthday_top_tv);
 		makePopWindow();
-		makeList();
-		
+		makeList();		
 	}
 
 	

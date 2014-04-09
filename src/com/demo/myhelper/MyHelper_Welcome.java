@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.LayoutInflater;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -66,12 +67,18 @@ public class MyHelper_Welcome extends Activity{
 		mPager = (ViewPager)findViewById(R.id.vp_myhelper_welcome);
 		ViewCounts = ImageIds.length;
 		ViewsList  = new ArrayList<View>();
+		LayoutInflater inflater = LayoutInflater.from(MyHelper_Welcome.this);
 		for(int i=0;i<ViewCounts;i++){
-			RelativeLayout rl = new RelativeLayout(this);
+			/*RelativeLayout rl = new RelativeLayout(this);
 			rl.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT));
-			rl.setBackgroundResource(ImageIds[i]);
+			rl.setBackgroundResource(ImageIds[i]);*/
+			
+			View view = inflater.inflate(R.layout.welcome_img_layout, null);
+			RelativeLayout bg = (RelativeLayout)view.findViewById(R.id.welcome_gb_rly);
+			bg.setBackgroundResource(ImageIds[i]);
+			
 			if(i==ViewCounts-1){												//最后一页添加进入程序按钮
-				Button button = new Button(this);
+				/*Button button = new Button(this);
 				button.setText(R.string.app_enter);
 				
 				button.setOnClickListener(new ButtonListener());                //设置按钮监听，点击进入程序
@@ -79,9 +86,12 @@ public class MyHelper_Welcome extends Activity{
 						(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);		
 				p.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 				p.addRule(RelativeLayout.CENTER_HORIZONTAL);
-				rl.addView(button,p);
+				rl.addView(button,p);*/
+				Button login = (Button)view.findViewById(R.id.welcome_btn_login);
+				login.setVisibility(View.VISIBLE);
+				login.setOnClickListener(new ButtonListener());
 			}
-			ViewsList.add(rl);
+			ViewsList.add(bg);
 		}		
 	}
 	

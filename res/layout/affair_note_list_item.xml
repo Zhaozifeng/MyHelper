@@ -37,7 +37,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="21dp"
             android:text="显示内容"
             android:textSize="20sp" />
        
@@ -56,7 +55,6 @@
             android:layout_height="25dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="23dp"
             android:background="@drawable/note_sound" />
 
         <ImageView

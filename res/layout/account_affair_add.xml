@@ -78,25 +78,13 @@
             android:layout_marginTop="10dip"
             >
             <Spinner 
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_width="fill_parent"
-            android:layout_weight="1.0"
+            android:padding="@dimen/custom_pading"
+            android:background="@drawable/btn_style_green"
             android:prompt="@string/economy_please_choose"
             android:spinnerMode="dropdown"
             android:id="@+id/account_sp_sort"
-            />
-        	<Button 
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:layout_weight="2.0"
-            android:background="@drawable/btn_style_green"
-            android:paddingTop="10dip"
-            android:paddingBottom="10dip"
-            android:paddingLeft="5dip"
-            android:paddingRight="5dip"            
-            android:text="@string/economy_add_sort"
-            android:textSize="20sp"
-            android:id="@+id/accout_add_sort"
             />          
         </LinearLayout>
         
@@ -126,26 +114,12 @@
             <EditText 
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1.0"
             android:singleLine="true"
             android:maxEms="10"
             android:maxWidth="50dp"
             android:numeric="decimal"
             android:id="@+id/edtFee"
-            />
-        <Button 
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2.0"
-            android:background="@drawable/btn_style_green"
-            android:paddingTop="10dip"
-            android:paddingBottom="10dip"
-            android:paddingLeft="5dip"
-            android:paddingRight="5dip" 
-            android:id="@+id/economy_exchange"
-            android:textSize="20sp"
-            android:text="@string/economy_exchange"
-            />                              
+            />                             
         </LinearLayout>
         
         

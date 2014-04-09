@@ -62,7 +62,7 @@ public class Affair_Account_Amonth extends Activity {
 	public  int    suggestions []={R.string.suggestion1,R.string.suggestion2,
 			R.string.suggestion3,R.string.suggestion4};
 	
-	public  static String menus[]={"添加","支出统计图","收入统计图","支出收入对比图","经济分析建议","设置"};
+	public  static String menus[]={"添加","支出统计图","收入统计图","支出收入对比图","经济分析建议"};
 		
 	public 	static String TABLE_DATE = "date";
 	public  static String TABLE_CONTENT = "content";

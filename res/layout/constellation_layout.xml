@@ -3,13 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/commonback3"
     android:orientation="vertical"
     >
     <ImageView 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/constellation_img"
-        android:layout_weight="1.5"
+        android:layout_weight="1.0"
         />
     
     <ScrollView 
@@ -19,8 +20,7 @@
         >
     <LinearLayout 
         android:layout_width="match_parent"
-    	android:layout_height="wrap_content"   	
-    	android:background="@drawable/commonback3"
+    	android:layout_height="wrap_content"   	    	
     	android:paddingRight="5dip"
     	android:paddingLeft="5dip"
     	android:paddingTop="10dip"
@@ -28,7 +28,6 @@
         <TextView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
-        android:lineSpacingExtra="3dip" 
         android:textSize="20sp"             
         android:textStyle="bold"      
         android:id="@+id/constellation_tv"

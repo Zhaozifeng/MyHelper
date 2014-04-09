@@ -2,6 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:padding="@dimen/custom_pading"
     android:background="@drawable/commonback"
     android:orientation="vertical"
     >
@@ -9,6 +10,10 @@
     <ListView 
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:padding="@dimen/custom_pading"
+        android:background="@drawable/lv_style_green"
+        android:dividerHeight="1dip"
+        android:divider="@color/forestgreen"
         android:id="@+id/ls_diary"
         ></ListView>
 	

@@ -190,7 +190,7 @@ public class Affair_Note_List extends Activity {
 	//定义菜单列表适配类
 	private class MenuAdapter extends BaseAdapter{
 		
-		public String[] menus = {"新建","生日达人","我的节日","设置"};
+		public String[] menus = {"新建","生日达人","我的节日"};
 		private Context mcontext;
 		
 		public MenuAdapter(Context context){
