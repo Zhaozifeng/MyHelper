@@ -164,20 +164,6 @@
             android:layout_marginTop="15dip"
             />
             
-            <Button 
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:background="@drawable/btn_style_green"
-            android:paddingTop="6dip"
-            android:paddingBottom="6dip"
-            android:enabled="false"
-            android:id="@+id/btn_health_renew"
-            android:text="@string/health_step_renew"
-            android:textSize="20sp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dip"
-            />
             
             <Button 
             android:layout_width="fill_parent"
@@ -187,7 +173,7 @@
             android:paddingTop="6dip"
             android:paddingBottom="6dip"
             android:id="@+id/btn_health_exit"
-            android:text="@string/health_step_exit"
+            android:text="退出并保存"
             android:textSize="20sp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dip"

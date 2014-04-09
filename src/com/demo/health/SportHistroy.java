@@ -137,8 +137,8 @@ public class SportHistroy extends Activity {
 	 * 从数据库中删除
 	 */
 	public void deleteInDb(SportDateModel item){
-		String condition = "name=? and year=? and month=? and day=? and  total=?";
-		String[] values  = {item.name,item.year+"",item.month+"",item.day+"",item.total+""};
+		String condition = "name=? and year=? and month=? and day=? and minute=? and random=?";
+		String[] values  = {item.name,item.year+"",item.month+"",item.day+"",item.minute+"",item.random+""};
 		final SQLiteDatabase sql = MyHelper_MainActivity.HelperSQLite.getWritableDatabase();
 		int rec = sql.delete(MainDatabase.SPORT_TABLE_NAME, condition, values);
 		if(rec!=0){
@@ -187,8 +187,9 @@ public class SportHistroy extends Activity {
 				int day = cursor.getInt(4);
 				int minute = cursor.getInt(5);
 				float total = cursor.getFloat(7);
+				int rand = cursor.getInt(8);
 				SportDateModel item = new SportDateModel
-				(name,year,month,day,minute,total);
+				(name,year,month,day,minute,total,rand);
 				list.add(item);
 				cursor.moveToNext();
 			}

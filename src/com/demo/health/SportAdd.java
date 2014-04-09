@@ -3,6 +3,7 @@ package com.demo.health;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Random;
 
 import com.demo.myhelper.GlobalApp;
 import com.demo.myhelper.MyHelper_MainActivity;
@@ -103,7 +104,7 @@ public class SportAdd extends Activity {
 				String str = arg0.toString();
 				if(!str.equals("")){					
 					int minute = Integer.parseInt(str);	
-					float kalo = (item.energy*minute)*1.00f;
+					float kalo = item.energy*minute;
 					//四舍五入
 					BigDecimal b = new BigDecimal(kalo);  
 					float f1  	 =   b.setScale(2,BigDecimal.ROUND_HALF_UP).floatValue(); 
@@ -150,8 +151,12 @@ public class SportAdd extends Activity {
 		
 		//四舍五入
 		float f = item.energy*min;
-		BigDecimal   b   =   new   BigDecimal(f);  
-		float f1   =   b.setScale(2,   BigDecimal.ROUND_HALF_UP).floatValue(); 
+		BigDecimal b = new BigDecimal(f);  
+		float f1 = b.setScale(2,BigDecimal.ROUND_HALF_UP).floatValue(); 
+		
+		Random rand = new Random(System.currentTimeMillis());
+		int r = rand.nextInt();
+		cv.put("random", r);
 		
 		cv.put("total",f1);
 		long rec = sql.insert(MainDatabase.SPORT_TABLE_NAME, null, cv);

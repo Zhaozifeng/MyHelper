@@ -64,7 +64,7 @@ public class SportHistroyAdapter extends BaseAdapter {
 	 * 获取本月总卡路里
 	 */
 	public static float getSumKalu(ArrayList<SportDateModel> list){
-		float sum = 0.0f;
+		float sum = 0f;
 		for(int i=0;i<list.size();i++)
 			sum+=list.get(i).total;
 		return sum;
@@ -79,14 +79,16 @@ public class SportHistroyAdapter extends BaseAdapter {
 		public String 	name;
 		public float    total;
 		public int  	minute;
+		public int 		random;
 		
-		public SportDateModel(String n,int y,int m,int day,int min,float total){
+		public SportDateModel(String n,int y,int m,int day,int min,float total,int random){
 			this.name = n;
 			this.year = y;
 			this.month = m;
 			this.day = day;
 			this.minute = min;
 			this.total = total;
+			this.random = random;
 		}		
 	}
 

@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
@@ -82,6 +83,8 @@ public class Health_Step_Set extends Activity {
 	 * 初始化组件
 	 */
 	public void initUI(){
+		//隐藏键盘
+		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 		radioRun		= (RadioButton)findViewById(R.id.health_set_walk_radio);		
 		radioWalk		= (RadioButton)findViewById(R.id.health_set_run_radio);		
 		seekSensity		= (SeekBar)findViewById(R.id.health_set_seekbar);

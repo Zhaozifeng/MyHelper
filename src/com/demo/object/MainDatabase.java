@@ -51,7 +51,7 @@ public class MainDatabase extends SQLiteOpenHelper {
 	
 	//运动数据表
 	public static String CREATE_SPORT_TABLE = "create table "+SPORT_TABLE_NAME+"(_id integer primary key autoincrement," +
-			"name text,year integer, month integer, day integer, minute integer, itemkalo float, total float)";
+			"name text,year integer, month integer, day integer, minute integer, itemkalo float, total float, random integer)";
 	
 	public static List<Obejct_Diary> listofDiary = new ArrayList<Obejct_Diary>();
 	

@@ -5,7 +5,7 @@
     <string name="app_enter">欢迎进入</string>
     <string name="action_settings">设置</string>
     <string name="app_exit_title">退出提示</string>
-    <string name="app_exit_message">您是否要退出Android事务管理专家系统?</string>
+    <string name="app_exit_message">您是否要退出我的生活小管家?</string>
     <string name="app_exit_exitbutton">退出</string>
     <string name="app_exit_cancel">取消</string>
     <string name="affair_helper">事务达人</string>

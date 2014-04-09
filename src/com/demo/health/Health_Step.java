@@ -1,9 +1,13 @@
 package com.demo.health;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.Random;
 
 import com.demo.myhelper.GlobalApp;
+import com.demo.myhelper.MyHelper_MainActivity;
 import com.demo.myhelper.R;
+import com.demo.object.MainDatabase;
 import com.demo.tools.Utools;
 
 import android.app.Activity;
@@ -12,11 +16,13 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.AlertDialog.Builder;
 import android.content.BroadcastReceiver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -27,6 +33,7 @@ import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -55,7 +62,6 @@ public class Health_Step extends Activity implements SensorEventListener {
 	private Button    btnStart;
 	private Button    btnStop;
 	private Button    btnCancel;
-	private Button    btnRenew;
 	private Button    btnExit;
 	
 	//传感器管理类
@@ -67,7 +73,7 @@ public class Health_Step extends Activity implements SensorEventListener {
 	public long    TIME_BETWEEN = 5000;						    //时间间隔
 	public float   STEP_LENGTH  = 1.5f;							//步长
 	public int     CHECK_TIMES  = 100000000;					//检测长时间没有步行	
-	public float   STEP_CONSUME = 0.07f;						//每走一步消耗卡路里
+	public float   STEP_CONSUME = 0.1f;						    //每走一步消耗千卡
 	public float   MAX_CALORIE	= 1000;							//默认超出范围卡路里
 		
 	public float   firstX = 0;
@@ -85,10 +91,15 @@ public class Health_Step extends Activity implements SensorEventListener {
 	public double  speedMeter;
 	public int     checkTimes = 0;
 	
+	public long	   WholeBegin;
+	public long	   WholeEnd;
+	
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.activity_health_step);
+		//保持屏幕开启
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title_layout);
 		initUI();		
 		setListened();
@@ -124,7 +135,6 @@ public class Health_Step extends Activity implements SensorEventListener {
 		btnStart  = (Button)findViewById(R.id.btn_health_start);
 		btnStop   = (Button)findViewById(R.id.btn_health_stop);
 		btnCancel = (Button)findViewById(R.id.btn_health_cancel);
-		btnRenew  = (Button)findViewById(R.id.btn_health_renew);
 		btnExit   = (Button)findViewById(R.id.btn_health_exit);
 		sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
 		mCalendar = Calendar.getInstance();	
@@ -173,7 +183,6 @@ public class Health_Step extends Activity implements SensorEventListener {
 		btnStart.setEnabled(false);
 		btnStop.setEnabled(true);
 		btnCancel.setEnabled(true);
-		btnRenew.setEnabled(true);
 		startSensor();	
 		setNotification();		
 	}
@@ -214,15 +223,15 @@ public class Health_Step extends Activity implements SensorEventListener {
 		btnStart.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {	
 				if(!isStart){
+					WholeBegin = System.currentTimeMillis();
 					setNotification();
 					Toast.makeText(Health_Step.this, getResources().getString(R.string.step_begin), 
-							8000).show();
+							Toast.LENGTH_SHORT).show();
 					//计算时间间隔
-					timeStart = System.currentTimeMillis();
+					timeStart = System.currentTimeMillis();					
 					btnStart.setEnabled(false);
 					btnStop.setEnabled(true);
 					btnCancel.setEnabled(true);
-					btnRenew.setEnabled(true);
 					isStart = true;
 					startSensor();		
 					editor.putBoolean(IS_START, true);
@@ -233,11 +242,10 @@ public class Health_Step extends Activity implements SensorEventListener {
 		//停止传感器
 		btnCancel.setOnClickListener(new OnClickListener(){
 			public void onClick(View v) {
-				if(isStart){				
+				if(isStart){						
 					btnStart.setEnabled(true);
 					btnCancel.setEnabled(false);
 					btnStop.setEnabled(false);					
-					btnRenew.setEnabled(false);
 					isStart = false;
 					stopSensor();
 					//取消notification
@@ -245,24 +253,24 @@ public class Health_Step extends Activity implements SensorEventListener {
 					mn.cancel(STEP_NOTI_ID);
 					editor.putBoolean(IS_START, false);
 					editor.commit();
+					
 				}								
 			}			
 		});	
-		//清零按钮
-		btnRenew.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View arg0) {
-				setZero();				
-			}			
-		});
 		//退出按钮
 		btnExit.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
+				WholeEnd = System.currentTimeMillis();
 				stopSensor();
 				//取消notification
 				NotificationManager mn = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
 				mn.cancel(STEP_NOTI_ID);
+				editor.putBoolean(IS_START, false);
+				editor.commit();
+				saveInDb();
+				Intent intent = new Intent(Health_Step.this,SportHistroy.class);
+				startActivity(intent);
 				finish();				
 			}			
 		});
@@ -283,6 +291,37 @@ public class Health_Step extends Activity implements SensorEventListener {
 			}			
 		});		
 	}
+	
+	//保存到本地数据库
+	public void saveInDb(){
+		final SQLiteDatabase sql = MyHelper_MainActivity.HelperSQLite.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		Calendar c = Calendar.getInstance();
+		int year  = c.get(Calendar.YEAR);
+		int month = c.get(Calendar.MONTH)+1;
+		int day = c.get(Calendar.DAY_OF_MONTH);
+		BigDecimal b = new BigDecimal(consume);  
+		float f1 = b.setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
+		int min = (int)((WholeEnd - WholeBegin)/60000);
+		cv.put("name", "计步器工具");
+		cv.put("year", year);
+		cv.put("month", month);
+		cv.put("day", day);
+		cv.put("minute", min);
+		cv.put("total", f1);
+		
+		Random rand = new Random(System.currentTimeMillis());
+		int r = rand.nextInt();
+		cv.put("random", r);
+		
+		long ret = sql.insert(MainDatabase.SPORT_TABLE_NAME, null, cv);
+		if(ret==-1)
+			Toast.makeText(Health_Step.this, "保存失败", Toast.LENGTH_SHORT).show();
+		else
+			Toast.makeText(Health_Step.this, "保存成功", Toast.LENGTH_SHORT).show();
+	}
+	
+	
 	
 	//启动传感器
 	public void startSensor(){
@@ -347,7 +386,7 @@ public class Health_Step extends Activity implements SensorEventListener {
 			timeStart = timeFinish;	
 		}
 		consume = stepCount*STEP_CONSUME;
-		tvStepConsume.setText(consume+"卡路里");
+		tvStepConsume.setText(consume+"千卡");
 		
 		
 		//handler处理被多次调用问题		
