@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -46,8 +47,7 @@ public class Affair_Flashlight extends Activity {
 		mainLinearLayout = (LinearLayout)findViewById(R.id.flash_layout);		
 		mainLinearLayout.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0) {
-				showListDialog();
-				Toast.makeText(Affair_Flashlight.this, "这里会弹出对话框", 8888).show();				
+				showListDialog();		
 			}			
 		});
 	}
@@ -61,8 +61,8 @@ public class Affair_Flashlight extends Activity {
 		WindowManager.LayoutParams lp = dialogWindow.getAttributes();
 		lp.alpha = 0.9f;
 		lp.width = (int)(GlobalApp.getInstance().ScreenWidth*0.9);
-		lp.height= (int)(GlobalApp.getInstance().ScreenHeight*0.55);
-		
+		//lp.height= (int)(GlobalApp.getInstance().ScreenHeight*0.55);
+		lp.height = LayoutParams.WRAP_CONTENT;
 		dialogWindow.setAttributes(lp);	
 		ListView listview = (ListView)listDialog.findViewById(R.id.flash_list);
 		listview.setAdapter(new MyAdapter());		

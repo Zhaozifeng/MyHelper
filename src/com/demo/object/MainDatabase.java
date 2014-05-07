@@ -10,8 +10,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MainDatabase extends SQLiteOpenHelper {
 	
-	
-	
 	public static String DBASE_NAME         = "MainDatabase";
 	public static String DIARY_TABLE_NAME   = "Diary" ;
 	public static String ECONOMY_TABLE_NAME = "Economy";

@@ -78,11 +78,11 @@
 	   <Button 
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
-		    android:paddingTop="5dip"
-		    android:paddingBottom="5dip"
+		    android:paddingTop="10dip"
+		    android:paddingBottom="10dip"
 		    android:paddingLeft="5dip"
 		    android:paddingRight="5dip"
-		    android:background="@drawable/btn_style_white"
+		    android:background="@drawable/btn_style_white2"
 		    android:layout_below="@+id/recall_content_container"
 		    android:layout_alignParentBottom="true"
 		    android:layout_centerHorizontal="true"
@@ -91,7 +91,7 @@
 		    android:layout_gravity="center_horizontal"
 		    android:text="嗯，我知道了 !"
 		    android:textSize="18sp"
-		    android:textColor="@color/forestgreen"
+		    android:textColor="@color/white"
 		    android:layout_marginBottom="10dp"
 	        />               
     </LinearLayout>

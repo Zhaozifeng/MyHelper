@@ -115,7 +115,8 @@ public class Affair_Note_Recall extends Activity {
 		WindowManager.LayoutParams layoutParams = window.getAttributes();
 		//设置窗口的大小及透明度
 		layoutParams.width  = (int) ((int)ScreenWidth*1);
-		layoutParams.height = (int) ((int)ScreenHeight*0.5);
+		//layoutParams.height = (int) ((int)ScreenHeight*0.5);
+		layoutParams.height = LayoutParams.WRAP_CONTENT;
 		layoutParams.alpha  = 0.9f;
 		window.setAttributes(layoutParams);		
 		if(cursor.getInt(8)==1){

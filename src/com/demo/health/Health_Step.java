@@ -422,7 +422,7 @@ public class Health_Step extends Activity implements SensorEventListener {
 		//震动和音乐提醒
 		Utools.setMedia(this, 1);
 		Utools.setVibrator(this, 8000, 1);
-		Toast.makeText(this, "设置预警值达到了", 20000).show();	
+		Toast.makeText(this, "设置预警值达到了", Toast.LENGTH_LONG).show();	
 	}
 }
 

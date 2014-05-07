@@ -55,7 +55,10 @@
             <Spinner 
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
-                android:prompt="@string/diary_choose_emotion"
+                android:paddingTop="10dip"
+                android:paddingBottom="10dip"
+                android:paddingLeft="5dip"
+                android:background="@drawable/btn_style_green"
                 android:id="@+id/spinner_emotion" 
                 />                      
         </LinearLayout>

@@ -92,7 +92,7 @@ public class Affair_Diary extends Activity {
 				v.vibrate(100);
 				
 				Builder build = new Builder(Affair_Diary.this);
-				String[] items = new String[]{"编辑","收藏","删除"};	
+				String[] items = new String[]{"编辑","删除"};	
 				build
 				.setTitle("编辑操作")
 				.setItems(items, new DialogInterface.OnClickListener() {						

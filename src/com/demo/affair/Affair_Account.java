@@ -146,9 +146,9 @@ public class Affair_Account extends Activity {
 			TextView tv = new TextView(context);
 			tv.setGravity(Gravity.CENTER);
 			tv.setText(list.get(position));
-			tv.setTextSize(30);
+			tv.setTextSize(20);
 			tv.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,150));
-			l.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.btn_style_green));
+			l.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.circle_btn_green));
 			l.addView(tv);
 			return l;
 		}

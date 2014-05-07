@@ -40,7 +40,7 @@ public class MyHelper_Welcome extends Activity{
 	}
 			
 	
-	void isEnter(){				
+	public void isEnter(){				
 		SharedPreferences setting = getPreferences(Activity.MODE_PRIVATE);		//获取登录信息
 		isLogin = setting.getBoolean(LOGIN, false);
 		
@@ -63,30 +63,17 @@ public class MyHelper_Welcome extends Activity{
 		}
 	}
 	
-	void initialUI(){
+	public void initialUI(){
 		mPager = (ViewPager)findViewById(R.id.vp_myhelper_welcome);
 		ViewCounts = ImageIds.length;
 		ViewsList  = new ArrayList<View>();
 		LayoutInflater inflater = LayoutInflater.from(MyHelper_Welcome.this);
-		for(int i=0;i<ViewCounts;i++){
-			/*RelativeLayout rl = new RelativeLayout(this);
-			rl.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT));
-			rl.setBackgroundResource(ImageIds[i]);*/
-			
+		for(int i=0;i<ViewCounts;i++){			
 			View view = inflater.inflate(R.layout.welcome_img_layout, null);
 			RelativeLayout bg = (RelativeLayout)view.findViewById(R.id.welcome_gb_rly);
 			bg.setBackgroundResource(ImageIds[i]);
 			
 			if(i==ViewCounts-1){												//最后一页添加进入程序按钮
-				/*Button button = new Button(this);
-				button.setText(R.string.app_enter);
-				
-				button.setOnClickListener(new ButtonListener());                //设置按钮监听，点击进入程序
-				RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams
-						(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);		
-				p.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-				p.addRule(RelativeLayout.CENTER_HORIZONTAL);
-				rl.addView(button,p);*/
 				Button login = (Button)view.findViewById(R.id.welcome_btn_login);
 				login.setVisibility(View.VISIBLE);
 				login.setOnClickListener(new ButtonListener());

@@ -15,6 +15,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Vibrator;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -68,10 +69,12 @@ public class Utools extends Activity{
 
 	//播放音频flag 1为播放，0为取消
 	public static void setMedia(Context context,int flag){	
-		AudioManager am = (AudioManager)context.getSystemService(context.AUDIO_SERVICE);		
+		AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);		
 		int maxVolumn   = am.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 		am.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolumn, 0);
-		mediaplayer = MediaPlayer.create(context, R.raw.silent_cry);
+		if(mediaplayer!=null)
+			mediaplayer.release();
+		mediaplayer = MediaPlayer.create(context, R.raw.kanong);
 		if(flag==1){			
 			try {
 				mediaplayer.prepare();
@@ -79,7 +82,7 @@ public class Utools extends Activity{
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
-				Toast.makeText(context, "播放音频异常，请检查是否存在该音频文件", 8000).show();
+				Toast.makeText(context, "播放音频异常，请检查是否存在该音频文件", Toast.LENGTH_SHORT).show();
 				e.printStackTrace();
 			}	
 			mediaplayer.start();
@@ -95,6 +98,14 @@ public class Utools extends Activity{
 				return;
 			}		
 		}		
+		mediaplayer.setOnCompletionListener(new OnCompletionListener(){
+			@Override
+			public void onCompletion(MediaPlayer mp) {
+				mp.stop();
+				mp.release();
+			}			
+		});
+		
 	}
 	
 	//普通定义标题栏,图片类标题

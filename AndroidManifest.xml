@@ -19,7 +19,8 @@
         <receiver
             android:name="com.demo.affair.Affair_Note_Alarm"
             android:process=":remote"
-            ></receiver>
+            >
+        </receiver>
         
         <!-- 情景模式提醒 -->
         <receiver 

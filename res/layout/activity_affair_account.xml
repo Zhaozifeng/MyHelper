@@ -3,6 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
+    android:padding="@dimen/custom_pading"
     android:background="@drawable/commonback"
     >
     
@@ -17,14 +18,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3.0"
-            android:gravity="center"
             android:text="年份："
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             />
         <Spinner 
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="10dip"
+            android:paddingTop="10dip"
+            android:paddingBottom="10dip"
+            android:background="@drawable/btn_style_white2"
             android:layout_weight="1.0"
             android:id="@+id/account_yearSpinner"
             />    
@@ -35,6 +39,7 @@
         android:layout_marginTop="20dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:listSelector="#00FFFFFF"
         android:id="@+id/account_grid"
         android:numColumns="auto_fit"
         android:verticalSpacing="50dp"
